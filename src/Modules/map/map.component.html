@@ -1,0 +1,590 @@
+<div class="page-container">
+  <div class="map-wrapper" style="position: relative; height: 100%;">
+    <!-- MAP -->
+    <div id="map" style="height:100%; width:110%;"></div>
+
+
+    <!-- BASEMAP CONTROL -->
+    <div style="position:absolute; top:10px; right:10px; z-index:1000;">
+      <div (click)="toggleBasemapMenu()" style="background: white; padding: 8px; border-radius: 8px; cursor: pointer; margin-right: 62px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);float: right;
+    margin-right: 2%;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 3L2 9l10 6 10-6-10-6z" stroke="#555" stroke-width="2" />
+          <path d="M2 15l10 6 10-6" stroke="#555" stroke-width="2" />
+        </svg>
+      </div>
+
+      <div *ngIf="showBasemapMenu" (click)="$event.stopPropagation()" class="basemap-menu">
+
+        <label>
+          <input type="radio" name="base" (change)="changeBaseMap('streets')" checked>
+          <span>Google Streets</span>
+        </label>
+
+        <label>
+          <input type="radio" name="base" (change)="changeBaseMap('osm')">
+          <span>OpenStreetMap</span>
+        </label>
+
+        <label>
+          <input type="radio" name="base" (change)="changeBaseMap('satellite')">
+          <span>Google Satellite</span>
+        </label>
+
+      </div>
+    </div>
+    <div class="legend-wrapper">
+      <div class="fcd-legend" *ngIf="fcd">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">Forest Canopy Density </div>
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(255,0,0);margin-right:8px;"></span>
+          <span>Scrub Land (&lt;10%)</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(255,255,0);margin-right:8px;"></span>
+          <span>Open Forest (10%-40%)</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(0,255,0);margin-right:8px;"></span>
+          <span>Moderate Dense Forest (40%-70%)</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(0,100,0);margin-right:8px;"></span>
+          <span>Very Dense Forest (&gt;70%)</span>
+        </div>
+      </div>
+      <div class="fds-legend" *ngIf="fds">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">Forest Degeradation Status</div>
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(219, 8, 8);margin-right:8px;"></span>
+          <span>Very High Degradation (&lt;10%)</span>
+        </div>
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(255,255,0);margin-right:8px;"></span>
+          <span>High Degradation (10%-40%)</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(0,255,0);margin-right:8px;"></span>
+          <span>Moderate Degradation (40%-70%)</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:rgb(7, 90, 7);margin-right:8px;"></span>
+          <span>Low Degradation (->70%)</span>
+        </div>
+
+
+
+
+      </div>
+
+      <div class="soilerosion-legend" *ngIf="potentialsoilerosion">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">Potential Soil Erosion</div>
+
+        <!-- < 10 (Low Erosion) -->
+        <div class="legend-item">
+          <span
+            style="display:inline-block;width:15px;height:15px;background:rgb(215, 186, 141);margin-right:8px;"></span>
+          <span>Low Erosion (&lt;10)</span>
+        </div>
+
+        <!-- 10 - 48 (Moderate Erosion) -->
+        <div class="legend-item">
+          <span
+            style="display:inline-block;width:15px;height:15px;background:rgb(168, 131, 41);margin-right:8px;"></span>
+          <span>Moderate Erosion (10-48)</span>
+        </div>
+
+        <!-- > 48 (High Erosion) -->
+        <div class="legend-item">
+          <span
+            style="display:inline-block;width:15px;height:15px;background:rgb(125, 83, 73);margin-right:8px;"></span>
+          <span>High Erosion (&gt;48)</span>
+        </div>
+      </div>
+      <div class="lulc-legend" *ngIf="showLulcLegend">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">LULC</div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#388E3C;margin-right:8px;"></span>
+          <span>Tropical Evergreen</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#00FF00;margin-right:8px;"></span>
+          <span>Semi Evergreen</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ADC479;margin-right:8px;"></span>
+          <span>Moist Mixed Deciduous</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#CCFF66;margin-right:8px;"></span>
+          <span>Mixed Deciduous</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#D3D3D3;margin-right:8px;"></span>
+          <span>Open / Other Land</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#447E7C;margin-right:8px;"></span>
+          <span>Bamboo</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#9B3083;margin-right:8px;"></span>
+          <span>Sal</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#FFA500;margin-right:8px;"></span>
+          <span>Rubber</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#A0522D;margin-right:8px;"></span>
+          <span>Teak</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#BEF7DA;margin-right:8px;"></span>
+          <span>Plantation</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#FFFF00;margin-right:8px;"></span>
+          <span>Agriculture</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#FF0000;margin-right:8px;"></span>
+          <span>Urban / Builtup</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#0070FF;margin-right:8px;"></span>
+          <span>Waterbody</span>
+        </div>
+      </div>
+      <div class="ppa-legend" *ngIf="showPpaLegend">
+
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">
+          PPA_Score
+        </div>
+
+        <!-- 0–4 -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#29B6F6;margin-right:8px;"></span>
+          <span>0 – 4</span>
+        </div>
+
+        <!-- 5 -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#AEEA00;margin-right:8px;"></span>
+          <span>5</span>
+        </div>
+
+        <!-- 6 -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#FFD54F;margin-right:8px;"></span>
+          <span>6</span>
+        </div>
+
+        <!-- 7 -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#FF7043;margin-right:8px;"></span>
+          <span>7</span>
+        </div>
+
+        <!-- 8 -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#8B0000;margin-right:8px;"></span>
+          <span>8</span>
+        </div>
+
+      </div>
+      <div class="jfmc_veg_type-legend" *ngIf="jfmc_veg_type">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">Vegetation Type</div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#38761d;margin-right:8px;"></span>
+          <span>Tropical Evergreen</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#00ff00;margin-right:8px;"></span>
+          <span>Semi Evergreen</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#a9bc79;margin-right:8px;"></span>
+          <span>Moist Mixed Deciduous</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ccff66;margin-right:8px;"></span>
+          <span>Mixed Deciduous</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#c0c0c0;margin-right:8px;"></span>
+          <span>Open Land</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#447e7c;margin-right:8px;"></span>
+          <span>Bamboo</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#a33b85;margin-right:8px;"></span>
+          <span>Sal</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ff9900;margin-right:8px;"></span>
+          <span>Rubber</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#996600;margin-right:8px;"></span>
+          <span>Teak</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ccfbf1;margin-right:8px;"></span>
+          <span>Plantation</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ffff00;margin-right:8px;"></span>
+          <span>Agriculture</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ff0000;margin-right:8px;"></span>
+          <span>Build up</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#0099cc;margin-right:8px;"></span>
+          <span>Waterbody</span>
+        </div>
+
+        <!-- Added missing items -->
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#fff9e0;margin-right:8px;"></span>
+          <span>Bushes</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#8b2b2b;margin-right:8px;"></span>
+          <span>Jhum Cultivation</span>
+        </div>
+      </div>
+      <div class="lulc-legend" *ngIf="jfmc_lulc">
+        <div class="legend-header" style="font-weight: bold; margin-bottom: 5px;">JFMC LULC</div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#1a5c1a;margin-right:8px;"></span>
+          <span>Forest</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#c0c0c0;margin-right:8px;"></span>
+          <span>Open Land</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ffff00;margin-right:8px;"></span>
+          <span>Crop Land</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#66cc00;margin-right:8px;"></span>
+          <span>Plantation</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#ff0000;margin-right:8px;"></span>
+          <span>Builtup</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#3399ff;margin-right:8px;"></span>
+          <span>Waterbody</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#1a6b4a;margin-right:8px;"></span>
+          <span>Bamboo</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#993399;margin-right:8px;"></span>
+          <span>Sal</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#7a4a1e;margin-right:8px;"></span>
+          <span>Teak</span>
+        </div>
+
+        <div class="legend-item">
+          <span style="display:inline-block;width:15px;height:15px;background:#cc3366;margin-right:8px;"></span>
+          <span>Jhum Cultivation</span>
+        </div>
+
+        <div class="legend-item">
+          <span
+            style="display:inline-block;width:15px;height:15px;background:#ffffcc;margin-right:8px;border: 1px solid #ccc;"></span>
+          <span>Bushes</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LEFT PANEL - LAYERS CONTROL -->
+    <div class="overlay overlay-top-left">
+      <button class="btn-map main-btn" (click)="toggleLayerPanel()">
+        <svg viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="4" />
+          <rect x="4" y="10" width="16" height="4" />
+          <rect x="4" y="16" width="16" height="4" />
+        </svg>
+        Layers
+      </button>
+
+      <div class="layers-panel" id="layerpa" *ngIf="showLayers">
+        <div class="panel-header">Layer Management</div>
+        <div class="panel-content">
+          <div class="section-title"
+            style="padding: 10px; font-weight: bold; background: #1a0303; margin-top: 10px; color: white;">
+            Data Layers
+          </div>
+          <ul class="layer-tree">
+            <li *ngFor="let group of managerTeam" class="tree-item">
+              <div class="tree-node" [class.has-children]="group.children && group.children.length > 0">
+                <button *ngIf="group.children && group.children.length > 0" class="expand-btn"
+                  (click)="toggleTreeNode(group.id)" [class.expanded]="expandedNodes[group.id]">
+                  <span class="arrow">▶</span>
+                </button>
+                <!-- FOLDER CHECKBOX (SELECT ALL) -->
+                <label class="layer-checkbox">
+                  <input type="checkbox" [checked]="checkedStates[group.id]" (change)="onNodeToggle($event, group)">
+                  <span class="folder-icon">📁</span>
+                  <span class="node-label">{{ group.text }}</span>
+                </label>
+              </div>
+              <ul class="tree-children" *ngIf="group.children && group.children.length > 0 && expandedNodes[group.id]">
+                <ng-container
+                  *ngTemplateOutlet="layerTreeNode; context:{ $implicit: group.children, level: 1 }"></ng-container>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RECURSIVE TREE TEMPLATE -->
+      <ng-template #layerTreeNode let-nodes let-level="level">
+        <li *ngFor="let node of nodes" class="tree-item">
+          <div class="tree-node" [class.has-children]="node.children && node.children.length > 0">
+            <button *ngIf="node.children && node.children.length > 0" class="expand-btn"
+              (click)="toggleTreeNode(node.id)" [class.expanded]="expandedNodes[node.id]">
+              <span class="arrow">▶</span>
+            </button>
+
+            <!-- Spacing for leaf nodes -->
+            <ng-container *ngIf="!node.children || node.children.length === 0">
+              <span class="spacer" style="display:inline-block; width:20px;"></span>
+            </ng-container>
+
+            <!-- CHECKBOX (Works for both folder and leaf) -->
+            <label class="layer-checkbox">
+              <input type="checkbox" [checked]="checkedStates[node.id]" (change)="onNodeToggle($event, node)">
+              <span *ngIf="node.layername" class="folder-icon">📄</span>
+              <span *ngIf="!node.layername" class="folder-icon">📁</span>
+              <span class="label-text">{{ node.text }}</span>
+            </label>
+          </div>
+
+          <ul class="tree-children" *ngIf="node.children && node.children.length > 0 && expandedNodes[node.id]"
+            style="margin-left: 15px; border-left: 1px dashed #555;">
+            <ng-container
+              *ngTemplateOutlet="layerTreeNode; context:{ $implicit: node.children, level: level + 1 }"></ng-container>
+          </ul>
+        </li>
+      </ng-template>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="map-command-bar">
+
+      <!-- Group 1: Navigation -->
+      <div class="tool-group">
+        <button class="btn-tool btn-zoom" data-tooltip="Zoom to Extent" (click)="zoomToExtent()">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Info" (click)="toggleInfo()">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <circle cx="12" cy="8" r="1" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Group 2: Measurement -->
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Distance" (click)="setTool('line')">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 5l8 8-4 4-8-8 4-4zM9 9l-4.5 4.5M14 4l3 3" />
+          </svg>
+        </button>
+        <button class="btn-tool" data-tooltip="Area" (click)="setTool('polygon')">
+          <svg viewBox="0 0 24 24">
+            <path d="m3 3 18 2-5 16-7-7L3 3z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Group 3: Analysis -->
+      <div class="tool-group">
+        <button class="btn-tool" [class.active]="slider !== null" data-tooltip="Layer Slider" (click)="toggleSlider()"
+          style="width:30px; height:30px; padding:4px; display:flex; align-items:center; justify-content:center; border-radius:6px;">
+          <svg viewBox="0 0 24 24" style="width:16px; height:16px;">
+            <line x1="12" y1="3" x2="12" y2="21" />
+            <path d="M3 7h6M15 17h6" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Group 4: System -->
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Deactivate Slider" (click)="deactivateSlider()">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m4.93 4.93 14.14 14.14" />
+          </svg>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+
+  <style>
+    /* Root Container */
+    .map-command-bar {
+      position: absolute;
+      top: 1%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 13px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 1px solid #d1d5db;
+      z-index: 1000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      height: 35px;
+    }
+
+    /* Tool Grouping */
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 0 6px;
+    }
+
+    .tool-group:not(:last-child) {
+      border-right: 1px solid #e5e7eb;
+    }
+
+    /* Button Styling */
+    .btn-tool {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      color: #4b5563;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-tool svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    /* Hover & Active States */
+    .btn-tool:hover {
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+
+    .btn-tool.active {
+      background-color: #eff6ff;
+      color: #2563eb;
+    }
+
+    /* Specialized Buttons */
+    .btn-tool.btn-zoom {
+      color: #059669;
+      /* Green for Zoom/Navigation */
+    }
+
+    .btn-tool.btn-danger {
+      color: #dc2626;
+      /* Red for Delete */
+    }
+
+    .btn-tool.btn-danger:hover {
+      background-color: #fef2f2;
+    }
+
+    /* Simple CSS Tooltip */
+    .btn-tool:before {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -35px;
+      background: #1f2937;
+      color: white;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+    }
+
+    .btn-tool:hover:before {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>

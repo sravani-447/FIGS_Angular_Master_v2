@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<div>
+  <div mat-dialog-content class="table-wrapper">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let col of data.columns">
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of data.rows; let i = index">
+          <td *ngFor="let col of data.columns">
+            {{ col.field === 'sno' ? i + 1 : row[col.field] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!data.rows?.length" class="no-data">
+      No records found
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button (click)="close()">Close</button>
+  </div>
+</div>
+<style>
+</style>

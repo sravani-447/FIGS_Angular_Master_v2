@@ -1,0 +1,458 @@
+/* ==========================================================================
+   1. GLOBAL DASHBOARD WRAPPER & TYPOGRAPHY
+   ========================================================================== */
+.dashboard-container {
+    background-color: #f8fafc;
+    padding: 20px 30px;
+    font-family: 'Inter', sans-serif;
+    color: #334155;
+}
+
+.pageheader h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: #1e293b;
+}
+
+/* ==========================================================================
+   2. TILES, CARDS, AND CONTENT CONTAINERS
+   ========================================================================== */
+.tile, .chart-card {
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    margin-bottom: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Section Titles with Left Indigo Accent Bar */
+.chart-header, .custom-font {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    margin-bottom: 15px;
+    padding-left: 12px;
+    border-left: 4px solid #4f46e5;
+}
+
+/* ==========================================================================
+   3. FLEX GRID LAYOUT ENGINE (FORCE SINGLE DESKTOP ROW)
+   ========================================================================== */
+.row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-end !important; 
+    margin-left: -8px !important;
+    margin-right: -8px !important;
+    flex-wrap: nowrap !important;
+}
+
+[class*="col-md-"] {
+    flex: 1 !important; 
+    padding: 0 8px !important;
+    max-width: none !important; 
+}
+
+.tile-body .row {
+    margin-bottom: 10px;
+}
+
+/* Fix for inline positioning configurations */
+.filter-row-inner {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+/* ==========================================================================
+   4. FORM CONTROLS, INPUTS, AND ACTIONS
+   ========================================================================== */
+label, .form-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+    white-space: nowrap;
+}
+
+.form-label {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.form-control, .form-control-sm, select, input[type="date"] {
+    width: 100% !important;
+    height: 38px !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    padding: 0 10px !important;
+    font-size: 13px !important;
+    background-color: #fff !important;
+    color: #1e293b !important;
+}
+
+/* Form Buttons Styling */
+.btn-submit-primary, .btn-darkgray {
+    height: 38px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    padding: 0 20px !important;
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit-primary { background: #4f46e5; color: white; width: 100%; }
+.btn-darkgray { background: #1e293b; color: white; margin-top: 0 !important; }
+
+/* ==========================================================================
+   5. CHART JS AND CANVAS RENDERING
+   ========================================================================== */
+.chart-main-container {
+    height: 280px !important; 
+    margin-top: 15px;
+}
+
+.chart-content {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: block;
+}
+
+.chart-content canvas, canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Main Dashboard Overview Charts Layout Grid */
+.chart-row-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+.chart-row-main .col-row-4,
+.chart-row-main .col-md-4 {
+    flex: 1 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    box-sizing: border-box;
+}
+
+.chart-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    height: 100%;
+    min-height: 380px;
+    overflow: hidden;
+}
+
+/* Angular Material Input Area Corrections */
+.custom-mat-field {
+    width: 100%;
+}
+
+.custom-mat-field .mat-mdc-text-field-wrapper {
+    height: 56px !important;
+    align-items: center;
+}
+
+.w-100, .mat-mdc-form-field {
+    width: 100%;
+}
+
+/* ==========================================================================
+   6. OPTIMIZED SHG MULTI-SELECT & MAT-SELECT CUSTOM TRIGGER CHIPS
+   ========================================================================== */
+.multi-select-container {
+    flex: 1.5 !important;
+    min-width: 250px;
+}
+
+.chip-container-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    max-height: 32px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.chip-element {
+    background-color: #4f46e5;
+    color: #ffffff;
+    padding: 1px 6px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.chip-element:hover {
+    background-color: #4338ca;
+}
+
+.chip-close-icon {
+    font-size: 9px;
+    opacity: 0.8;
+}
+
+.chip-close-icon:hover {
+    opacity: 1;
+}
+
+.multi-select-container .mat-mdc-text-field-wrapper {
+    height: 38px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: #ffffff !important;
+}
+
+/* ==========================================================================
+   7. DROPDOWN OVERLAY SELECT-ALL CHECKBOX MANAGEMENT Rules
+   ========================================================================== */
+.select-all-option {
+    font-weight: bold;
+    color: #1e293b;
+    background: #f8fafc !important;
+}
+
+.select-all-option:hover {
+    background: #f1f5f9 !important;
+}
+
+/* Forces state sync on selection pseudo-elements inside the Material List Overlay Component */
+.select-all-option.mat-mdc-option-pseudo-checkbox-checked .mat-pseudo-checkbox::after {
+    transform: rotate(45deg) scale(1) !important;
+    opacity: 1 !important;
+}
+
+.dropdown-divider-line {
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 4px 0;
+}
+
+/* ==========================================================================
+   8. DYNAMIC REPORT PREVIEW PANEL STYLING
+   ========================================================================== */
+.report-container {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.report-sheet {
+    background: white;
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.report-header-title {
+    background: #1b5540;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.section-banner {
+    background: #2d6a4f;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.report-table-styled {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+.report-table-styled th, .report-table-styled td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.report-table-styled thead th {
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.report-table-styled .green-head th {
+    background: #d8f3dc !important;
+    color: #1b5540;
+}
+
+.lbl { 
+    background: #f1f5f9; 
+    font-weight: bold; 
+    width: 20%; 
+}
+
+.report-actions {
+    max-width: 1000px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* JFMC Tabular Formatting Blocks */
+.jfmc-report-wrapper {
+    background: #fff;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.report-header-custom {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #1b5540;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    color: #1b5540;
+}
+
+.section-title-custom {
+    background: #f2f2f2 !important;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.report-table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.report-table-custom td, .report-table-custom th {
+    border: 1px solid #000;
+    padding: 6px;
+    font-size: 12px;
+    color: black;
+}
+
+.print-logo-header {
+    display: none;
+}
+
+/* ==========================================================================
+   9. BREAKPOINTS & RESPONSIVE GRID OVERRIDES
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .row {
+        flex-wrap: wrap !important; 
+    }
+    [class*="col-md-"] {
+        flex: 0 0 33.33% !important; 
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .chart-row-main .col-row-4,
+    .chart-row-main .col-md-4 {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    [class*="col-md-"] {
+        flex: 0 0 100% !important; 
+    }
+}
+
+/* ==========================================================================
+   10. MEDIA PRINT OPTIMIZATION CSS LAYER
+   ========================================================================== */
+@media print {
+    html, body, 
+    .dashboard-container, 
+    .report-container, 
+    .report-sheet,
+    .jfmc-report-wrapper,
+    main {
+        height: auto !important;
+        overflow: visible !important;
+        display: block !important; 
+        position: static !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .report-sheet {
+        background: white !important;
+        color: black !important;
+        border: none !important;
+        box-shadow: none !important;
+        width: 100% !important;
+    }
+
+    .section-banner, 
+    .report-header-custom {
+        page-break-before: always !important;
+        margin-top: 0 !important;
+    }
+
+    table, .report-table-custom, .report-table-styled {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        page-break-inside: auto !important;
+        display: table !important;
+    }
+
+    tr {
+        page-break-inside: avoid !important; 
+        page-break-after: auto !important;
+    }
+
+    thead {
+        display: table-header-group !important;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .report-header-title, .section-banner, .section-title-custom {
+        background-color: #1b5540 !important;
+        color: white !important;
+        padding: 10px !important;
+    }
+
+    @page {
+        size: auto;
+        margin: 15mm 10mm; 
+    }
+
+    .btn, .report-actions, .breadcrumb, .page-header, .no-print {
+        display: none !important;
+    }
+}

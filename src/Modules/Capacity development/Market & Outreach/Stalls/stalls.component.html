@@ -1,0 +1,64 @@
+<div class="content-wrapper">
+  
+  <!-- Centered Main Title -->
+  <div class="page-title-section">
+    <h1 class="main-title">Stalls</h1>
+  </div>
+
+  <!-- Left-aligned Modern Breadcrumb (Matched to Image) -->
+  <div class="breadcrumb-container">
+    <div class="orange-indicator"></div>
+    <div class="breadcrumb-path">
+      Capacity Development / Market & Outreach / <span class="current-page">STALLS</span>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="grid-section">
+    <app-custom-grid 
+        title="Stall Data Management"
+        [columns]="columns"
+        [data]="data"
+        [showAdd]="false" 
+        [showprintbuttons]="true"
+        (actionClicked)="handleGridAction($event)">
+    </app-custom-grid>
+  </div>
+
+  <!-- Gap/Spacer between Table and Map -->
+  <div class="section-gap"></div>
+
+   <!-- Modern Map Card -->
+  <div class="modern-card map-card" id="map-card">
+    <div class="card-header-modern">
+      <h3 class="card-title"><i class="fa fa-map-marker"></i> Location Visualization</h3>
+    </div>
+    <div id="stallMap" class="map-frame"></div>
+  </div>
+
+  <!-- Floating Photo Dialogue (Now appearing below the map) -->
+ <!-- Centered Photo Modal with Blur -->
+<div *ngIf="showPhotoPreview" class="modal-overlay">
+  <div class="stall-modal-centered">
+    
+    <!-- Dark Header -->
+    <div class="stall-modal-header">
+      <h5 class="modal-title">Photo Preview</h5>
+      <button type="button" class="close-icon-btn" (click)="closePreview()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- Dark Body for Image -->
+    <div class="stall-modal-body">
+      <div class="img-frame">
+          <img [src]="selectedImageUrl" class="img-preview-main" alt="Stall Photo">
+      </div>
+    </div>
+
+  
+    
+  </div>
+</div>
+</div>
+

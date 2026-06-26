@@ -1,0 +1,1676 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+/* WMS Legend Box */
+.wms-legend-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1100;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  min-width: 120px;
+  pointer-events: none; /* Allows clicks to pass through to the map if needed */
+}
+
+.legend-header {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.legend-content img {
+  display: block;
+  max-width: 150px;
+  height: auto;
+}
+
+/* Optional: Animation for appearing */
+.wms-legend-container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Page layout */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Dashboard */
+app-dashboard {
+  height: 70px;
+  flex-shrink: 0;
+}
+
+/* Map wrapper */
+.map-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+/* Map */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Overlay base */
+.overlay {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Top left */
+.overlay-top-left {
+  top: 15px;
+  left: 85px;
+}
+
+/* Top center */
+.overlay-top-center {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  width: auto; /* ✅ FIX: remove full width */
+}
+
+/* Buttons */
+.btn-map {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  height: 31px;
+}
+
+.btn-map svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  fill: rgb(0, 0, 0);
+}
+
+.basemap-menu {
+  margin-top: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 6px; /* FIXED */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+}
+
+/* Each row */
+.basemap-menu label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Optional: make radio consistent */
+.basemap-menu input[type="radio"] {
+  transform: scale(1.1);
+}
+/* This targets the WMS tiles and blends away the white pixels */
+::ng-deep .remove-white-bg {
+    mix-blend-mode: multiply;
+    /* Optional: extra filter if the background isn't pure white */
+    filter: contrast(1.1) brightness(1.1); 
+}
+
+/* Ensure the leaflet container isn't forcing a white background on images */
+::ng-deep .leaflet-tile-pane img {
+    background-color: transparent !important;
+}
+.btn-map:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-btn {
+  font-weight: 600;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Layers panel */
+.layers-panel {
+  position: absolute;   /* or fixed if you want it always visible */
+  top: 10px;
+  left: 10px;
+  margin-top: 0;
+  width: 340px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 0;
+  max-height: 650px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000; /* important if overlapping map */
+}
+
+.layers-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.layers-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.layers-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.layers-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.panel-header {
+  padding: 12px 14px;
+  font-weight: bold;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.panel-content {
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Layer Tree */
+.layer-tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-item {
+  list-style: none;
+  margin: 0;
+}
+
+/* Tree node container */
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 8px 4px;
+  cursor: pointer;
+  user-select: none;
+  gap: 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.tree-node:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Expand/Collapse button */
+.expand-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.expand-btn:hover {
+  color: #fff;
+}
+
+.expand-btn .arrow {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+.expand-btn.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+/* Spacer for items without children */
+.spacer {
+  width: 16px;
+  height: 16px;
+}
+
+/* Folder and file icons */
+.folder-icon {
+  font-size: 14px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Node label */
+.node-label {
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Layer checkbox */
+.layer-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  user-select: none;
+  flex: 1;
+}
+
+.layer-checkbox:hover {
+  color: #fff;
+}
+
+/* Checkbox size */
+.layer-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: #4CAF50;
+  margin: 0;
+}
+
+.label-text {
+  color: #ddd;
+}
+
+/* Tree children (nested) */
+.tree-children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tree-children .tree-item {
+  border-left: none;
+}
+
+/* Fix the background and layout of the measurement tool */
+::ng-deep .leaflet-control-measure-interaction {
+  background: #ffffff !important;
+  border: 1px solid #ccc !important;
+  padding: 15px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  color: #333 !important;
+}
+
+/* Style the "Create a new measurement" button */
+::ng-deep .js-start {
+  display: inline-block !important;
+  background-color: #007bff !important;
+  color: white !important;
+  padding: 6px 12px !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  margin-top: 10px !important;
+  cursor: pointer !important;
+}
+
+/* Style the text results */
+::ng-deep .leaflet-control-measure-interaction .results {
+  color: #000 !important;
+  margin-top: 10px !important;
+}
+
+.measure-tooltip {
+  background: #2c3e50;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* WMS Layer white background removal */
+::ng-deep .wms-no-white {
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+  mix-blend-mode: multiply;
+}
+
+::ng-deep .wms-no-white img {
+  filter: brightness(0.9) contrast(1.1) !important;
+  mix-blend-mode: screen;
+}
+
+/* Remove white pixels from WMS tiles */
+::ng-deep img.wms-no-white[src] {
+  filter: brightness(0.85) saturate(1.2) drop-shadow(0 0 0px transparent);
+  image-rendering: crisp-edges;
+}
+
+/* Alternative blend mode for better compatibility */
+::ng-deep .leaflet-tile-pane .wms-no-white {
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+}
+
+/* Remove white background from WMS tiles specifically */
+::ng-deep .leaflet-tile {
+  image-rendering: crisp-edges;
+}
+
+/* Leaflet Side-by-Side Slider Styling */
+::ng-deep .leaflet-control-sideBySide {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: ew-resize;
+  z-index: 999;
+}
+
+::ng-deep .leaflet-control-sideBySide:hover {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Slider divider line styling */
+::ng-deep .leaflet-control-sideBySide-full {
+  width: 4px;
+  background: linear-gradient(to bottom, #4CAF50, #2196F3, #FF9800);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* FORCE slider to center */
+::ng-deep .leaflet-sbs-divider {
+  left: 50% !important;
+}
+
+/* Optional: make divider clearly visible */
+::ng-deep .leaflet-sbs-divider {
+  width: 2px;
+  background: #000;
+}
+::ng-deep .leaflet-sbs-range {
+  left: 50% !important;
+}
+/* Top center container */
+.overlay-top-center {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none; /* allows map interaction except buttons */
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  pointer-events: all; /* enable button clicks */
+}
+.fcd-legend {
+  position: absolute;
+  bottom: 62%;
+  right: 71%;
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+
+.legend-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 3px 0;
+}
+
+.color-box {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* Colors */
+.dark-green { background: #1b5e20; }
+.green      { background: #2e7d32; }
+.light-green{ background: #66bb6a; }
+.yellow     { background: #fdd835; }
+.orange     { background: #fb8c00; }
+.red        { background: #e53935; }
+
+
+    /* Root Container */
+  .map-command-bar {
+    position: absolute;
+    top: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 13px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #d1d5db;
+    z-index: 1000;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    height: 35px;
+  }
+
+  /* Tool Grouping */
+  .tool-group {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 6px;
+  }
+
+  .tool-group:not(:last-child) {
+    border-right: 1px solid #e5e7eb;
+  }
+
+  /* Button Styling */
+  .btn-tool {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-tool svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+
+  /* Hover & Active States */
+  .btn-tool:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+  }
+
+  .btn-tool.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+  }
+
+  /* Specialized Buttons */
+  .btn-tool.btn-zoom {
+    color: #059669;
+    /* Green for Zoom/Navigation */
+  }
+
+  .btn-tool.btn-danger {
+    color: #dc2626;
+    /* Red for Delete */
+  }
+
+  .btn-tool.btn-danger:hover {
+    background-color: #fef2f2;
+  }
+
+  /* Simple CSS Tooltip */
+  .btn-tool:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    background: #1f2937;
+    color: white;
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+  }
+
+  .btn-tool:hover:before {
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+
+  /* Container Positioning */
+.impact-panel {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 280px;
+ background: rgba(141, 115, 91, 0.95);
+   border-radius: 8px;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+  z-index: 1001;
+  font-family: Arial, sans-serif;
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+.impact-header {
+   background: rgba(0, 0, 0, 0.1); 
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+ border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-actions .action-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-icon.blue { color: #5bc0de; background: #2c3e50; padding: 2px 5px; border-radius: 3px; }
+
+/* Year Selectors */
+.global-year-range {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+}
+
+.green-select {
+  flex: 1;
+ background: #6d5541;
+   color: white;
+  border: none;
+  padding: 8px;
+   border: 1px solid rgba(255, 255, 255, 0.1);
+   font-size: 12px;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Layer Items */
+.layer-list {
+  padding: 0 15px 15px 15px;
+}
+
+.impact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.layer-name {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.color-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* Toggle Switch CSS */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 18px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #f3e5d8;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+.slider.round { border-radius: 18px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Legend Positioning (If you want it separate) */
+.fcd-legend {
+    position: absolute;
+    bottom: 64%;
+    right: 72%;
+    background: white;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+
+.map-legend {
+    width: 220px;
+    max-height: 260px;
+    overflow-y: auto;
+
+    background: #f4f6f8;
+    border-radius: 10px;
+    padding: 12px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid #ddd;
+}
+
+.legend-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.box {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.red { background: red; }
+.yellow { background: yellow; }
+.green { background: lime; }
+.darkgreen { background: darkgreen; }
+
+
+/* Container & Table styling stays the same as previous */
+.dashboard-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 380px;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.grid-card, .chart-card {
+  background-color: rgba(94, 76, 61, 0.95); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        color: white;
+        margin-top:-15px;
+}
+
+.static-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.static-grid th {
+ background: rgba(0, 0, 0, 0.2);
+  color: #f3e5d8; /* Light cream text for headers */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+     padding: 10px;
+     text-align: left;
+     }
+
+.static-grid td {
+   padding: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.05); 
+   }
+
+.status-cell { white-space: pre-line; }
+
+/* CSS CHART SPECIFIC STYLES */
+.css-chart-container {
+    display: flex;
+    height: 180px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 10px;
+    color: #888;
+    font-size: 11px;
+    height: 150px; /* Matching plot area height */
+}
+
+.plot-area {
+    overflow: visible !important;
+}
+
+.grid-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grid-lines .line {
+    border-top: 1px solid #1b4d3e;
+    width: 100%;
+    height: 1px;
+}
+
+.bars-wrapper {
+    position: absolute;
+    bottom: -30px; /* Space for X labels */
+    left: 0;
+    right: 0;
+    height: 180px; /* Full area including labels */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18%;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.bar {
+    width: 35px;
+    transition: height 0.5s ease;
+}
+
+/* Colors from reference image */
+.bar.yellow { background-color: #ffc107; }
+.bar.lime   { background-color: #c6ff00; }
+.bar.blue   { background-color: #448aff; }
+.bar.cyan   { background-color: #00e5ff; }
+
+.bar-col span {
+    font-size: 11px;
+    color: #888;
+    margin-top: 8px;
+    white-space: nowrap;
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.legend-box {
+    width: 30px;
+    height: 12px;
+    background-color: #c2185b; /* Dark pink legend */
+    margin-right: 8px;
+}
+/* --- CORRECTED DASHBOARD OVERLAY --- */
+.dashboard-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 420px; /* Increased slightly for better readability */
+    max-height: 90vh; /* Prevents overflow off screen */
+    z-index: 1200; /* Must be higher than map controls */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    pointer-events: auto; /* Ensure clicks work */
+}
+
+/* Cards */
+.grid-card, .chart-card {
+    background-color: #121c18; /* Darker slate for better contrast */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #e0e0e0;
+    padding: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+/* Scrollable Table Wrapper */
+.grid-table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 4px;
+}
+
+.static-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.static-grid th { 
+    background: #062a21; 
+    padding: 10px 8px; 
+    text-align: left; 
+    color: #a3cf0d; /* Brand color from your toggle */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #1b4d3e;
+}
+
+.static-grid td { 
+    padding: 8px; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+}
+
+.static-grid tr:hover {
+ background: rgba(255, 255, 255, 0.05);
+}
+
+/* CSS CHART REFINED */
+.chart-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5px;
+}
+
+.ctrl-icon { cursor: pointer; color: #888; }
+.ctrl-icon:hover { color: #fff; }
+
+.css-chart-container {
+    display: flex;
+    height: 180px; /* Total height including labels */
+    margin-top: 10px;
+    padding-bottom: 20px; /* Space for X-axis labels */
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 12px;
+    color: #888;
+    font-size: 10px;
+    height: 150px; /* Height of the actual plot */
+    text-align: right;
+    width: 30px;
+}
+
+.plot-area {
+    flex: 1;
+    position: relative;
+    height: 150px; /* Matching Y-axis */
+    border-bottom: 1px solid #333;
+}
+
+.grid-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.grid-lines .line {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+}
+
+.bars-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    position: relative;
+}
+
+.bar {
+    width: 28px;
+    border-radius: 3px 3px 0 0;
+    transition: height 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Colors matching Excel/Map theme */
+.bar.yellow { background: #fdd835; }
+.bar.lime   { background: #a3cf0d; }
+.bar.blue   { background: #2196f3; }
+.bar.cyan   { background: #00bcd4; }
+
+/* X-Axis Labels */
+.bar-col span {
+    position: absolute;
+    bottom: -22px; /* Pull labels below the plot area */
+    font-size: 10px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.chart-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.legend-box {
+    width: 12px;
+    height: 12px;
+  background-color: #d2c1b0;
+      margin-right: 8px;
+    border-radius: 2px;
+}
+
+/* Custom Scrollbar for the dark panel */
+.grid-table-wrapper::-webkit-scrollbar {
+  width: 5px;
+}
+.grid-table-wrapper::-webkit-scrollbar-thumb {
+  background: #1b4d3e;
+  border-radius: 10px;
+}
+
+/* new css */
+
+/* All floating panels now have a clean white background with soft shadows */
+.impact-panel, .grid-card, .chart-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 8px !important;
+    color: #333333 !important; /* Dark text for readability on white */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    overflow: hidden;
+}
+
+
+/* The orange header for the Layer Panel and the Table */
+.impact-header, .static-grid th {
+    background: #f0932b !important; /* The specific orange from your image */
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px !important;
+}
+
+.impact-header {
+    border-bottom: 2px solid #e67e22;
+}
+
+/* Year Selectors - Now Sky Blue */
+.green-select {
+    background: #ffffff !important;
+    color: #2980b9 !important;
+    border: 1px solid #3498db !important;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Toggle Switch - Sky Blue when active */
+input:checked + .slider {
+    background-color: #3498db !important;
+}
+
+/* Close/Action Icons */
+.action-icon.blue {
+    background: #ebf5fb !important;
+    color: #3498db !important;
+}
+
+.static-grid {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.static-grid td {
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2 !important;
+    color: #444 !important;
+    font-size: 13px;
+}
+
+.static-grid tr:nth-child(even) {
+    background-color: #fafafa; /* Very soft zebra striping */
+}
+
+.static-grid tr:hover {
+    background-color: #f1f9ff; /* Light sky blue highlight on hover */
+}
+
+/* Chart Body Fixes */
+.chart-card {
+    padding: 15px;
+}
+
+.y-axis span, .bar-col span {
+    color: #666666 !important; /* Dark grey text for labels */
+    font-weight: 500;
+}
+
+.grid-lines .line {
+    border-top: 1px solid #eeeeee !important; /* Light grey grid lines */
+}
+
+.chart-legend {
+    color: #333 !important;
+    font-weight: 600;
+}
+
+/* X-axis line */
+.plot-area {
+    border-bottom: 2px solid #dddddd !important;
+}
+
+
+.legend-container {
+    position: fixed;      /* 🔥 important */
+    bottom: 14%;
+    right: 1%;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+    z-index: 1000;
+
+    flex-wrap: wrap;      /* ✅ allows responsive wrapping */
+    align-items: flex-start;
+}
+/* 1. Full Screen Overlay */
+.dashboard-overlay {
+  position: fixed;
+  top: 10%;
+  left: 2%;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* 2. Main Popup Container */
+.popup-container {
+  background: #ffffff;
+  width: 95%;
+  max-width: 1200px;                   /* Maximum width */
+  max-height: 90vh;                    /* Prevent overflowing screen height */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                    /* Keep rounded corners clean */
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Header Styling */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.popup-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.close-icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s;
+}
+
+.close-icon:hover {
+  color: #ff4d4d;
+}
+
+/* 4. Side-by-Side Wrapper */
+.popup-content-wrapper {
+  display: flex;
+  flex-direction: row;                 /* Default side-by-side */
+  gap: 20px;
+  padding: 20px;
+  overflow-y: auto;                    /* Scrollable if content is tall */
+}
+
+/* Left Column: Table */
+.grid-card {
+  flex: 1.5;                           /* Takes 60% of space */
+  overflow-x: auto;
+}
+
+/* Right Column: Chart */
+.chart-card {
+  flex: 1;                             /* Takes 40% of space */
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5. Table Styling */
+.static-grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.static-grid th {
+  background: #343a40;
+  color: white;
+  text-align: left;
+  padding: 12px 8px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.static-grid td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  color: #444;
+}
+
+.static-grid tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-change {
+  color: #888;
+  font-style: italic;
+}
+
+/* 6. Custom CSS Chart Styling */
+.chart-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
+
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.box { width: 12px; height: 12px; border-radius: 2px; }
+.gray { background: #ccc; }
+.green { background: #4caf50; }
+
+.css-chart-container {
+  display: flex;
+  height: 250px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 10px;
+  color: #888;
+  font-size: 0.7rem;
+  text-align: right;
+  width: 40px;
+}
+
+.plot-area {
+  flex-grow: 1;
+  position: relative;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.grid-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.line {
+  border-top: 1px dashed #eee;
+  width: 100%;
+  height: 0;
+}
+
+.bars-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15%;
+}
+
+.bar {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  transition: transform 0.3s;
+}
+
+.bar:hover { transform: scaleX(1.1); }
+
+.bar.yellow { background: #fbc02d; }
+.bar.lime { background: #8bc34a; }
+.bar.blue { background: #03a9f4; }
+.bar.cyan { background: #00bcd4; }
+
+.bar-col span {
+  font-size: 0.7rem;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+.chart-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.box {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.blue { background: #3b82f6; }
+.green { background: #22c55e; }
+
+.chart-container {
+  display: flex;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 260px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.plot-area {
+  position: relative;
+  flex: 1;
+  height: 260px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.grid-lines .line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #eee;
+}
+
+.grid-lines .line:nth-child(1) { top: 0%; }
+.grid-lines .line:nth-child(2) { top: 25%; }
+.grid-lines .line:nth-child(3) { top: 50%; }
+.grid-lines .line:nth-child(4) { top: 75%; }
+.grid-lines .line:nth-child(5) { top: 100%; }
+
+.bars-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bars {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.bar {
+  width: 14px;
+  border-radius: 4px 4px 0 0;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.bar .value {
+    position: absolute;
+    /* Positions it exactly above the bar with a gap */
+    bottom: calc(100% + 10px); 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Look & Feel: Dark background, white text */
+    background: #2d2d2d; 
+    color: #ffffff !important;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+
+    /* CRITICAL FIXES: prevents it from being a giant box */
+    white-space: nowrap;    /* Keeps text on one line */
+    width: max-content;     /* Only as wide as the text */
+    height: auto !important;/* Prevents it from stretching vertically */
+    display: block;
+    
+    /* Hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.bar .value::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #2d2d2d transparent transparent transparent;
+}
+
+/* 4. Hover Animation */
+.bar:hover .value {
+    opacity: 1;
+    visibility: visible;
+    /* Subtle "pop up" animation */
+    margin-bottom: 5px; 
+}
+
+
+/* 7. Responsive: Stack columns on small screens */
+@media (max-width: 850px) {
+  .popup-content-wrapper {
+    flex-direction: column;
+  }
+  
+  .popup-container {
+    width: 98%;
+    height: 95vh;
+  }
+}
+
+/* Container for top-right buttons */
+.top-right-controls-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  
+  /* CHANGED THESE THREE LINES */
+  display: flex;
+  flex-direction: column;    /* Stacks them vertically */
+  align-items: flex-end;     /* Aligns both buttons to the right edge */
+  gap: 10px;                 /* Vertical gap between the buttons */
+}
+
+/* Base button style */
+.map-control-btn {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.map-control-btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific styling for the trigger icon if needed */
+.basemap-trigger {
+  padding: 8px; /* Square for the single icon */
+}
+
+/* Dropdown positioning fix */
+.basemap-menu-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  border: 1px solid #ddd;
+}
+
+.basemap-menu-dropdown label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.top-right-controls-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  
+  /* CHANGED THESE THREE LINES */
+  display: flex;
+  flex-direction: column;    /* Stacks them vertically */
+  align-items: flex-end;     /* Aligns both buttons to the right edge */
+  gap: 10px;                 /* Vertical gap between the buttons */
+}
+
+/* Adjust the dropdown position so it doesn't cover the buttons */
+.basemap-menu-dropdown {
+  position: absolute;
+  top: 0;
+  right: 50px;               /* Opens to the left of the buttons */
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+  border: 1px solid #ddd;
+}

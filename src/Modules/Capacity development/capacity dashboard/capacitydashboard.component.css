@@ -1,0 +1,549 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:host {
+  /* --- Backgrounds --- */
+  --bg-app: #f0f2f5;
+  --card-bg: #ffffff;
+  /* --- Text --- */
+  --text-main: #2d3748;
+  --text-light: #718096;
+  --text-white: #ffffff;
+  /* --- Brand & Gradients --- */
+  --grad-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Deep Purple */
+  --grad-success: linear-gradient(135deg, #2af598 0%, #009efd 100%); /* Fresh Green/Blue */
+  --grad-warning: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); /* Peach/Purple */
+  --grad-danger: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); /* Soft Red */
+  /* --- Vibrant KPI Gradients --- */
+  --kpi-1: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); /* Pinky */
+  --kpi-2: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); /* Purple Mist */
+  --kpi-3: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); /* Aqua */
+  --kpi-4: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%); /* Sunset */
+  /* Deep Colors for Text on light cards */
+  --col-1: #ff6b6b;
+  --col-2: #5f27cd;
+  --col-3: #1dd1a1;
+  --col-4: #ff9f43;
+  /* --- Dimensions --- */
+  --card-radius: 20px;
+  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* ================= LAYOUT ================= */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-app);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-main);
+}
+
+.sidebar-component {
+  width: 260px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.dashboard-content {
+  flex: 1;
+  padding: 30px 40px;
+  overflow-y: auto;
+  height: 100vh;
+  margin-top: -30px;
+}
+
+.title{
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+   color: var(--text-main);
+  margin: 0 0 25px 0; /* Spacing below title */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  /* Elegant Accent */
+  border-left: 5px solid #6f42c1; /* Purple accent matching your buttons */
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* New class for date containers to keep them small */
+.date-drop {
+  flex: 0 0 150px; /* Fixed width: doesn't grow, exactly 150px wide */
+  min-width: auto; /* Override the default min-width */
+}
+
+
+
+/* ================= HEADER ================= */
+.header-row {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  background: -webkit-linear-gradient(45deg, #667eea, #764ba2);
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+/* ================= FILTER BAR ================= */
+.filter-bar {
+  display: flex;
+  align-items: flex-end; /* Align buttons to bottom of inputs */
+  gap: 20px;
+  margin-bottom: 30px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  
+  /* THIS FIXES WRAPPING ON ZOOM */
+  flex-wrap: wrap; 
+}
+
+.flex-drop {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px;
+  
+  /* ADD THIS LINE to stop it from getting too big */
+  max-width: 300px; 
+  
+  min-width: 200px;
+}
+
+.filter-bar span {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #a0aec0;
+  margin-bottom: 8px;
+  display: block;
+}
+
+input[type="datetime-local"], select, .custom-dropdown {
+  background-color: var(--input-bg); /* Was #f7fafc */
+  color: var(--text-main);           /* Was #333 */
+  border: 1px solid var(--border-color); /* Was #edf2f7 */
+}
+
+input[type="datetime-local"] {
+  width: 100%;
+  height: 45px;
+  padding: 0 15px;
+  border-radius: 12px;
+  border: 2px solid #edf2f7;
+  background-color: #f7fafc;
+  color: var(--text-main);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+  input[type="datetime-local"]:focus {
+    border-color: #764ba2;
+    background-color: #fff;
+    outline: none;
+  }
+
+/* Buttons */
+.btn-apply {
+  white-space: nowrap; /* Prevents text breaking */
+  flex-shrink: 0;
+  height: 45px;
+  padding: 0 35px;
+  background: var(--grad-primary);
+  color: #fff;
+  border-radius: 50px; /* Pill shape */
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+  transition: transform 0.2s;
+}
+
+  .btn-apply:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
+  }
+
+.btn-download {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #764ba2;
+  color: #764ba2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+  .btn-download:hover {
+    background: #764ba2;
+    color: #fff;
+  }
+
+/* ================= KPI GRID (COLORFUL) ================= */
+.kpi-grid {
+  display: grid;
+  /* 
+     MAGIC LINE: Creates as many columns as will fit.
+     Each card will be at least 240px wide. If space runs out, it wraps.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.kpi-card {
+  /* Remove fixed widths/heights if you have them */
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  min-height: 100px; /* Ensure height for text */
+}
+
+  .kpi-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+/* Glassmorphism Icon Box */
+.kpi-icon-box {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.kpi-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  overflow: hidden; /* Prevent spilling */
+}
+
+.kpi-title {
+  font-size: 14px; /* Slightly smaller base font */
+  font-weight: 600;
+  white-space: normal; /* Allow text to wrap to next line */
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* --- Specific Colorful Gradients --- */
+
+/* 1. Purple/Blue */
+.kpi-card:nth-child(1) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 2. Orange/Pink */
+.kpi-card:nth-child(2) {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  color: #fff; /* Ensure text is white */
+}
+/* For lighter gradients, we might need dark text, but let's stick to rich colors */
+.kpi-card:nth-child(2) {
+  background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+}
+
+/* 3. Green/Teal */
+.kpi-card:nth-child(3) {
+  background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
+}
+
+/* 4. Yellow/Orange */
+.kpi-card:nth-child(4) {
+  background: linear-gradient(135deg, #f09819 0%, #ff512f 100%);
+}
+
+/* Decorative circles in bg */
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+/* ================= CHARTS GRID ================= */
+.middle-grid {
+  display: grid;
+  /* 50% for Charts, 50% for Map (Aligns with top KPI cards) */
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px; /* Gap between Charts and Map */
+  width: 100%;
+  margin-bottom: 20px;
+  /* Dynamic Height: Fill screen minus header */
+  height: calc(100vh - 220px); 
+  min-height: 500px; 
+}
+
+.left-charts-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Charts per row */
+  grid-template-rows: 1fr 1fr;    /* 2 Rows */
+  gap: 15px; /* Gap between individual chart cards */
+  height: 100%;
+  min-width: 0; 
+}
+
+.compact-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 12px; /* Small padding for charts */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  height: 100%;
+  overflow: hidden;
+}
+.card-header-sm {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-left: 4px solid #667eea;
+  padding-left: 8px;
+}
+
+.canvas-wrapper-sm {
+  flex: 1;              /* Fill the remaining space in the card */
+  position: relative;   /* Chart.js needs this parent to be relative */
+  width: 100%;
+  height: 100%;
+  min-height: 0;        /* CRITICAL: Allows flex child to shrink properly */
+  overflow: hidden;     /* Prevents chart from spilling out */
+}
+.canvas-wrapper-sm canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.map-wrapper {
+  flex: 1; /* Takes remaining space (approx 40%) */
+  display: flex;
+  flex-direction: column;
+}
+.right-map-area {
+  height: 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+
+.map-card-full {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid #e2e8f0;
+  
+  /* --- CHANGE 1: Force padding to ZERO --- */
+  padding: 2px !important;
+  
+  /* --- CHANGE 2: Cut off the map corners to match the card rounding --- */
+  overflow: hidden; 
+  
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.map-container-full {
+  width: 115%;
+  height: 100%;
+  display: block;
+}
+
+.card, .compact-card, .map-card-full {
+  background: var(--card-bg); /* Was #fff or var(--card-bg) */
+  color: var(--text-main);
+  border: 1px solid var(--border-color); /* Was #f0f0f0 */
+}
+
+/* 5. Update Card Headers */
+.card-header, .card-header-sm {
+  color: var(--text-main); /* Was #2d3748 */
+}
+
+/* 6. Update Map Container */
+.map-box, .map-card-full {
+  border: 4px solid var(--card-bg); /* Border matches theme */
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-soft);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f0f0f0;
+  height: 100%; /* Fill available height */
+}
+
+.chart-box {
+  min-height: 380px; /* Minimum height for charts */
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevents header from squishing */
+}
+
+  .card-header::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 24px;
+  background: linear-gradient(to bottom, #764ba2, #667eea);
+  border-radius: 4px;
+  margin-right: 12px;
+}
+
+.canvas-wrapper {
+  flex: 1;
+  position: relative;
+  min-height: 250px;
+  width: 100%;
+}
+
+/* Map specific styling */
+.map-box {
+  padding: 0;
+  overflow: hidden;
+  border: 4px solid #fff;
+  height: 100%; /* Forces map card to fill the column height */
+  position: relative;
+  min-height: 500px; /* Ensure map is never too short */
+}
+
+  .map-box .card-header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 500;
+    background: rgba(255,255,255,0.9);
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin: 0;
+  }
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1024px) {
+  .middle-grid {
+    display: flex;
+    flex-direction: column-reverse; /* Stack map on top or bottom */
+    height: auto; 
+  }
+
+  .right-map-area {
+    height: 400px;
+  }
+  
+  .compact-card {
+    height: 300px;
+  }
+  
+  
+}
+
+
+
+/* ================= CUSTOM DROPDOWN (MAP LAYER PICKER) ================= */
+.custom-layer-picker {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.picker-btn {
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  display: flex;
+}
+
+.picker-menu {
+  background: white;
+  margin-top: 8px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  min-width: 170px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.picker-opt {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.picker-opt input {
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: #3e8e9c; /* Teal selection color */
+  width: 17px;
+  height: 17px;
+}

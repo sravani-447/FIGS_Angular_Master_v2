@@ -1,0 +1,2966 @@
+(node:29312) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUse "src/Modules/JFMC and EDC/monitoring/Monitoring.Component.css" instead of "src/Modules/JFMC and EDC/monitoring/monitoring.component.css" to avoid issues with case-sensitive file systems[0m [1m[35m[plugin angular-compiler][0m [different-path-case]
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'downloadChartReport' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:153:67:
+[37m      153 │ ...-report-btn" (click)="[32mdownloadChartReport[37m()">Download Report</...
+          ╵                          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'downloadChartReport' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:153:67:
+[37m      153 │ ...-report-btn" (click)="[32mdownloadChartReport[37m()">Download Report</...
+          ╵                          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'downloadChartReport' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:153:67:
+[37m      153 │ ...-report-btn" (click)="[32mdownloadChartReport[37m()">Download Report</...
+          ╵                          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'onCollectedDataYearChange' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:58:68:
+[37m      58 │ ...selectedCollectedDataYear" (change)="[32monCollectedDataYearChange[37m()">
+         ╵                                         [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'renderWmsRasterStatistics' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'renderImpactStatistics'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:871:11:
+[37m      871 │       this.[32mrenderWmsRasterStatistics[37m();
+          ╵            [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'renderImpactStatistics' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:869:2:
+[37m      869 │   [32mrenderImpactStatistics[37m(): void {
+          ╵   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'renderWmsRasterStatistics' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'renderImpactStatistics'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:871:11:
+[37m      871 │       this.[32mrenderWmsRasterStatistics[37m();
+          ╵            [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'renderImpactStatistics' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:869:2:
+[37m      869 │   [32mrenderImpactStatistics[37m(): void {
+          ╵   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'renderWmsRasterStatistics' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'renderImpactStatistics'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:871:11:
+[37m      871 │       this.[32mrenderWmsRasterStatistics[37m();
+          ╵            [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'renderImpactStatistics' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:869:2:
+[37m      869 │   [32mrenderImpactStatistics[37m(): void {
+          ╵   [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:931:48:
+[37m      931 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+          ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1080:15:
+[37m      1080 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1084:15:
+[37m      1084 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1109:48:
+[37m      1109 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:15:
+[37m      1078 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1082:15:
+[37m      1082 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1107:48:
+[37m      1107 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:15:
+[37m      1078 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1082:15:
+[37m      1082 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1107:48:
+[37m      1107 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:15:
+[37m      1078 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1082:15:
+[37m      1082 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1107:48:
+[37m      1107 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:15:
+[37m      1078 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1082:15:
+[37m      1082 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1107:48:
+[37m      1107 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'SCRUB' comes from an index signature, so it must be accessed with ['SCRUB'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:15:
+[37m      1078 │         values.[32mSCRUB[37m += row.value;
+           ╵                [32m~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS4111: Property 'AGRICULTURE' comes from an index signature, so it must be accessed with ['AGRICULTURE'].[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1082:15:
+[37m      1082 │         values.[32mAGRICULTURE[37m += row.value;
+           ╵                [32m~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'label' does not exist on type '{ columns?: string[] | undefined; keys?: string[] | undefined; }'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1107:48:
+[37m      1107 │       return this.rasterTopStatisticValues[card.[32mlabel[37m] || 0;
+           ╵                                                 [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'getJfmcOptionsFromLayer' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:767:11:
+[37m      767 │       this.[32mgetJfmcOptionsFromLayer[37m()
+          ╵            [32m~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'getSelectedBeatBounds' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'getSelectedRangeBounds'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:2435:28:
+[37m      2435 │     const beatBounds = this.[32mgetSelectedBeatBounds[37m();
+           ╵                             [32m~~~~~~~~~~~~~~~~~~~~~[0m
+
+  'getSelectedRangeBounds' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:2605:10:
+[37m      2605 │   private [32mgetSelectedRangeBounds[37m(): L.LatLngBounds | null {
+           ╵           [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'getFallbackBeatOptions' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:2735:44:
+[37m      2735 │ ...s.length ? layerBeats : this.[32mgetFallbackBeatOptions[37m('district'),
+           ╵                                 [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'getFallbackBeatOptions' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:2786:44:
+[37m      2786 │ ...ength ? layerBeats : this.[32mgetFallbackBeatOptions[37m('subdivision'),
+           ╵                              [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'getFallbackBeatOptions' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:2823:44:
+[37m      2823 │ ...eats.length ? layerBeats : this.[32mgetFallbackBeatOptions[37m('range'),
+           ╵                                    [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2564: Property 'staticsenable' has no initializer and is not definitely assigned in the constructor.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:112:2:
+[37m      112 │   [32mstaticsenable[37m:boolean:false
+          ╵   [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS1442: Expected '=' for property initializer.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:112:23:
+[37m      112 │   staticsenable:boolean[32m:[37mfalse
+          ╵                        [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7008: Member 'false' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:112:24:
+[37m      112 │   staticsenable:boolean:[32mfalse[37m
+          ╵                         [32m~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'openStatsPopup' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:245:17:
+[37m      245 │ <button (click)="[32mopenStatsPopup[37m()">Open Statistics</button>
+          ╵                  [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'showStatsPopup' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:248:37:
+[37m      248 │ <div class="fullscreen-modal" *ngIf="[32mshowStatsPopup[37m">
+          ╵                                      [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'closeStatsPopup' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:258:41:
+[37m      258 │ ...button class="close-btn" (click)="[32mcloseStatsPopup[37m()">✕</button>
+          ╵                                      [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2349: This expression is not callable.
+  Type 'ElementRef<HTMLCanvasElement>' has no call signatures.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:876:7:
+[37m      876 │   this.[32mbarCanvas[37m();
+          ╵        [32m~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'initCharts' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:877:9:
+[37m      877 │     this.[32minitCharts[37m();
+          ╵          [32m~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'renderBarChart' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:882:7:
+[37m      882 │   this.[32mrenderBarChart[37m();
+          ╵        [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'renderPieChart' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:883:7:
+[37m      883 │   this.[32mrenderPieChart[37m();
+          ╵        [32m~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG4: Expected 1 arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:162:42:
+[37m      162 │ ...s="graph-icon-btn" (click)="[32mopenGraphPopup[37m()" title="Statistics">
+          ╵                                [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG4: Expected 1 arguments, but got 0.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:245:17:
+[37m      245 │ <button (click)="[32mopenGraphPopup[37m()">Open Statistics</button>
+          ╵                  [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:6:52:
+[37m      6 │         <div class="top-stat-label">{{ stat.label }}[32m</motion>[37m
+        ╵                                                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:131:23:
+[37m      131 │       <motion id="map">[32m</div>[37m
+          ╵                        [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:144:4:
+[37m      144 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:177:104:
+[37m      177 │ ...d || fcdNov2025Visible"><span class="box dense"></span> FCD[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-container". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:181:6:
+[37m      181 │       [32m</ng-container>[37m
+          ╵       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:185:78:
+[37m      185 │ ...ss="legend-item"><span class="box scrub"></span> Scrub Land[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-template". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:187:6:
+[37m      187 │       [32m</ng-template>[37m
+          ╵       [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:188:4:
+[37m      188 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:220:0:
+[37m      220 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:6:52:
+[37m      6 │         <div class="top-stat-label">{{ stat.label }}[32m</motion>[37m
+        ╵                                                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:131:23:
+[37m      131 │       <motion id="map">[32m</div>[37m
+          ╵                        [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:144:4:
+[37m      144 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:177:104:
+[37m      177 │ ...d || fcdNov2025Visible"><span class="box dense"></span> FCD[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-container". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:181:6:
+[37m      181 │       [32m</ng-container>[37m
+          ╵       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:185:78:
+[37m      185 │ ...ss="legend-item"><span class="box scrub"></span> Scrub Land[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-template". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:187:6:
+[37m      187 │       [32m</ng-template>[37m
+          ╵       [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:188:4:
+[37m      188 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:220:0:
+[37m      220 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:6:52:
+[37m      6 │         <div class="top-stat-label">{{ stat.label }}[32m</motion>[37m
+        ╵                                                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:131:23:
+[37m      131 │       <motion id="map">[32m</div>[37m
+          ╵                        [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:144:4:
+[37m      144 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:177:104:
+[37m      177 │ ...d || fcdNov2025Visible"><span class="box dense"></span> FCD[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-container". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:181:6:
+[37m      181 │       [32m</ng-container>[37m
+          ╵       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:185:78:
+[37m      185 │ ...ss="legend-item"><span class="box scrub"></span> Scrub Land[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-template". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:187:6:
+[37m      187 │       [32m</ng-template>[37m
+          ╵       [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:188:4:
+[37m      188 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:220:0:
+[37m      220 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:23:15:
+[37m      23 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'wmsParams' does not exist on type 'TileLayer'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:393:49:
+[37m      393 │ ...ceof L.TileLayer && !layer.[32mwmsParams[37m) this.map.removeLayer(lay...
+          ╵                               [32m~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'lulcYears' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:587:102:
+[37m      587 │ ...bleDataYears.length ? this.availableDataYears : this.[32mlulcYears[37m));
+          ╵                                                         [32m~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'lulcYears' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:642:19:
+[37m      642 │           if (this.[32mlulcYears[37m.includes(y)) set.add(`LULC_Tripura_N...
+          ╵                    [32m~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'selectedLulcYear' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'selectedToYear'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:658:16:
+[37m      658 │     if (m) this.[32mselectedLulcYear[37m = +m[1];
+          ╵                 [32m~~~~~~~~~~~~~~~~[0m
+
+  'selectedToYear' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:82:2:
+[37m      82 │   [32mselectedToYear[37m = 2025;
+         ╵   [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'submotionisionsList' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'subdivisionsList'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1078:9:
+[37m      1078 │     this.[32msubmotionisionsList[37m = this.collectLayerValues(this.admi...
+           ╵          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  'subdivisionsList' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:51:2:
+[37m      51 │   [32msubdivisionsList[37m: string[] = [];
+         ╵   [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type '(p: any, l: any) => boolean' is not assignable to parameter of type '(p: any) => boolean'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1142:60:
+[37m      1142 │ ...ivision', [32m(p, l) => this.matchesDistrict(p, l, db) && this.ma[37m...
+           ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7006: Parameter 'p' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1142:61:
+[37m      1142 │ ...Bounds('geojsonSubDivision', ([32mp[37m, l) => this.matchesDistrict(p...
+           ╵                                  [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7006: Parameter 'l' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1142:64:
+[37m      1142 │ ...nds('geojsonSubDivision', (p, [32ml[37m) => this.matchesDistrict(p, l...
+           ╵                                  [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type '(p: any, l: any) => boolean' is not assignable to parameter of type '(p: any) => boolean'.
+  Target signature provides too few arguments. Expected 2 or more, but got 1.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1143:60:
+[37m      1143 │ ...stRange', [32m(p, l) => this.matchesDistrict(p, l, db) && this.ma[37m...
+           ╵              [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7006: Parameter 'p' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1143:61:
+[37m      1143 │ ...Bounds('geojsonforestRange', ([32mp[37m, l) => this.matchesDistrict(p...
+           ╵                                  [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS7006: Parameter 'l' implicitly has an 'any' type.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1143:64:
+[37m      1143 │ ...nds('geojsonforestRange', (p, [32ml[37m) => this.matchesDistrict(p, l...
+           ╵                                  [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'selectedFeatureAttributes' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1236:9:
+[37m      1236 │     this.[32mselectedFeatureAttributes[37m = Object.entries(props || {})
+           ╵          [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'showFeatureInsights' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'openFeatureInsight'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1239:9:
+[37m      1239 │     this.[32mshowFeatureInsights[37m = true;
+           ╵          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  'openFeatureInsight' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1235:2:
+[37m      1235 │   [32mopenFeatureInsight[37m(props: any, sourceName: string, layer: any ...
+           ╵   [32m~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'featureInsightTitle' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1240:9:
+[37m      1240 │     this.[32mfeatureInsightTitle[37m = sourceName;
+           ╵          [32m~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:6:52:
+[37m      6 │         <div class="top-stat-label">{{ stat.label }}[32m</motion>[37m
+        ╵                                                     [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:131:23:
+[37m      131 │       <motion id="map">[32m</div>[37m
+          ╵                        [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:144:4:
+[37m      144 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:177:104:
+[37m      177 │ ...d || fcdNov2025Visible"><span class="box dense"></span> FCD[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-container". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:181:6:
+[37m      181 │       [32m</ng-container>[37m
+          ╵       [32m~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:185:78:
+[37m      185 │ ...ss="legend-item"><span class="box scrub"></span> Scrub Land[32m</div>[37m
+          ╵                                                               [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ng-template". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:187:6:
+[37m      187 │       [32m</ng-template>[37m
+          ╵       [32m~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:188:4:
+[37m      188 │     [32m</div>[37m
+          ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:220:0:
+[37m      220 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'cdr' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:741:13:
+[37m      741 │         this.[32mcdr[37m.detectChanges();
+          ╵              [32m~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'cdr' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:741:13:
+[37m      741 │         this.[32mcdr[37m.detectChanges();
+          ╵              [32m~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'cdr' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:741:13:
+[37m      741 │         this.[32mcdr[37m.detectChanges();
+          ╵              [32m~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS-992003: No suitable injection token for parameter 'cdr' of class 'ImpactAssessmentComponent'.
+  Consider using the @Inject decorator to specify an injection token.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:377:13:
+[37m      377 │      private [32mcdr[37m: ChangeDetectorRef
+          ╵              [32m~~~[0m
+
+  This type does not have a value, so it cannot be used as injection token.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:377:18:
+[37m      377 │      private cdr: [32mChangeDetectorRef[37m
+          ╵                   [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'ChangeDetectorRef'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:377:18:
+[37m      377 │      private cdr: [32mChangeDetectorRef[37m
+          ╵                   [32m~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mDuplicate member "openGraphPopup" in class body[0m [duplicate-class-member]
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1132:4:
+[37m      1132 │     [32mopenGraphPopup[37m() {
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+  The original member "openGraphPopup" is here:
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:1103:4:
+[37m      1103 │     [32mopenGraphPopup[37m() {
+           ╵     [32m~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2393: Duplicate function implementation.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:916:0:
+[37m      916 │ [32mopenGraphPopup[37m() {
+          ╵ [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2393: Duplicate function implementation.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:955:0:
+[37m      955 │ [32mopenGraphPopup[37m() {
+          ╵ [32m~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'getRowYear' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:715:23:
+[37m      715 │         .map(r => this.[32mgetRowYear[37m(r))
+          ╵                        [32m~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'get' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:715:23:
+[37m      715 │         .map(r => this.[32mget[37m(r))
+          ╵                        [32m~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:17:15:
+[37m      17 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'wmsParams' does not exist on type 'TileLayer'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:658:49:
+[37m      658 │ ...ceof L.TileLayer && !layer.[32mwmsParams[37m) this.map.removeLayer(lay...
+          ╵                               [32m~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'submotionisionsList' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'subdivisionsList'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:951:11:
+[37m      951 │       this.[32msubmotionisionsList[37m = [];
+          ╵            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  'subdivisionsList' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:43:2:
+[37m      43 │   [32msubdivisionsList[37m: string[] = [];
+         ╵   [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2551: Property 'submotionisionsList' does not exist on type 'ImpactAssessmentComponent'. Did you mean 'subdivisionsList'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:956:11:
+[37m      956 │       this.[32msubmotionisionsList[37m = this.collectLayerValues(this.adm...
+          ╵            [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  'subdivisionsList' is declared here.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:43:2:
+[37m      43 │   [32msubdivisionsList[37m: string[] = [];
+         ╵   [32m~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'wmsParams' does not exist on type 'TileLayer'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:658:49:
+[37m      658 │ ...ceof L.TileLayer && !layer.[32mwmsParams[37m) this.map.removeLayer(lay...
+          ╵                               [32m~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:210:0:
+[37m      210 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:11:6:
+[37m      11 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:12:4:
+[37m      12 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "header". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:13:2:
+[37m      13 │   [32m</header>[37m
+         ╵   [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:49:6:
+[37m      49 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:4:
+[37m      66 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:76:6:
+[37m      76 │       [32m</div>[37m
+         ╵       [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:77:4:
+[37m      77 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:86:10:
+[37m      86 │           [32m</div>[37m
+         ╵           [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "li". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:90:8:
+[37m      90 │         [32m</li>[37m
+         ╵         [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "ul". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:91:6:
+[37m      91 │       [32m</ul>[37m
+         ╵       [32m~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:92:4:
+[37m      92 │     [32m</div>[37m
+         ╵     [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:108:72:
+[37m      108 │ ...ader"><div class="spinner">[32m</motion>[37m<span>Loading...</span></div>
+          ╵                               [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "main". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:111:2:
+[37m      111 │   [32m</main>[37m
+          ╵   [32m~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:139:87:
+[37m      139 │ ...*ngIf="soilVisible"><span class="box water"></span> Soil[32m</motion>[37m
+          ╵                                                            [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "aside". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:141:2:
+[37m      141 │   [32m</aside>[37m
+          ╵   [32m~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:160:0:
+[37m      160 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:180:51:
+[37m      180 │       <motion class="section-title">Year-wise trend[32m</div>[37m
+          ╵                                                    [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "motion". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:197:0:
+[37m      197 │ [32m</motion>[37m
+          ╵ [32m~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG5002: Unexpected closing tag "div". It may happen when the tag has already been closed by another tag. For more info see https://www.w3.org/TR/html5/syntax.html#closing-elements-that-have-implied-end-tags[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:210:0:
+[37m      210 │ [32m</div>[37m
+          ╵ [32m~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'collectedDataType' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:29:
+[37m      66 │         <select [(ngModel)]="[32mcollectedDataType[37m">
+         ╵                              [32m~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'collectedDataType' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:29:
+[37m      66 │         <select [(ngModel)]="[32mcollectedDataType[37m">
+         ╵                              [32m~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'collectedDataType' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:29:
+[37m      66 │         <select [(ngModel)]="[32mcollectedDataType[37m">
+         ╵                              [32m~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'collectedDataType' does not exist on type 'ImpactAssessmentComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/Modules/impact-assessment/impact-assessment.component.html:66:29:
+[37m      66 │         <select [(ngModel)]="[32mcollectedDataType[37m">
+         ╵                              [32m~~~~~~~~~~~~~~~~~[0m
+
+  Error occurs in the template of component ImpactAssessmentComponent.
+
+    src/Modules/impact-assessment/impact-assessment.component.ts:22:15:
+[37m      22 │   templateUrl: [32m'./impact-assessment.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

@@ -1,0 +1,727 @@
+<div class="main-content-full">
+  
+  <!-- Top Header Profile & Actions -->
+  <!-- <header class="content-header">
+   
+   <div class="header-actions">
+      
+      
+      <div class="dropdown-wrapper">
+        <button class="download-btn" (click)="toggleDownloadDropdown()" title="Download Options">
+           Download Report <span class="btn-arrow">▾</span>
+        </button>
+        
+        <div class="dropdown-menu" *ngIf="showDownloadDropdown">
+          <button class="dropdown-item" (click)="triggerDownload('excel')">
+            📊 Excel
+          </button>
+          <button class="dropdown-item" (click)="triggerDownload('jpeg')">
+            🖼️ JPEG Image
+          </button>
+        </div>
+      </div>
+    </div>
+  </header> -->
+
+
+<!-- Dynamic Top 5 Districts Single Horizontal Card -->
+  <section class="top-districts-panel single-horizontal-card">
+    <div class="box-header">
+      <div class="panel-title-container">
+        <span class="hl-key-icon">🏆</span>
+        <h3 class="card-inner-title">Top 5 Districts (Forest Cover Area)</h3>
+      </div>
+      
+      <!-- Dynamic Year Dropdown Selector -->
+      <select [value]="selectedTopDistrictsYear" (change)="onTopDistrictsYearChange($any($event.target).value)" class="card-district-select">
+        <option *ngFor="let yr of progressYears" [value]="yr">{{ yr }}</option>
+      </select>
+    </div>
+    
+    <div class="districts-horizontal-row">
+      <div class="district-row-item" *ngFor="let item of topDistrictsList; let idx = index">
+        <div class="dh-rank">#{{ idx + 1 }}</div>
+        <div class="dh-body">
+          <span class="dh-name">{{ item.district }}</span>
+          <span class="dh-value">{{ item.area | number }} <span class="dh-unit">ha</span></span>
+          <div class="dh-progress-track">
+            <div class="dh-progress-fill" [style.width.%]="item.percentage"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Highlights (State Overview at the Top) -->
+  <section class="highlights-panel">
+    <div class="highlights-header">
+      <div class="panel-title-container">
+        <span class="hl-key-icon">🔑</span>
+        <h3 class="panel-section-title">Key Highlights (State Overview)</h3>
+      </div>
+    </div>
+    
+  <div class="highlights-grid">
+      <!-- 1. Dynamic Total Forest Cover -->
+      <div class="hl-card theme-forest">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-forest">🌳</div>
+          <div class="hl-card-body">
+            <span class="hl-title">Total Forest Cover (Ha)</span>
+            <div class="hl-value">{{ getDynamicTotalForestCover() | number }} <span class="hl-unit">ha</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Dynamic Plantation (2020-2026) -->
+      <div class="hl-card theme-plantation">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-restored">🌱</div>
+          <div class="hl-card-body">
+            <span class="hl-title">Plantation (2020-2026)</span>
+            <div class="hl-value">{{ getDynamicTotalPlantation() | number }} <span class="hl-unit">ha</span></div>
+          </div>
+        </div>
+      </div>
+
+    <!-- 3. Check Dam Highlight (Dynamic separate M1, M2, M3 sums) -->
+      <div class="hl-card theme-dam">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-water">🧱</div>
+          <div class="hl-card-body">
+            <span class="hl-title">Check Dam (M1, M2, M3)</span>
+            <div class="hl-value" style="font-size: 14.5px; letter-spacing: -0.3px; margin: 6px 0;">
+              M1:<strong>{{ m1Total }}</strong> | M2:<strong>{{ m2Total }}</strong> | M3:<strong>{{ m3Total }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Agroforestry Achievement Highlight (Dynamic from Module CSV) -->
+      <div class="hl-card theme-agro">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-people">🧑‍🌾</div>
+          <div class="hl-card-body">
+            <span class="hl-title">Agroforestry Achievement</span>
+            <div class="hl-value">{{ 3227 | number:'1.0-2' }} <span class="hl-unit">ha</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Number of JFMC Formed -->
+      <div class="hl-card theme-jfmc">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-saplings">🤝</div>
+          <div class="hl-card-body">
+            <span class="hl-title">JFMC Formed</span>
+            <div class="hl-value">457 <span class="hl-unit">Nos.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Number of SHG Formed -->
+      <div class="hl-card theme-shg">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-projects">📁</div>
+          <div class="hl-card-body">
+            <span class="hl-title">SHG Formed</span>
+            <div class="hl-value">1,352 <span class="hl-unit">Nos.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Dynamic Training & Participants (Dynamic separate P and T sums) -->
+      <div class="hl-card theme-participants">
+        <div class="hl-card-row">
+          <div class="hl-icon bg-people-red">👥</div>
+          <div class="hl-card-body">
+            <span class="hl-title">Participants | Training</span>
+            <div class="hl-value" style="font-size: 14.5px; letter-spacing: -0.3px; margin: 6px 0;">
+              P: <strong>{{ getDynamicTotalTrainingParticipants() | number }}</strong> | T: <strong>{{ getDynamicTotalTrainingSessions() | number }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Side-by-Side Map Cards -->
+  <section class="maps-section-row">
+    
+    <!-- Map Card 1: Forest Cover Status -->
+    <div class="map-container-card">
+      <div class="map-card-header">
+        <div class="map-title-wrap">
+          <h3 class="card-inner-title">Forest Cover Status</h3>
+        </div>
+        <div class="header-controls-wrap">
+            
+          <button class="view-map-btn" (click)="openMapModal('forest')" title="Expand View">👁️ View</button>
+          <select [value]="selectedForestDistrict" (change)="onForestDistrictChange($any($event.target).value)" class="card-district-select">
+            <option *ngFor="let dist of districts" [value]="dist">{{dist}}</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="map-body">
+        <div class="map-graphic-wrapper-leaflet">
+          <div id="forestMapContainer" class="dynamic-leaflet-frame"></div>
+        </div>
+        
+        <!-- Dynamic Integrated Legend Row Below Map -->
+        <div class="map-card-legend-row">
+          <div class="legend-item" title="Scrub Canopy density below 10%">
+            <span class="legend-dot-bullet color-scrub"></span>
+            <span class="legend-text">
+              Scrub Land: <strong>{{ activeForestCover.scrub | number }} ha</strong>
+            </span>
+          </div>
+          <div class="legend-item" title="Open Forest canopy density 10% to 40%">
+            <span class="legend-dot-bullet color-open"></span>
+            <span class="legend-text">
+              Open Forest: <strong>{{ activeForestCover.openForest | number }} ha</strong>
+            </span>
+          </div>
+          <div class="legend-item" title="Moderate Canopy density 40% to 70%">
+            <span class="legend-dot-bullet color-moderate"></span>
+            <span class="legend-text">
+              Mod. Dense: <strong>{{ activeForestCover.moderatelyDense | number }} ha</strong>
+            </span>
+          </div>
+          <div class="legend-item" title="Very Dense Canopy density above 70%">
+            <span class="legend-dot-bullet color-very-dense"></span>
+            <span class="legend-text">
+              Very Dense: <strong>{{ activeForestCover.veryDense | number }} ha</strong>
+            </span>
+          </div>
+        </div>
+        
+       
+      </div>
+    </div>
+
+   <!-- Map Card 2: Check Dam Details -->
+    <div class="map-container-card">
+      <div class="map-card-header">
+        <div class="map-title-wrap">
+          <h3 class="card-inner-title">Check Dam Details</h3>
+        </div>
+        <div class="header-controls-wrap">
+          <button class="view-map-btn" (click)="openMapModal('dam')" title="Expand View">👁️ View</button>
+          <!-- <select [value]="selectedDamDistrict" (change)="onDamDistrictChange($any($event.target).value)" class="card-district-select">
+            <option *ngFor="let dist of districts" [value]="dist">{{dist}}</option>
+          </select> -->
+        </div>
+      </div>
+
+      <div class="map-body">
+        <div class="map-graphic-wrapper-leaflet">
+          <div id="damMapContainer" class="dynamic-leaflet-frame"></div>
+        </div>
+         <div class="map-card-legend-row multi-line-legend">
+          <div class="legend-item" *ngFor="let dist of districts.slice(1)">
+            <span class="legend-dot-bullet color-checkdam"></span>
+            <span class="legend-text">
+              {{ dist.replace(' Tripura', '') }}: <strong>{{ getCheckdamTotal(dist) }} Nos.</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Card 3: Agro Forestry Status -->
+    <div class="map-container-card">
+      <div class="map-card-header">
+        <div class="map-title-wrap">
+          <h3 class="card-inner-title">Agro Forestry Status</h3>
+        </div>
+        <div class="header-controls-wrap">
+          <button class="view-map-btn" (click)="openMapModal('agro')" title="Expand View">👁️ View</button>
+          <!-- <select [value]="selectedAgroDistrict" (change)="onAgroDistrictChange($any($event.target).value)" class="card-district-select">
+            <option *ngFor="let dist of districts" [value]="dist">{{dist}}</option>
+          </select> -->
+        </div>
+      </div>
+
+     <div class="map-body">
+        <div class="map-graphic-wrapper-leaflet">
+          <div id="agroMapContainer" class="dynamic-leaflet-frame"></div>
+        </div>
+         <div class="map-card-legend-row multi-line-legend">
+          <div class="legend-item" *ngFor="let dist of districts.slice(1)">
+            <span class="legend-dot-bullet color-agroforestry"></span>
+            <span class="legend-text">
+              {{ dist.replace(' Tripura', '') }}: <strong>{{3227 | number:'1.0-2' }} ha</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </section>
+
+  <!-- Lower Section: 50/50 Split Spacious Graph Cards -->
+  <section class="dashboard-details-grid">
+    
+    <!-- Card 1: Yearly Trend Overview (Fills vertical card space) -->
+    <div class="details-card-box trend-overview-col" (mouseleave)="hideTooltip()">
+      <div class="box-header">
+        <h3 class="card-inner-title">Yearly Trend Overview</h3>
+        <select [value]="trendDistrict" (change)="onTrendDistrictChange($any($event.target).value)" class="card-district-select">
+          <option value="All Districts">All Districts</option>
+          <option *ngFor="let dist of districts.slice(1)" [value]="dist">{{dist}}</option>
+        </select>
+      </div>
+      
+      <!-- Re-aligned Legend -->
+      <p class="chart-legend-indicators">
+        <span class="legend-dot purple"></span>
+        <span class="legend-lbl-text">Plantation Area (ha)</span>
+      </p>
+
+      <div class="line-chart-visual" (mouseleave)="hideTooltip()">
+        <svg viewBox="0 0 600 215" class="trend-svg">
+          <text transform="rotate(-90 12 100)" x="12" y="100" text-anchor="middle" class="chart-axis-title-text">Plantation Area (ha)</text>
+          <text x="45" y="44" class="chart-axis-lbl align-right">{{ getTrendMaxLabel() }}</text>
+          <text x="45" y="104" class="chart-axis-lbl align-right">{{ getTrendMidLabel() }}</text>
+          <text x="45" y="164" class="chart-axis-lbl align-right">0</text>
+          
+          <line x1="55" y1="30" x2="55" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+          <line x1="55" y1="40" x2="575" y2="40" stroke="#f1f5f9" stroke-width="1.5" />
+          <line x1="55" y1="100" x2="575" y2="100" stroke="#f1f5f9" stroke-width="1.5" />
+          <line x1="55" y1="160" x2="575" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+          
+          <text *ngFor="let year of trendYears; let idx = index" [attr.x]="getXCoordinate(idx, trendYears.length)" y="182" class="chart-axis-lbl align-center">{{ year }}</text>
+          <text x="315" y="206" text-anchor="middle" class="chart-axis-title-text">Timeline (Year)</text>
+          
+          <path [attr.d]="getSVGPath(trendPlantationData)" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          <circle *ngFor="let point of getSVGCircles(trendPlantationData); let idx = index" 
+                  [attr.cx]="point.cx" 
+                  [attr.cy]="point.cy" 
+                  r="5" 
+                  fill="#ffffff" 
+                  stroke="#8b5cf6" 
+                  stroke-width="2.5" 
+                  class="chart-circle" 
+                  (mouseenter)="showTooltip($event, trendYears[idx], point.val)" 
+                  (mousemove)="moveTooltip($event)" 
+                  (mouseleave)="hideTooltip()">
+          </circle>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Card 2: Training YoY Trends (Mirrors the View Modal exactly) -->
+    <div class="details-card-box" (mouseleave)="hideTooltip()">
+      <div class="box-header">
+        <h3 class="card-inner-title">Training Year Over YearTrends</h3>
+        <button class="view-map-btn" (click)="openTrainingModal()" title="Expand Chart">👁️ View</button>
+      </div>
+      
+      <!-- Re-aligned Legends -->
+      <p class="chart-legend-indicators flex-wrap-legend align-items-center">
+        <span class="legend-dot navy-dot"></span>Classroom/Field Training
+        <span class="legend-dot teal-dot"></span> Online Training
+        <span class="legend-dot orange-dot"></span>  Workshop
+        <span class="legend-dot purple-dot"></span>Exposure Visit
+      </p>
+
+      <div class="line-chart-visual" (mouseleave)="hideTooltip()">
+        <svg viewBox="0 0 600 215" class="trend-svg">
+          <!-- Dynamic Y-Axis Scale Description Labels -->
+          <text transform="rotate(-90 12 100)" x="12" y="100" text-anchor="middle" class="chart-axis-title-text text-dark">Number of Sessions (By Type)</text>
+
+          <!-- Left Y-Axis Scale -->
+          <text x="45" y="44" class="chart-axis-lbl align-right">160</text>
+          <text x="45" y="104" class="chart-axis-lbl align-right">80</text>
+          <text x="45" y="164" class="chart-axis-lbl align-right">0</text>
+
+          <!-- Right Y-Axis Scale (Restored) -->
+          <!-- <text x="545" y="44" class="chart-axis-lbl align-left red-text">6000</text> -->
+          <!-- <text x="545" y="104" class="chart-axis-lbl align-left red-text">3000</text> -->
+          <!-- <text x="545" y="164" class="chart-axis-lbl align-left red-text">0</text> -->
+
+          <!-- Left & Right Y-Axis Base Lines -->
+          <line x1="55" y1="30" x2="55" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+          <line x1="535" y1="30" x2="535" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+          <!-- Horizontal Reference Gridlines -->
+          <line x1="55" y1="40" x2="535" y2="40" stroke="#f1f5f9" stroke-width="1.5" />
+          <line x1="55" y1="100" x2="535" y2="100" stroke="#f1f5f9" stroke-width="1.5" />
+          <line x1="55" y1="160" x2="535" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+          <!-- Dynamic X-Axis Years Labels -->
+          <text *ngFor="let year of trainingYears; let idx = index" [attr.x]="getTrainingX(idx)" y="182" class="chart-axis-lbl align-center year-text-rotated">{{ year }}</text>
+            <text x="295" y="206" text-anchor="middle" class="chart-axis-title-text">Financial Year</text>
+
+          <!-- Line graphs with active hover events -->
+ <path [attr.d]="getTrainingPath(lineClassroom, 'left')" fill="none" stroke="#1d4ed8" stroke-width="2.5" />
+          <circle *ngFor="let pt of getTrainingCircles(lineClassroom, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="4.5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+          <path [attr.d]="getTrainingPath(lineOnline, 'left')" fill="none" stroke="#0f766e" stroke-width="2.5" />
+          <circle *ngFor="let pt of getTrainingCircles(lineOnline, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="4.5" fill="#ffffff" stroke="#0f766e" stroke-width="2" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+          <path [attr.d]="getTrainingPath(lineWorkshop, 'left')" fill="none" stroke="#ea580c" stroke-width="2.5" />
+          <circle *ngFor="let pt of getTrainingCircles(lineWorkshop, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="4.5" fill="#ffffff" stroke="#ea580c" stroke-width="2" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+          <path [attr.d]="getTrainingPath(lineExposure, 'left')" fill="none" stroke="#7c3aed" stroke-width="2.5" />
+          <circle *ngFor="let pt of getTrainingCircles(lineExposure, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="4.5" fill="#ffffff" stroke="#7c3aed" stroke-width="2" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val)" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+          <!-- <path [attr.d]="getTrainingPath(lineParticipants, 'right')" fill="none" stroke="#dc2626" stroke-width="3" />
+          <circle *ngFor="let pt of getTrainingCircles(lineParticipants, 'right'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="2.5" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val)" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle> -->
+
+        </svg>
+      </div>
+
+      <!-- Integrated Mini Pie Charts on Dashboard Card -->
+      <div class="pies-flex-row dashboard-pies">
+        <div class="pie-card-item">
+          <span class="dashboard-pie-title">Gender Distribution</span>
+          <div class="pie-svg-wrapper small-pie">
+            <svg viewBox="0 0 100 100" class="pie-donut-svg">
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#ec4899" stroke-width="20" />
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#2563eb" stroke-width="20" 
+                      stroke-dasharray="157.1" [attr.stroke-dashoffset]="157.1 - (157.1 * (malePercentage / 100))" 
+                      transform="rotate(-90 50 50)" />
+            </svg>
+          </div>
+          <div class="pie-legend-info small-legend">
+            <span>🔵 Male: {{ malePercentage }}%</span>
+            <span>💗 Female: {{ femalePercentage }}%</span>
+          </div>
+        </div>
+
+        <div class="pie-card-item">
+          <span class="dashboard-pie-title">SC / ST Representation</span>
+          <div class="pie-svg-wrapper small-pie">
+            <svg viewBox="0 0 100 100" class="pie-donut-svg">
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#0d9488" stroke-width="20" />
+              <circle cx="50" cy="50" r="25" fill="none" stroke="#475569" stroke-width="20" 
+                      stroke-dasharray="157.1" [attr.stroke-dashoffset]="157.1 - (157.1 * (scPercentage / 100))" 
+                      transform="rotate(-90 50 50)" />
+            </svg>
+          </div>
+          <div class="pie-legend-info small-legend">
+            <span>⚫ SC: {{ scPercentage }}%</span>
+            <span>🟢 ST: {{ stPercentage }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- Single Large Card containing the entire Loan Performance 2x2 Dashboard Grid -->
+  <div class="details-card-box loan-comprehensive-card">
+    <!-- Card Header -->
+    <div class="box-header" style="border-bottom: 1.5px dashed #e2e8f0; padding-bottom: 16px; margin-bottom: 24px;">
+      <div class="panel-title-container">
+        <span class="hl-key-icon">📊</span>
+        <div>
+          <h3 class="card-inner-title" style="font-size: 18px; margin: 0;">JFMC District Loan Performance Dashboard</h3>
+          <p class="welcome-subtitle" style="margin: 3px 0 0 0;">Loan Disbursement & Recovery Analysis by District</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2x2 Grid Layout inside the single card -->
+    <div class="loan-dashboard-grid">
+      
+      <!-- 1. Disbursement vs Recovery -->
+      <div class="loan-grid-cell" (mouseleave)="hideTooltip()">
+        <h4 class="loan-cell-title">Disbursement vs Recovery</h4>
+        <p class="chart-legend-indicators">
+          <span class="legend-bar blue-bar"></span> Loan Given
+          <span class="legend-bar green-bar"></span> Loan Recovery
+        </p>
+        <div class="line-chart-visual">
+          <svg viewBox="0 0 600 215" class="trend-svg">
+            <text transform="rotate(-90 12 100)" x="12" y="100" text-anchor="middle" class="chart-axis-title-text">Amount (₹ Lakhs)</text>
+            <text x="45" y="44" class="chart-axis-lbl align-right">250L</text>
+            <text x="45" y="84" class="chart-axis-lbl align-right">170L</text>
+            <text x="45" y="124" class="chart-axis-lbl align-right">85L</text>
+            <text x="45" y="164" class="chart-axis-lbl align-right">0</text>
+
+            <line x1="55" y1="30" x2="55" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+            <line x1="545" y1="30" x2="545" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+            <line x1="55" y1="40" x2="545" y2="40" stroke="#f1f5f9" stroke-width="1.5" />
+            <line x1="55" y1="80" x2="545" y2="80" stroke="#f1f5f9" stroke-width="1.5" />
+            <line x1="55" y1="120" x2="545" y2="120" stroke="#f1f5f9" stroke-width="1.5" />
+            <line x1="55" y1="160" x2="545" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+            <text *ngFor="let r of loanRecords; let idx = index" [attr.x]="getLoanBarX(idx, 'given') + 10" y="182" class="chart-axis-lbl align-center year-text-rotated">{{ r.district }}</text>
+            <text x="315" y="206" text-anchor="middle" class="chart-axis-title-text">District</text>
+
+            <g *ngFor="let r of loanRecords; let idx = index">
+              <rect [attr.x]="getLoanBarX(idx, 'given')" [attr.y]="160 - getLoanBarHeight(r.loanGiven)" width="18" [attr.height]="getLoanBarHeight(r.loanGiven)" fill="#3b82f6" rx="1" style="cursor:pointer;" (mouseenter)="showTooltip($event, r.district + ' - Disbursement', r.loanGiven / 100000, 'Lakhs')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()" />
+              <text [attr.x]="getLoanBarX(idx, 'given') + 9" [attr.y]="155 - getLoanBarHeight(r.loanGiven)" class="bar-value-lbl text-blue-label" text-anchor="middle">{{ getLoanValueLabelInLakhs(r.loanGiven) }}</text>
+
+              <rect [attr.x]="getLoanBarX(idx, 'recovered')" [attr.y]="160 - getLoanBarHeight(r.loanRecovered)" width="18" [attr.height]="getLoanBarHeight(r.loanRecovered)" fill="#10b981" rx="1" style="cursor:pointer;" (mouseenter)="showTooltip($event, r.district + ' - Recovery', r.loanRecovered / 100000, 'Lakhs')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()" />
+              <text [attr.x]="getLoanBarX(idx, 'recovered') + 9" [attr.y]="155 - getLoanBarHeight(r.loanRecovered)" class="bar-value-lbl text-green-label" text-anchor="middle">{{ getLoanValueLabelInLakhs(r.loanRecovered) }}</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 2. JFMC Units Formed per District -->
+      <div class="loan-grid-cell" (mouseleave)="hideTooltip()">
+        <h4 class="loan-cell-title">JFMC Units Formed per District</h4>
+        <div class="line-chart-visual">
+          <svg viewBox="0 0 600 200" class="trend-svg">
+            <g *ngFor="let tick of [20, 30, 40, 50, 60, 70, 80, 90, 100]; let idx = index">
+              <line [attr.x1]="getDotX(tick)" y1="15" [attr.x2]="getDotX(tick)" y2="160" stroke="#f1f5f9" stroke-width="1.5" />
+              <text [attr.x]="getDotX(tick)" y="176" class="chart-axis-lbl align-center">{{ tick }}</text>
+            </g>
+            <line x1="70" y1="160" x2="520" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+            <line x1="70" y1="15" x2="70" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+            <g *ngFor="let r of loanRecords; let idx = index">
+              <text x="60" [attr.y]="getDotY(idx) + 4" class="chart-axis-lbl align-right">{{ r.district }}</text>
+              <line x1="70" [attr.y1]="getDotY(idx)" x2="520" [attr.y2]="getDotY(idx)" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2" />
+              <circle [attr.cx]="getDotX(r.jfmcFormed)" [attr.cy]="getDotY(idx)" r="8" [attr.fill]="getDotColor(idx)" style="cursor:pointer;" (mouseenter)="showTooltip($event, r.district + ' - JFMC Formed', r.jfmcFormed, 'Units')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()" />
+              <text [attr.x]="getDotX(r.jfmcFormed) + 12" [attr.y]="getDotY(idx) + 3" class="dot-plot-value" [attr.fill]="getDotColor(idx)">{{ r.jfmcFormed }}</text>
+            </g>
+            <text x="295" y="196" text-anchor="middle" class="chart-axis-title-text">JFMC Units Formed</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 3. Loan Recovery Rate (%) -->
+      <div class="loan-grid-cell" (mouseleave)="hideTooltip()">
+        <h4 class="loan-cell-title">Loan Recovery Rate (%) by District</h4>
+        <p class="chart-legend-indicators flex-wrap-legend align-items-center">
+          <span class="legend-bar red-bar"></span> &lt; 30% (Low)
+          <span class="legend-bar orange-bar"></span> 30-60% (Moderate)
+          <span class="legend-bar green-bar"></span> &gt; 60% (High)
+        </p>
+        <div class="line-chart-visual">
+          <svg viewBox="0 0 600 200" class="trend-svg">
+            <text x="70" y="180" class="chart-axis-lbl align-center">0%</text>
+            <text x="167.5" y="180" class="chart-axis-lbl align-center">25%</text>
+            <text x="265" y="180" class="chart-axis-lbl align-center">50%</text>
+            <text x="362.5" y="180" class="chart-axis-lbl align-center">75%</text>
+            <text x="460" y="180" class="chart-axis-lbl align-center">100%</text>
+
+            <line x1="70" y1="165" x2="460" y2="165" stroke="#cbd5e1" stroke-width="1.5" />
+            <line x1="70" y1="15" x2="70" y2="165" stroke="#cbd5e1" stroke-width="1.5" />
+
+            <g *ngFor="let r of loanRecords; let idx = index">
+              <text x="60" [attr.y]="getRecoveryY(idx) + 9" class="chart-axis-lbl align-right">{{ r.district }}</text>
+              <rect x="70" [attr.y]="getRecoveryY(idx)" [attr.width]="getRecoveryWidth(r.recoveryRate)" height="11" [attr.fill]="getRecoveryColor(r.recoveryRate)" rx="1" style="cursor:pointer;" (mouseenter)="showTooltip($event, r.district + ' - Recovery Rate', r.recoveryRate, '%')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()" />
+              <text [attr.x]="75 + getRecoveryWidth(r.recoveryRate)" [attr.y]="getRecoveryY(idx) + 9" class="bar-value-lbl" [attr.fill]="getRecoveryColor(r.recoveryRate)">{{ r.recoveryRate | number:'1.1-1' }}%</text>
+            </g>
+            <text x="265" y="196" text-anchor="middle" class="chart-axis-title-text">Recovery Rate (%)</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 4. Loan Performance Summary -->
+      <div class="loan-grid-cell">
+        <h4 class="loan-cell-title">Loan Performance Summary</h4>
+        <div class="kpi-outlined-grid">
+          <div class="kpi-outline-box kpi-blue">
+            <div class="kpi-box-val">{{ loanTotalJFMC }}</div>
+            <div class="kpi-box-lbl">Total JFMC Formed</div>
+          </div>
+          <div class="kpi-outline-box kpi-orange">
+            <div class="kpi-box-val">{{ loanTotalGiven }}</div>
+            <div class="kpi-box-lbl">Total Loan Given</div>
+          </div>
+          <div class="kpi-outline-box kpi-teal">
+            <div class="kpi-box-val">{{ loanTotalRecovered }}</div>
+            <div class="kpi-box-lbl">Total Recovered</div>
+          </div>
+          <div class="kpi-outline-box kpi-red">
+            <div class="kpi-box-val">{{ loanAvgRecoveryRate }}</div>
+            <div class="kpi-box-lbl">Avg Recovery Rate</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+
+ <!-- Map Dialog Popup Modal Overlay -->
+  <div class="map-dialog-modal-overlay" *ngIf="showModal">
+    <div class="map-modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ activeModalMapTitle }}</h3>
+        <button class="close-modal-btn" (click)="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-map-frame-wrapper">
+          <div id="modalMapContainer" class="modal-leaflet-map-element"></div>
+        </div>
+        <div class="modal-legends-sidebar">
+          <h4 class="legend-sidebar-title">Map Legends & Indicators</h4>
+          
+          <!-- Dynamic Section: Shown only if Forest Cover Map is active -->
+          <div class="legend-category-section" *ngIf="activeModalMapType === 'forest'">
+            <span class="category-name">Forest Canopy Density</span>
+            <div class="legend-row-item"><span class="leg-color canopy-scrub"></span> Scrub Land (&lt;10%)</div>
+            <div class="legend-row-item"><span class="leg-color canopy-open"></span> Open Forest (10%-40%)</div>
+            <div class="legend-row-item"><span class="leg-color canopy-moderate"></span> Moderate Dense Forest (40%-70%)</div>
+            <div class="legend-row-item"><span class="leg-color canopy-very-dense"></span> Very Dense Forest (&gt;70%)</div>
+          </div>
+
+           <!-- Case B: Check Dam Map is active (Displays all districts dynamically in modal) -->
+          <div class="legend-category-section" *ngIf="activeModalMapType === 'dam'">
+            <span class="category-name">Check Dam Details (SMC Sum)</span>
+            <div class="legend-row-item" *ngFor="let dist of districts.slice(1)">
+              <span class="leg-color checkdam-color"></span>
+              <span>{{ dist.replace(' Tripura', '') }}: <strong>1429</strong></span>
+            </div>
+          </div>
+
+          <!-- Case C: Agroforestry Map is active (Displays all districts dynamically in modal) -->
+          <div class="legend-category-section" *ngIf="activeModalMapType === 'agro'">
+            <span class="category-name">Agroforestry Details</span>
+            <div class="legend-row-item" *ngFor="let dist of districts.slice(1)">
+              <span class="leg-color agroforestry-color"></span>
+              <span>{{ dist.replace(' Tripura', '') }}: <strong>5019</strong></span>
+            </div>
+          </div>
+
+          <!-- General Boundaries Section -->
+          <div class="legend-category-section">
+            <span class="category-name">Dynamic Elements</span>
+            <div class="legend-row-item"><span class="leg-color red"></span> Selected District</div>
+            <div class="legend-row-item"><span class="leg-color state-boundary"></span> State Boundary</div>
+          </div>
+
+         
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+
+  <!-- Expanded Training Trends & Demographics Dialog Modal -->
+  <div class="map-dialog-modal-overlay" *ngIf="showTrainingModal">
+    <div class="map-modal-card training-modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Comprehensive Training & Demographic Data Dashboard</h3>
+        <button class="close-modal-btn" (click)="closeTrainingModal()">✕</button>
+      </div>
+      
+      <div class="modal-body flex-column-modal">
+        <!-- 1. Enlarged YoY Multi-Line Graph -->
+        <div class="expanded-chart-wrapper" (mouseleave)="hideTooltip()">
+          <h4 class="expanded-chart-title">Year-Over-Year Trends: Distribution of Training Types vs. Turnout</h4>
+          
+          <p class="chart-legend-indicators flex-wrap-legend justify-center">
+            <span class="legend-dot navy-dot"></span> Classroom/Field Training
+            <span class="legend-dot teal-dot"></span> Online Training
+            <span class="legend-dot orange-dot"></span> Workshop
+            <span class="legend-dot purple-dot"></span> Exposure Visit
+          </p>
+
+          <div style="height: 280px; width: 100%;">
+            <svg viewBox="0 0 600 215" class="trend-svg">
+              <!-- Axis Description Titles -->
+              <text transform="rotate(-90 12 100)" x="12" y="100" text-anchor="middle" class="chart-axis-title-text text-dark">Number of Sessions (By Type)</text>
+
+              <!-- Left Y-Axis Scale (0-160) -->
+              <text x="45" y="44" class="chart-axis-lbl align-right">160</text>
+              <text x="45" y="104" class="chart-axis-lbl align-right">80</text>
+              <text x="45" y="164" class="chart-axis-lbl align-right">0</text>
+
+              <!-- Right Y-Axis Scale (0-6000) -->
+              <!-- <text x="545" y="44" class="chart-axis-lbl align-left red-text">6000</text> -->
+              <!-- <text x="545" y="104" class="chart-axis-lbl align-left red-text">3000</text> -->
+              <!-- <text x="545" y="164" class="chart-axis-lbl align-left red-text">0</text> -->
+
+              <!-- Left & Right Y-Axis Base Lines -->
+              <line x1="55" y1="30" x2="55" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+              <line x1="535" y1="30" x2="535" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+              <!-- Reference Gridlines -->
+              <line x1="55" y1="40" x2="535" y2="40" stroke="#f1f5f9" stroke-width="1.5" />
+              <line x1="55" y1="100" x2="535" y2="100" stroke="#f1f5f9" stroke-width="1.5" />
+              <line x1="55" y1="160" x2="535" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+              <!-- X-Axis Years Labels -->
+              <text *ngFor="let year of trainingYears; let idx = index" 
+                    [attr.x]="getTrainingX(idx)" 
+                    y="182" 
+                    class="chart-axis-lbl align-center year-text-rotated">
+                {{ year }}
+              </text>
+
+              <!-- X-Axis Centered Title -->
+              <text x="295" y="206" text-anchor="middle" class="chart-axis-title-text">Financial Year</text>
+
+               <!-- Lines -->
+              <path [attr.d]="getTrainingPath(lineClassroom, 'left')" fill="none" stroke="#1d4ed8" stroke-width="3" />
+              <circle *ngFor="let pt of getTrainingCircles(lineClassroom, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="5" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+              <path [attr.d]="getTrainingPath(lineOnline, 'left')" fill="none" stroke="#0f766e" stroke-width="3" />
+              <circle *ngFor="let pt of getTrainingCircles(lineOnline, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="5" fill="#ffffff" stroke="#0f766e" stroke-width="2.5" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+              <path [attr.d]="getTrainingPath(lineWorkshop, 'left')" fill="none" stroke="#ea580c" stroke-width="3" />
+              <circle *ngFor="let pt of getTrainingCircles(lineWorkshop, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="2.5" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+
+              <path [attr.d]="getTrainingPath(lineExposure, 'left')" fill="none" stroke="#7c3aed" stroke-width="3" />
+              <circle *ngFor="let pt of getTrainingCircles(lineExposure, 'left'); let idx = index" [attr.cx]="pt.cx" [attr.cy]="pt.cy" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="2.5" class="chart-circle" (mouseenter)="showTooltip($event, trainingYears[idx], pt.val, 'Sessions')" (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()"></circle>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 2. Dynamic Demographics (GENDER and SC/ST Combined Pie Charts) -->
+        <div class="pies-flex-row">
+          <!-- Gender Distribution Pie -->
+          <div class="pie-card-item">
+            <h4 class="pie-title">Overall Gender Distribution<br><span class="muted-lbl">(All Years Combined)</span></h4>
+            <div class="pie-svg-wrapper">
+              <svg viewBox="0 0 100 100" class="pie-donut-svg">
+                <!-- Female Segment (Pink) -->
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#ec4899" stroke-width="20" />
+                <!-- Male Segment (Blue overlay) -->
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#2563eb" stroke-width="20" 
+                        stroke-dasharray="157.1" [attr.stroke-dashoffset]="157.1 - (157.1 * (malePercentage / 100))" 
+                        transform="rotate(-90 50 50)" />
+              </svg>
+            </div>
+            <div class="pie-legend-info">
+              <span>🔵 Male: <strong>{{ malePercentage }}%</strong></span>
+              <span>💗 Female: <strong>{{ femalePercentage }}%</strong></span>
+            </div>
+          </div>
+
+          <!-- SC/ST Representation Pie -->
+          <div class="pie-card-item">
+            <h4 class="pie-title">Overall SC / ST Representation<br><span class="muted-lbl">(All Years Combined)</span></h4>
+            <div class="pie-svg-wrapper">
+              <svg viewBox="0 0 100 100" class="pie-donut-svg">
+                <!-- ST Segment (Teal) -->
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#0d9488" stroke-width="20" />
+                <!-- SC Segment (Slate Grey overlay) -->
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#475569" stroke-width="20" 
+                        stroke-dasharray="157.1" [attr.stroke-dashoffset]="157.1 - (157.1 * (scPercentage / 100))" 
+                        transform="rotate(-90 50 50)" />
+              </svg>
+            </div>
+            <div class="pie-legend-info">
+              <span>⚫ Total SC: <strong>{{ scPercentage }}%</strong></span>
+              <span>🟢 Total ST: <strong>{{ stPercentage }}%</strong></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-chart-tooltip" 
+       *ngIf="hoveredPoint" 
+       [style.left.px]="tooltipX" 
+       [style.top.px]="tooltipY">
+    <span class="tooltip-year">{{ hoveredPoint.year }}</span>
+    <span class="tooltip-value">Count: <strong>{{ hoveredPoint.val | number:'1.0-1' }} {{ hoveredPoint.unit }}</strong></span>
+  </div>
+
+</div>

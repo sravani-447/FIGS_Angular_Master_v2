@@ -1,0 +1,132 @@
+/* Wrapper maintains relative positioning for the absolute menu */
+.dropdown-wrapper {
+  position: relative;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Label styling (if you use the label input) */
+label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* --- THE DROPDOWN BUTTON --- */
+.dropdown {
+  background: #ffffff;
+  border: 1px solid #dce0e4;
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 45px;
+  /* Comfortable click area */
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.dropdown:hover {
+  border-color: #3498db;
+  /* Blue border on hover */
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+}
+
+/* Text inside the button */
+.text {
+  font-size: 13px;
+  color: #2c3e50;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Placeholder styling (lighter text) */
+.text.placeholder-style {
+  color: #95a5a6;
+  font-weight: 400;
+}
+
+/* Arrow styling */
+.arrow {
+  color: #95a5a6;
+  font-size: 10px;
+  transition: transform 0.3s ease;
+  margin-left: 10px;
+}
+
+/* Rotate arrow when open */
+.arrow.open {
+  transform: rotate(180deg);
+  color: #3498db;
+}
+
+/* --- THE DROPDOWN MENU (LIST) --- */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  /* Sits directly below button */
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #eef2f5;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* Elegant deep shadow */
+  margin-top: 5px;
+  padding: 5px 0;
+  list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+
+  /* CRITICAL: Fixes overlap issues */
+  z-index: 1000;
+}
+
+/* Scrollbar styling for Webkit (Chrome/Safari) */
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 0 6px 6px 0;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #bdc3c7;
+  border-radius: 4px;
+  border: 2px solid #f8f9fa;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: #95a5a6;
+  /* Darkens when the user hovers over the scrollbar */
+}
+
+/* --- LIST OPTIONS --- */
+.dropdown-menu p {
+  padding: 10px 15px;
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.dropdown-menu p:last-child {
+  border-bottom: none;
+}
+
+/* --- HOVER STATE (The Requested Blue) --- */
+.dropdown-menu p:hover {
+  background-color: #3498db;
+  color: #ffffff;
+}

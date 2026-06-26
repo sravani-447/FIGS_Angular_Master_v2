@@ -1,0 +1,23 @@
+<div class="content-panel fade-in">
+  <div class="grid-card">
+    <div class="catchment-table-scroller">
+      
+      <app-custom-grid
+        title="Creation of CCFC Center"
+        [columns]="columns" 
+        [hiddenFields]="hiddenFields"
+        [data]="data"
+        [showAdd]="true"
+        [dialogFields]="dialogFields"
+        (onSaveData)="SaveRecord($event)"
+        (onUpdateView)="handleStatusUpdate($event)"
+        (actionClicked)="onGridAction($event)" 
+         (fieldChange)="handleFormChange($event)" 
+        [editableFields]="['comments']"
+        [Modulewiserejectbox]="true"
+        *ngIf="!mappopup">
+      </app-custom-grid>
+
+    </div>
+  </div>
+</div>

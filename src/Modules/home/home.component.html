@@ -1,0 +1,94 @@
+<div class="dashboard-content" id="dashboard-container">
+
+  <!-- Title -->
+  <p class="title"><b>Activity Report Generation</b></p>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+
+     <!-- Scheme -->
+    <div class="flex-drop">
+      <span>Scheme Type</span>
+      <app-custom-dropdown [options]="schematype" (selectionChange)="selectedschematype($event)">
+      </app-custom-dropdown>
+    </div>
+
+
+    <!-- District -->
+    <div class="flex-drop">
+      <span>District</span>
+      <app-custom-dropdown [options]="districttype" [(ngModel)]="selectedDistrict"
+        (selectionChange)="onDistrictChange($event)">
+      </app-custom-dropdown>
+    </div>
+
+    <!-- Sub Division -->
+    <div class="flex-drop">
+      <span>Sub Division</span>
+      <app-custom-dropdown [options]="division" [(ngModel)]="divisionchange"
+        (selectionChange)="subdivisionchange($event)">
+      </app-custom-dropdown>
+    </div>
+
+    <!-- Range -->
+    <div class="flex-drop">
+      <span>Range</span>
+      <app-custom-dropdown [options]="range" [(ngModel)]="rangechanged" (selectionChange)="rangechange($event)">
+      </app-custom-dropdown>
+    </div>
+
+    <!-- Beat -->
+    <div class="flex-drop">
+      <span>Beat</span>
+      <app-custom-dropdown [options]="beat" [(ngModel)]="beatchanged" (selectionChange)="beatchange($event)">
+      </app-custom-dropdown>
+    </div>
+
+   
+    <!-- From Date -->
+    <div class="date-drop">
+      <span>From Date</span>
+      <input type="date" [(ngModel)]="fromDate" class="date-input" [max]="maxDate">
+    </div>
+
+    <!-- To Date -->
+    <div class="date-drop">
+      <span>To Date</span>
+      <input type="date" [(ngModel)]="toDate" class="date-input"    [max]="maxDate">
+    </div>
+    <button class="apply-button" (click)="getpendingreport()" [disabled]="dashboarddata">
+      <span *ngIf="!dashboarddata">Apply</span>
+      <span *ngIf="dashboarddata">Processing...</span>
+    </button>
+    <!-- Download Button -->
+    <button class="btn-download" (click)="downloadDashboard()" title="Download Report">
+      ⬇
+    </button>
+
+  </div>
+  <div class="table-wrapper">
+  <table class="dashboard-table">
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Submodule</th>
+        <th>Captured Data</th>
+        <th>Data available for Approval</th>
+        <th>Approved Data</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of cardsdata">
+        <td>{{ row.module }}</td>
+        <td>{{ row.submodule }}</td>
+        <td>{{ row.CAP }}</td>
+        <td>{{ row.FORAPPR }}</td>
+        <td>{{ row.APPROVED }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+

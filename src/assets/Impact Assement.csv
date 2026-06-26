@@ -1,0 +1,17 @@
+No. of New Classes,Reference Class Name,New Class Name,Change Classes,Area in (Hectare)
+1,Scrub Land,Scrub Land,No Change,4.19
+2,Open Forest ,Scrub Land,Open Forest  - Scrub Land ,838.08
+3,Moderate Dense Forest ,Scrub Land,Moderate Dense Forest  - Scrub Land,12909.49
+4,Very Dense Forest ,Scrub Land,Very Dense Forest  - Scrub Land,9907.15
+5,Scrub Land,Open Forest ,Scrub Land - Open Forest,15.43
+6,Open Forest ,Open Forest ,No Change,3009.77
+7,Moderate Dense Forest ,Open Forest ,Moderate Dense Forest - Open Forest ,54751.35
+8,Very Dense Forest ,Open Forest ,Very Dense Forest - Open Forest ,41593.13
+9,Scrub Land,Moderate Dense Forest ,Scrub Land - Moderate Dense Forest,9.88
+10,Open Forest ,Moderate Dense Forest ,Open Forest - Moderate Dense Forest,1981.57
+11,Moderate Dense Forest ,Moderate Dense Forest ,No Change,63409.38
+12,Very Dense Forest ,Moderate Dense Forest ,Very Dense Forest - Moderate Dense Forest,64612.21
+13,Scrub Land,Very Dense Forest ,Scrub Land - Very Dense Forest,6.13
+14,Open Forest ,Very Dense Forest ,Open Forest - Very Dense Forest,1202.71
+15,Moderate Dense Forest ,Very Dense Forest ,Moderate Dense Forest - Very Dense Forest ,40105.17
+16,Very Dense Forest ,Very Dense Forest ,No Change,28137.79

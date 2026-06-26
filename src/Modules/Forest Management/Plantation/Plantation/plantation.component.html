@@ -1,0 +1,70 @@
+<app-custom-grid title="Plantation Work" [columns]="columns" 
+[hiddenFields]="hiddenFields"
+
+[data]="data" [showAdd]="false" [showprintbuttons]="true"
+  (actionClicked)="onGridAction($event)" *ngIf="!mappopup"
+  (onUpdateView)="handleStatusUpdate($event)"
+  (actionClicked)="onGridAction($event)" 
+  [editableFields]="[ 'mand_male','mand_female','comments']"
+  [Modulewiserejectbox]= "true">
+</app-custom-grid>
+
+<!-- IMAGE POPUP -->
+<div class="image-popup-overlay" *ngIf="showImagePopup">
+  <div class="image-popup-box">
+
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+
+    <img [src]="popupImageUrl" class="popup-img" />
+
+  </div>
+</div>
+
+
+<div class="map-popup-overlay" *ngIf="mappopup">
+  <div class="map-popup-container">
+
+    <div class="map-header">
+      <span>📍Map View</span>
+      <button class="close-btn" (click)="closeMapPopup()">✖</button>
+    </div>
+
+    <div id="map" class="map-body"></div>
+
+  </div>
+</div>
+
+<div *ngIf="showImagePopup" class="img-popup">
+  <div class="img-box">
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+    <img [src]="popupImageUrl" />
+  </div>
+</div>
+
+
+<div class="custom-modal-overlay" *ngIf="showSpeciesPopup">
+  <div class="custom-modal-content">
+    <div class="modal-header">
+      <h4>Species Details</h4>
+      <button class="modal-close-x" (click)="closeSpeciesPopup()">✖</button>
+    </div>
+    <div class="modal-body">
+      <table id="idSpeciesDetails" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name Species</th>
+            <th>Number Of Seedlings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Use *ngFor to loop through the parsed array -->
+          <tr *ngFor="let item of speciesDetailsData">
+            <td>{{item.name_of_species}}</td>
+            <td>{{item.no_seedling}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   
+  </div>
+</div>

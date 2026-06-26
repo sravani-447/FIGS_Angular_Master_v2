@@ -1,0 +1,627 @@
+<div class="dashboard-container">
+    <div class="pageheader">
+        <h2>Project Management Dashboard</h2>
+    </div>
+
+    <section class="tile filter-tile no-print">
+        <div class="tile-body">
+            <div class="row filter-row align-items-end">
+
+                <div class="col-md-3">
+                    <label class="form-label">Scheme Type</label>
+                    <select class="form-control" [(ngModel)]="selectedSchemeTop">
+                        <option value="">Select Scheme</option>
+                        <option *ngFor="let s of schemes" [value]="s.id">
+                            {{ s.scheme_name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">District</label>
+                    <select class="form-control" [(ngModel)]="selectedDistrictTop">
+                        <option value="">Select District</option>
+                        <option *ngFor="let d of districts" [value]="d.id">
+                            {{ d.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div id="Financial" style="margin-bottom: -30px;">
+                    <label class="form-label">Financial Year</label>
+                    <mat-form-field appearance="outline" class="w-100 custom-mat-field">
+                        <mat-label>Select Year</mat-label>
+                        <mat-select [(ngModel)]="selectedYear" multiple>
+                            <mat-option *ngFor="let y of financialYears" [value]="y.value">
+                                {{ y.label }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-submit-primary w-100" (click)="onClickSubmit()">
+                        Submit
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="row no-print chart-row-main">
+        <div class="col-row-4">
+            <div class="chart-card">
+                <div class="chart-header">Man Days Generation</div>
+                <div class="chart-content">
+                    <canvas id="manDaysChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-row-4">
+            <div class="chart-card">
+                <div class="chart-header">Budget Allocation vs Utilized</div>
+                <div class="chart-content">
+                    <canvas id="budgetChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-row-4">
+            <div class="chart-card">
+                <div class="chart-header">Budget Spent Analysis</div>
+                <div class="chart-content">
+                    <canvas id="spentAnalysisChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-20 no-print">
+        <div class="col-md-12">
+            <div class="chart-card per-capita-card">
+                <div class="chart-header">Per Capita Income of SHG</div>
+                <div class="filter-row-inner">
+
+                    <select class="form-control" [(ngModel)]="selectedSubdivisionActivity" (change)="getRange()">
+                        <option value="">Select Sub Division...</option>
+                        <option *ngFor="let sd of subdivisions" [value]="sd.subdivision_id">
+                            {{sd.subdivision_name}}
+                        </option>
+                    </select>
+
+                    <select class="form-control" [(ngModel)]="selectedRangeActivity" (change)="getBeat()">
+                        <option value="">Select Range...</option>
+                        <option *ngFor="let r of ranges" [value]="r.range_id">
+                            {{r.range_name}}
+                        </option>
+                    </select>
+
+                    <select class="form-control" [(ngModel)]="selectedBeatActivity" (change)="onBeatChange()">
+                        <option value="">Select Beat...</option>
+                        <option *ngFor="let b of beats" [value]="b.beat_id">
+                            {{b.beat_name}}
+                        </option>
+                    </select>
+
+                    <select class="form-control" (change)="onJFMCChange($any($event.target).value)">
+                        <option value="">Select JFMC</option>
+                        <option *ngFor="let j of jfmclist" [value]="j.name_of_committee">
+                            {{j.name_of_committee}}
+                        </option>
+                    </select>
+
+               <div class="multi-select-container">
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select SHGs</mat-label>
+        <mat-select 
+            multiple 
+            [(ngModel)]="selectedSHGs" 
+            (selectionChange)="onSHGSelectionChange($event)">
+            
+            <mat-select-trigger>
+                <div class="chip-container-inline">
+                    <ng-container *ngFor="let shg of selectedSHGs">
+                        <span class="chip-element" *ngIf="shg !== 'SELECT_ALL'" (click)="$event.stopPropagation(); removeSHG(shg)">
+                            {{ shg.name }}
+                            <i class="fa fa-times chip-close-icon"></i>
+                        </span>
+                    </ng-container>
+                </div>
+            </mat-select-trigger>
+
+            <mat-option 
+                class="select-all-option" 
+                value="SELECT_ALL"
+                (click)="toggleAllSHGs()">
+                Select All
+            </mat-option>
+            
+            <hr class="dropdown-divider-line">
+
+            <mat-option *ngFor="let s of shglist" [value]="s">
+                {{ s.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>                </div>
+                <div class="chart-main-container">
+                    <canvas id="perCapitaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-20 no-print">
+        <div class="col-md-12">
+            <section class="tile">
+                <div class="tile-header dvd dvd-btm">
+                    <h1 class="custom-font">Activity Report Generation</h1>
+                </div>
+                <div class="tile-body">
+                    <div class="row mb-20">
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedModule" (change)="onActivityFilterChange()">
+                                <option value="">Select Module...</option>
+                                <option value="PLANTATION">Plantation</option>
+                                <option value="JFMC">JFMC</option>
+                                <option value="SHG">SHG</option>
+                                <option value="SMC">SMC</option>
+                                <option value="NURSERY">Nursery Journal</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedSchemeActivity" (change)="onActivityFilterChange()">
+                                <option value="">Select Scheme...</option>
+                                *<option *ngFor="let s of schemes" [value]="s.id">{{s.scheme_name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedDistrictActivity" (change)="getSubDivision()">
+                                <option value="">Select District...</option>
+                                <option *ngFor="let d of districts" [value]="d.id">{{ d.name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedSubdivisionActivity" (change)="getRange()">
+                                <option value="">Select Sub Division...</option>
+                                <option *ngFor="let sd of subdivisions" [value]="sd.subdivision_id">
+                                    {{ sd.subdivision_name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedRangeActivity" (change)="getBeat()">
+                                <option value="">Select Range...</option>
+                                <option *ngFor="let r of ranges" [value]="r.range_id">{{ r.range_name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" [(ngModel)]="selectedBeatActivity" (change)="onActivityFilterChange()">
+                                <option value="">Select Beat...</option>
+                                <option *ngFor="let b of beats" [value]="b.beat_id">{{ b.beat_name }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" [(ngModel)]="selectedReferenceId">
+                                <option value="">Select ID/Name...</option>
+                                <option *ngFor="let item of referenceList" [value]="item.id">
+                                    {{item.text}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="date" class="form-control" [(ngModel)]="startDate">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="date" class="form-control" [(ngModel)]="endDate">
+                        </div>
+                    </div>
+                    <div class="text-center mt-20">
+                        <button class="btn btn-darkgray" (click)="generateReport()">Generate Report</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+<div id="report-preview-section" class="report-container" *ngIf="showReportPreview">
+    <div class="report-sheet">
+        <div class="print-logo-header-row">
+            <div>
+                <div>
+                    <img *ngIf="isScatformScheme()" src="https://jica.tripura.gov.in/static/images/scatform_transparent.png"
+                        alt="SCATFORM Logo" style="float:right;width: 16%;margin-bottom: -7%;">
+                </div>
+                <div>
+                    <img src="https://forest.tripura.gov.in/sites/default/files/2025-01/right-logo-3.png" alt="Forest Dept Logo"
+                        style="width: 10%; margin-right: 81%; margin-top: -4%;">
+                </div>
+            </div>
+
+            <div class="jfmc-report-wrapper" *ngIf="jfmcReportData.length>0">
+                <div class="report-header-custom">
+                    {{ jfmcReportData[0].profile?.jfmc_master?.[0]?.name_of_committee }}
+                </div>
+
+                <div style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #1b5540;" *ngIf="startDate || endDate">
+                    Report Period: {{ startDate ? (startDate | date:'dd-MM-yyyy') : 'Beginning' }} to {{ endDate ? (endDate | date:'dd-MM-yyyy') : todayDate }}
+                </div>
+
+                <table class="report-table-custom">
+                    <tr>
+                        <td>No. Of Meetings: <br>{{ jfmcReportData[0]?.summary?.meetings }}</td>
+                        <td>No Of Loan Sanctioned: <br>{{ jfmcReportData[0]?.summary?.loans }}</td>
+                        <td>Amount Sanctioned: <br>{{ jfmcReportData[0]?.summary?.amtSanctioned }}</td>
+                        <td>Amount Repay: <br>{{ jfmcReportData[0]?.summary?.amtRepaid }}</td>
+                    </tr>
+                </table>
+
+                <table class="report-table-custom">
+                    <tr class="section-title-custom">
+                        <td colspan="4">General Information</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; background: #fafafa;">Committee Name</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_master?.[0]?.name_of_committee }}</td>
+                        <td style="font-weight: bold; background: #fafafa;">Type</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_master?.[0]?.commitee_name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; background: #fafafa;">Formation Year</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_master?.[0]?.formation_year }}</td>
+                        <td style="font-weight: bold; background: #fafafa;">Village</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_geo?.[0]?.name_vill_gp }}</td>
+                    </tr>
+                </table>
+
+                <table class="report-table-custom">
+                    <tr class="section-title-custom">
+                        <td colspan="4">Household Details</td>
+                    </tr>
+                    <tr>
+                        <td>SC</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_hh_details?.[0]?.no_sc }}</td>
+                        <td>ST</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_hh_details?.[0]?.no_st }}</td>
+                    </tr>
+                    <tr>
+                        <td>BPL</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_hh_details?.[0]?.no_bpl }}</td>
+                        <td>Women Headed</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_hh_details?.[0]?.no_women_headed_hh }}</td>
+                    </tr>
+                </table>
+
+                <table class="report-table-custom">
+                    <tr class="section-title-custom">
+                        <td colspan="4">Microplan</td>
+                    </tr>
+                    <tr>
+                        <td>Prepared</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_microplan?.[0]?.is_microplan_prepared }}</td>
+                        <td>Approved</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_microplan?.[0]?.is_approved_dfo }}</td>
+                    </tr>
+                </table>
+
+                <table class="report-table-custom">
+                    <tr class="section-title-custom">
+                        <td colspan="4">Executive Committee</td>
+                    </tr>
+                    <tr>
+                        <td>President</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_exexutive_commitee?.[0]?.president_name }}</td>
+                        <td>Mobile</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_exexutive_commitee?.[0]?.president_mobile }}</td>
+                    </tr>
+                    <tr>
+                        <td>Vice President</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_exexutive_commitee?.[0]?.vp_name }}</td>
+                        <td>Mobile</td>
+                        <td>{{ jfmcReportData[0]?.profile.jfmc_exexutive_commitee?.[0]?.vp_mobile }}</td>
+                    </tr>
+                </table>
+
+                <table class="report-table-custom">
+                    <tr class="section-title-custom">
+                        <td colspan="4">Bank Details</td>
+                    </tr>
+                    <tr>
+                        <td>Bank Name</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_bankstatus?.[0]?.com_bank_name }}</td>
+                        <td>Account No</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_bankstatus?.[0]?.com_acc_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>IFSC</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_bankstatus?.[0]?.com_ifsc }}</td>
+                        <td>Open Date</td>
+                        <td>{{ jfmcReportData[0]?.profile?.jfmc_bankstatus?.[0]?.com_acc_open_date | date:'dd-MM-yyyy' }}</td>
+                    </tr>
+                </table>
+
+                <div style="background: #1b5540; color: white; text-align: center; padding: 5px; font-weight: bold; margin-bottom: 2px;">
+                    No. of SMC Assets
+                </div>
+                <table class="report-table-custom">
+                    <tr style="background: #d8f3dc; color: #1b5540; font-weight: bold; text-align: center;">
+                        <td>Type Of Checkdam</td>
+                        <td>Basic Details</td>
+                        <td>Technical Details</td>
+                        <td>Implementation</td>
+                    </tr>
+                    <tr *ngFor="let item of smcTableInfo">
+                        <td>{{ item.checkdemName }}</td>
+                        <td>{{ item.basicDetails }}</td>
+                        <td>{{ item.technicalDetails }}</td>
+                        <td>{{ item.Implementation }}</td>
+                    </tr>
+                    <tr *ngIf="!smcTableInfo.length">
+                        <td colspan="4" style="text-align: center;">No SMC Assets Found</td>
+                    </tr>
+                </table>
+
+                <p style="text-align:right; font-size: 11px; margin-top: 20px;">
+                    Report Date: {{ todayDate }}
+                </p>
+            </div>
+        </div>
+
+        <div class="report-sheet" *ngIf="selectedModule === 'PLANTATION' && plantationReportDetails">
+            <div class="report-header-custom">PLANTATION DETAILED REPORT - {{selectedReferenceId}}</div>
+            <div style="text-align: center; font-weight: bold; margin-bottom: 10px; color: #1b5540;">
+                Activity Period: {{ startDate | date:'dd-MM-yyyy' }} to {{ endDate | date:'dd-MM-yyyy' }}
+            </div>
+
+            <table class="report-table-custom">
+                <tr class="section-title-custom">
+                    <td colspan="4">PRE-SURVEY DETAILS</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Locality Name</td>
+                    <td>{{plantationReportDetails.preSurvey.locatity_name || 'NA'}}</td>
+                    <td class="lbl">Survey Type</td>
+                    <td>{{plantationReportDetails.preSurvey.survey_type || 'NA'}}</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Reporting Duration</td>
+                    <td colspan="3" style="font-weight: bold;">
+                        From: {{ startDate | date:'dd-MM-yyyy' }} &nbsp;&nbsp; To: {{ endDate | date:'dd-MM-yyyy' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="lbl">Area (Hect) / Length (KM)</td>
+                    <td>
+                        {{plantationReportDetails.preSurvey.survey_type === 'Linear Plantation' ?
+                        plantationReportDetails.preSurvey.length_km : plantationReportDetails.preSurvey.area_hect}}
+                    </td>
+                    <td class="lbl">Date</td>
+                    <td>{{plantationReportDetails.preSurvey.date | date:'dd-MM-yyyy'}}</td>
+                </tr>
+            </table>
+
+            <table class="report-table-custom">
+                <tr class="section-title-custom">
+                    <td colspan="4">SITE MASTER</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Type Of Plantation</td>
+                    <td>{{plantationReportDetails.siteMaster.type_of_plantation || 'NA'}}</td>
+                    <td class="lbl">Scheme Type</td>
+                    <td>{{plantationReportDetails.siteMaster.type_of_scheme || 'NA'}}</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Scheme</td>
+                    <td>{{plantationReportDetails.siteMaster.scheme_lst || 'NA'}}</td>
+                    <td class="lbl">Mode / JFMC</td>
+                    <td>{{plantationReportDetails.siteMaster.selected_mode}}
+                        ({{plantationReportDetails.siteMaster.selected_mode_id}})</td>
+                </tr>
+            </table>
+
+            <table class="report-table-custom">
+                <tr class="section-title-custom">
+                    <td colspan="4">ADVANCE WORKS</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Species Type</td>
+                    <td>{{plantationReportDetails.advanceWork.name_of_species || 'NA'}}</td>
+                    <td class="lbl">No. of Pit Dig</td>
+                    <td>{{plantationReportDetails.advanceWork.no_of_pit_dug || '0'}}</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Total Cost</td>
+                    <td>{{plantationReportDetails.advanceWork.total_cost || '0'}}</td>
+                    <td class="lbl">Man-Days (M/F)</td>
+                    <td>{{plantationReportDetails.advanceWork.mand_male || 0}} /
+                        {{plantationReportDetails.advanceWork.mand_female || 0}}</td>
+                </tr>
+            </table>
+
+            <table class="report-table-custom">
+                <tr class="section-title-custom">
+                    <td colspan="4">MAINTENANCE & RESURVEY</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Maintenance Status</td>
+                    <td>{{plantationReportDetails.maintenance.fo_status || 'Pending'}}</td>
+                    <td class="lbl">Resurvey Status</td>
+                    <td>{{plantationReportDetails.resurvey.fo_status || 'Pending'}}</td>
+                </tr>
+            </table>
+
+            <p style="text-align:right; font-size: 11px; margin-top: 20px;">
+                Report Generated Date: {{ todayDate }}
+            </p>
+        </div>
+
+        <div class="report-sheet" *ngIf="smcReportData">
+            <div class="report-header-title">SMC Detailed Report</div>
+            <table class="report-table-styled">
+                <tr class="section-title">
+                    <td colspan="4">Basic Details</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Structure ID</td>
+                    <td>{{ smcReportData.basic.structure_id }}</td>
+                    <td class="lbl">Type</td>
+                    <td>{{ smcReportData.basic.type_of_structure }}</td>
+                </tr>
+            </table>
+
+            <div class="section-banner">Structure Dimensions</div>
+            <table class="report-table-styled">
+                <tr>
+                    <td class="lbl">Wall Length</td>
+                    <td>{{ smcReportData.dimensions.wall_len }}</td>
+                    <td class="lbl">Wall Height</td>
+                    <td>{{ smcReportData.dimensions.wall_depth }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="report-sheet" *ngIf="selectedModule === 'SHG' && shgReportDetails">
+            <div class="report-header-title">SHG WORKING DETAILED REPORT</div>
+            <table class="report-table-styled">
+                <tr>
+                    <td class="lbl">DISTRICT</td>
+                    <td>{{selectedDistrictActivity}}</td>
+                    <td class="lbl">SUBDIVISION</td>
+                    <td>{{selectedSubdivisionActivity}}</td>
+                </tr>
+                <tr>
+                    <td class="lbl">SCHEME</td>
+                    <td>{{selectedSchemeActivity}}</td>
+                    <td class="lbl">SHG NAME</td>
+                    <td>{{shgReportDetails.master.name}}</td>
+                </tr>
+            </table>
+
+            <div class="section-banner">HOUSEHOLD DETAILS</div>
+            <table class="report-table-styled">
+                <tr>
+                    <td>SC: {{shgReportDetails.geo.no_o_sc_members}}</td>
+                    <td>ST: {{shgReportDetails.geo.no_of_st}}</td>
+                    <td>MINORITY: {{shgReportDetails.geo.no_of_minor}}</td>
+                    <td>OTHERS: {{shgReportDetails.geo.no_of_general}}</td>
+                </tr>
+            </table>
+
+            <div class="section-banner">MEMBER DETAILS</div>
+            <table class="report-table-styled">
+                <thead class="green-thead">
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Gender</th>
+                        <th>DOJ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let m of shgReportDetails.members; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{m.name}}</td>
+                        <td>{{m.designation}}</td>
+                        <td>{{m.gender}}</td>
+                        <td>{{m.date_of_joining}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="section-banner">LOAN DETAILS</div>
+            <table class="report-table-styled">
+                <thead class="green-thead">
+                    <tr>
+                        <th>Sno.</th>
+                        <th>Sanctioned By</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
+                        <th>Due</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let l of shgReportDetails.loans; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{l.loan_disbursed_by}}</td>
+                        <td>{{l.total_amount_disbursed}}</td>
+                        <td>{{l.total_balance_principal}}</td>
+                        <td>{{l.due_loan_amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="report-sheet" *ngIf="selectedModule === 'NURSERY' && nurseryReportDetails">
+            <div class="report-header-title">NURSERY REPORT</div>
+            <table class="report-table-styled">
+                <tr class="section-title">
+                    <td colspan="4">Basic Details</td>
+                </tr>
+                <tr>
+                    <td class="lbl">Nursery Name</td>
+                    <td>{{ nurseryReportDetails.header?.text }}</td>
+                    <td class="lbl">Report Period</td>
+                    <td>{{ startDate | date:'dd-MM-yyyy' }} to {{ endDate | date:'dd-MM-yyyy' }}</td>
+                </tr>
+            </table>
+
+            <div class="section-banner">Infrastructure Details (Available)</div>
+            <table class="report-table-styled">
+                <thead class="green-thead">
+                    <tr>
+                        <th>Infra Name</th>
+                        <th>Number</th>
+                        <th>Area</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mother Bed</td>
+                        <td>{{nurseryReportDetails.infra.mother}}</td>
+                        <td>{{nurseryReportDetails.infra.mSize}}</td>
+                        <td>{{nurseryReportDetails.infra.cost}}</td>
+                    </tr>
+                    <tr>
+                        <td>Temporary Bed</td>
+                        <td>{{nurseryReportDetails.infra.temp}}</td>
+                        <td>{{nurseryReportDetails.infra.tSize}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="section-banner">Stock Position</div>
+            <table class="report-table-styled">
+                <thead class="green-thead">
+                    <tr>
+                        <th>Species</th>
+                        <th>Mortality</th>
+                        <th>Plantation Transfer</th>
+                        <th>Free Dist.</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of nurseryReportDetails.stock">
+                        <td>{{s.name_of_species}}</td>
+                        <td>{{s.mortality}}</td>
+                        <td>{{s.transfer_for_plantation}}</td>
+                        <td>{{s.free_distribution}}</td>
+                        <td>{{s.stock_available}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="report-actions no-print">
+            <button class="btn btn-success" (click)="printCurrentReport()">Print Report</button>
+            <button class="btn btn-danger" (click)="showReportPreview = false">Close</button>
+        </div>
+    </div>
+</div>

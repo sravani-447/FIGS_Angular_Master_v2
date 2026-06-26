@@ -1,0 +1,91 @@
+<div class="magic-forest-wrapper">
+  <div class="glass-content-layer">
+    
+    <header class="page-header">
+      <h1 class="page-title">livestock Planning</h1>
+      <div class="breadcrumb-container">
+        <div class="v-accent-bar"></div>
+        <nav class="breadcrumb-nav">
+          Livestock / PLANNING / <span class="active">livestock Planning</span>
+        </nav>
+      </div>
+    </header>
+
+    <div class="toolbar-panel">
+      <div class="toolbar-inner">
+        <div class="upload-controls">
+          <!-- Climate Shape Zip Upload -->
+          <label for="Climate Shape Zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Climate Shape Zip</strong>
+              <span>{{ climateShapeName || 'Select Climate Shape Zip' }}</span>
+            </div>
+          </label>
+          <input id="Climate Shape Zip" type="file" (change)="onFileChange($event, 'climateShape')" hidden>
+
+          <!-- Silvi-pastural Plantation Map Zip Upload -->
+          <label for="Silvi-pastural Plantation Map Zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Silvi-pastural Plantation Map Zip</strong>
+              <span>{{ silviPasturalPlantationMapName || 'Select Silvi-pastural Plantation Map Zip' }}</span>
+            </div>
+          </label>
+          <input id="Silvi-pastural Plantation Map Zip" type="file" (change)="onFileChange($event, 'silviPasturalPlantationMap')" hidden>
+
+          <!-- Waterbody Shape Zip Upload -->
+          <label for="Waterbody Shape Zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Waterbody Shape Zip</strong>
+              <span>{{ waterBodyName || 'Select Waterbody Shape Zip' }}</span>
+            </div>
+          </label>
+          <input id="Waterbody Shape Zip" type="file" (change)="onFileChange($event, 'waterBody')" hidden>
+        </div>
+
+        <div class="action-btn-wrap">
+<button class="btn-go-orange" (click)="Compare()" [disabled]="isLoading">
+  <span *ngIf="!isLoading">GO</span>
+  <i *ngIf="isLoading" class="fa fa-spinner fa-spin gradient-spinner-icon"></i>
+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+     <div class="glass-card map-view">
+  <div class="card-header">
+    <div class="left-title"><i class="fa fa-compass"></i> MAP OVERVIEW</div>
+    
+    <div class="map-actions">
+      <button class="btn-kml-sky" (click)="downloadKml()">
+        <i class="fa fa-download"></i> KML
+      </button>
+      
+      <button class="btn-shp-green" (click)="downloadShp()">
+        <i class="fa fa-download"></i> SHP
+      </button>
+    </div>
+
+  </div>
+  <div id="map"></div>
+</div>
+
+
+      <div class="glass-card grid-view selection-grid-context">
+        <app-custom-grid 
+          [title]="'SELECTION RESULTS'"
+          [data]="gridData"
+          [columns]="columns"
+          [showAdd]="false"
+          [showprintbuttons]="true"
+            [displayPrint]="false"
+            [displayExcel]="false">
+        </app-custom-grid>
+      </div>
+    </div>
+
+  </div>
+</div>

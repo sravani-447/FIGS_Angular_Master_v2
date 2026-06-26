@@ -1,0 +1,131 @@
+<div class="dashboard-content" id="dashboard-container">
+  
+  <app-custom-dashboard 
+    *ngIf="dashboardConfig"
+    [config]="dashboardConfig" 
+    (filterChanged)="onFilterUpdate($event)"
+    (download)="downloadDashboard()">
+  </app-custom-dashboard>
+
+  <!-- Custom Side-by-Side Tables with New Theme -->
+  <div class="custom-tables-wrapper" *ngIf="dashboardConfig">
+   <div class="row force-side-by-side">
+      
+      <!-- Table 1: LiveStock -->
+      <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+        <div class="card table-card h-100">
+          <div class="card-header">
+            <h6>LIVESTOCK STATISTICS</h6>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0 custom-theme-table">
+                <thead>
+                  <tr>
+                    <th>Type of Livestock</th>
+                    <th>Adult</th>
+                    <th>Others</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of statLiveStock">
+                    <td>{{ row.activity_livestock }}</td>
+                    <td>{{ row.sum_adult }}</td>
+                    <td>{{ row.sum_other }}</td>
+                  </tr>
+                  <tr *ngIf="statLiveStock.length === 0"><td colspan="3" class="text-center text-muted">No Data</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table 2: Agroforestry -->
+      <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+        <div class="card table-card h-100">
+          <div class="card-header">
+            <h6>AGROFORESTRY STATISTICS</h6>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0 custom-theme-table">
+                <thead>
+                  <tr>
+                    <th>Model Type</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of statAfcModel">
+                    <td>{{ row.model }}</td>
+                    <td>{{ row.count }}</td>
+                  </tr>
+                  <tr *ngIf="statAfcModel.length === 0"><td colspan="2" class="text-center text-muted">No Data</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table 3: Eco Tourism Assets -->
+      <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+        <div class="card table-card h-100">
+          <div class="card-header">
+            <h6>ECO TOURISM ASSETS</h6>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0 custom-theme-table">
+                <thead>
+                  <tr>
+                    <th>Asset Type</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of statEcotCreationType">
+                    <td>{{ row.creation_type }}</td>
+                    <td>{{ row.count }}</td>
+                  </tr>
+                  <tr *ngIf="statEcotCreationType.length === 0"><td colspan="2" class="text-center text-muted">No Data</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table 4: Tourist Information -->
+      <div class="col-xl-3 col-lg-3 col-md-6 col-12">
+        <div class="card table-card h-100">
+          <div class="card-header">
+            <h6>TOURIST INFORMATION</h6>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0 custom-theme-table">
+                <thead>
+                  <tr>
+                    <th>Tourist Type</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of statEcotTouristType">
+                    <td>{{ row.creation_type }}</td>
+                    <td>{{ row.count }}</td>
+                  </tr>
+                  <tr *ngIf="statEcotTouristType.length === 0"><td colspan="2" class="text-center text-muted">No Data</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

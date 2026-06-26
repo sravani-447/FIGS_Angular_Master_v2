@@ -1,0 +1,952 @@
+<div class="page-wrapper">
+
+    <div class="main-title-container">
+        <h1 class="main-page-title">
+            {{ isFormOpen ? 'Add Entity Profile' : 'JFMC DATA ENTRY' }}
+        </h1>
+    </div>
+
+    <div class="action-bar" *ngIf="!isFormOpen">
+        <div class="breadcrumb-wrapper">
+            <span class="orange-vertical-bar"></span>
+            <span class="breadcrumb-text">JFMC & EDC / <span class="active">JFMC DATA ENTRY</span></span>
+        </div>
+
+        <button class="btn-blue-add" (click)="openNewForm()">
+            <i class="fa fa-plus"></i> Add New
+        </button>
+    </div>
+
+
+
+    <div *ngIf="!isFormOpen" class="content-panel fade-in">
+        <div class="grid-card">
+            <app-custom-grid [title]="'JFMC LIST'" [data]="data" [columns]="columns" [showAdd]="false"
+                [showprintbuttons]="true" (actionClicked)="onGridAction($event)">
+            </app-custom-grid>
+        </div>
+    </div>
+
+
+
+    <!-- ================= VIEW 2: ADD WIZARD FORM (LIGHT THEME) ================= -->
+    <div *ngIf="isFormOpen" class="light-wizard-backdrop fade-in">
+        <div class="light-modal-content">
+
+            <!-- Header (Blue to Orange Gradient) -->
+            <header class="light-modal-header">
+                <h2 class="light-modal-title">Add Entity Profile</h2>
+                <button class="light-btn-close" (click)="closeForm()">&times;</button>
+            </header>
+
+            <div class="light-modal-body">
+                <!-- Stepper -->
+                <div class="light-stepper">
+                    <ng-container *ngFor="let step of wizardSteps; let i = index">
+                        <div class="step-item" [class.active]="i === currentStep" [class.completed]="i < currentStep">
+                            <div class="step-circle">
+                                <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
+                                <i class="fa fa-check" *ngIf="i < currentStep"></i>
+                            </div>
+                            <div class="step-label">{{ step.label }}</div>
+                        </div>
+                        <div class="step-line" [class.completed]="i < currentStep" *ngIf="i < wizardSteps.length - 1">
+                        </div>
+                    </ng-container>
+                </div>
+
+                <!-- Form Content -->
+                <div class="light-form-container">
+
+
+                    <div class="dynamic-form-grid">
+                        <ng-container *ngFor="let field of stepFields[currentStep]">
+
+                            <!-- 1. SECTION HEADERS -->
+                            <div *ngIf="field.type === 'header'" class="col-12 mt-3 mb-2">
+                                <h5
+                                    style="color: #2c3e50; border-bottom: 1px dashed rgba(0,0,0,0.2); padding-bottom: 5px; font-weight: 700; font-size: 14px; margin: 0; text-transform: uppercase;">
+                                    {{ field.label }}
+                                </h5>
+                            </div>
+
+                            <!-- 2. COMPOSITE YEAR/DATE -->
+                            <div *ngIf="field.type === 'composite_year_date'"
+                                [className]="'form-group ' + (field.width || 'col-3')">
+                                <div
+                                    style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <label class="light-label" style="margin-bottom: 0;">{{ field.label | uppercase
+                                        }}</label>
+                                    <div style="display: flex; gap: 15px;">
+                                        <label
+                                            style="margin: 0; cursor: pointer; display: flex; align-items: center; font-size: 13px; color: #525f7f; font-weight: 500;">
+                                            <input type="radio" name="formationToggle" value="Year"
+                                                [(ngModel)]="formData.formation_type_toggle" style="margin-right: 5px;">
+                                            Year
+                                        </label>
+                                        <label
+                                            style="margin: 0; cursor: pointer; display: flex; align-items: center; font-size: 13px; color: #525f7f; font-weight: 500;">
+                                            <input type="radio" name="formationToggle" value="Date"
+                                                [(ngModel)]="formData.formation_type_toggle" style="margin-right: 5px;">
+                                            Date
+                                        </label>
+                                    </div>
+                                </div>
+                                <input *ngIf="formData.formation_type_toggle === 'Year'" type="number"
+                                    class="light-input" placeholder="YYYY" [(ngModel)]="formData.formation_year_val"
+                                      oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);">
+                                <input *ngIf="formData.formation_type_toggle === 'Date'" type="date" class="light-input"
+                                    [(ngModel)]="formData.formation_date_val"
+                                    >
+                            </div>
+
+                            <!-- 3. MULTISELECT CHIPS -->
+                            <div *ngIf="field.type === 'multiselect'"
+                                [className]="'form-group ' + (field.width || 'col-4')" style="position: relative;">
+                                <label class="light-label">{{ field.label | uppercase }}</label>
+                                <div class="local-multiselect-box light-input"
+                                   
+                                (click)="toggleDropdown(field.key, $event)">
+                                    <span *ngIf="!formData[field.key] || formData[field.key].length === 0"
+                                        class="placeholder-text">Select {{ field.label }}</span>
+                                    <span class="local-chip" *ngFor="let selValue of formData[field.key]; let i = index"
+                                        (click)="$event.stopPropagation()">
+                                        <span class="chip-close"
+                                            (click)="removeMultiselect(field.key, i, $event)">&times;</span>
+                                        {{ getMultiselectLabel(field.options, selValue) }}
+                                    </span>
+                                </div>
+                                <div class="local-dropdown-menu fade-in" *ngIf="openDropdownKey === field.key">
+                                    <div class="local-dropdown-item" *ngFor="let opt of field.options"
+                                        [class.active]="isMultiselectSelected(field.key, opt.value)"
+                                        (click)="toggleMultiselectOption(field.key, opt.value, $event)">
+                                        {{ opt.label }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. STANDARD INPUTS -->
+                            <div *ngIf="field.type !== 'header' && field.type !== 'hh_table' && field.type !== 'multiselect' && field.type !== 'composite_year_date'"
+                                [className]="'form-group ' + (field.width || 'col-4')">
+                                <label class="light-label">{{ field.label | uppercase }}</label>
+
+                                <input *ngIf="field.type === 'text'" type="text" class="light-input" [name]="field.key"
+                                    [(ngModel)]="formData[field.key]" (ngModelChange)="onInputChange(field.key)"
+                                    [placeholder]="field.disabled ? '' : 'Enter ' + field.label"
+                                    [disabled]="field.disabled"
+                                    (keypress)="field.key.includes('mobile') || field.key.includes('no') ? onlyNumber($event) : null">
+
+                                <input *ngIf="field.type === 'number'" type="number" class="light-input"
+                                    [name]="field.key" [(ngModel)]="formData[field.key]"
+                                    (ngModelChange)="onInputChange(field.key)" [placeholder]="'0'"
+                                    [disabled]="field.disabled" onKeyPress="if(this.value.length==10) return false;"
+                                    (keypress)="onlyNumber($event)">
+
+                                <app-custom-dropdown *ngIf="field.type === 'select'" [options]="field.options"
+                                    [placeholder]="'Select ' + field.label"
+                                    [(ngModel)]="formData[field.key]"></app-custom-dropdown>
+                                <input *ngIf="field.type === 'date'" type="date" class="light-input"
+                                    [(ngModel)]="formData[field.key]"
+                                     [disabled]="isFieldDisabled(field.key)">
+
+                                <div class="file-upload-wrapper" *ngIf="field.type === 'file'"
+                                [style.opacity]="isFieldDisabled(field.key) ? '0.5' : '1'"
+                                   [style.pointer-events]="isFieldDisabled(field.key) ? 'none' : 'auto'" >
+                                    <label class="file-upload-box">
+                                        <i class="fa fa-cloud-upload"></i><span>CHOOSE FILE...</span>
+                                        <input type="file" (change)="onFileChange($event, field.key)" hidden
+                                            [disabled]="isFieldDisabled(field.key)">
+                                    </label>
+                                    <div class="file-name-display" *ngIf="formData[field.key]">{{
+                                        formData[field.key].name }}</div>
+                                </div>
+                                <div *ngIf="field.type === 'radio'" class="light-radio-group">
+                                    <label class="light-radio-label" *ngFor="let opt of field.options">
+                                        <input type="radio" [value]="opt" [(ngModel)]="formData[field.key]"
+                                            [name]="field.key"> {{ opt }}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 5. 100% DYNAMIC HOUSEHOLD TABLE -->
+                            <div *ngIf="field.type === 'hh_table'" class="col-12 mt-3">
+                                <div style="margin-bottom: 10px; display: flex; gap: 5px;">
+                                    <button type="button" class="btn btn-sm"
+                                        style="background: #111; border: 1px solid #333; cursor: pointer;"
+                                        (click)="addHHMemberRow()">
+                                        <i class="fa fa-plus-square" style="color: #00ff00; font-size: 16px;"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm"
+                                        style="background: #111; border: 1px solid #333; cursor: pointer;"
+                                        (click)="removeHHMemberRow()">
+                                        <i class="fa fa-minus-square" style="color: #00ff00; font-size: 16px;"></i>
+                                    </button>
+                                </div>
+                                <div
+                                    style="overflow-x: auto; border: 1px solid #e0e0e0; background: #f9f9f9; padding: 10px; border-radius: 4px;">
+                                    <table
+                                        style="width: 100%; min-width: 900px; text-align: left; border-collapse: separate; border-spacing: 0 10px;">
+                                        <thead>
+                                            <tr>
+                                                <!-- CHANGED color to #444 so labels are visible -->
+                                                <th *ngFor="let col of field.tableColumns"
+                                                    style="color: #444; font-weight: 700; font-size: 13px; padding-bottom: 5px; border-bottom: 2px solid #ddd;">
+                                                    {{ col.label }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let member of addHHDynamicMembers; let idx = index">
+                                                <td *ngFor="let col of field.tableColumns" style="padding: 0 5px;">
+
+                                                    <!-- Text Input with Validation -->
+                                                    <input *ngIf="col.type === 'text'" type="text" class="light-input"
+                                                        [(ngModel)]="member[col.key]" [name]="col.key + '_' + idx"
+                                                        (keypress)="onlyAlphabet($event)" style="margin:0;">
+
+                                                    <!-- CHANGED: Use app-custom-dropdown instead of select -->
+                                                    <div *ngIf="col.type === 'select'" style="min-width: 150px;">
+                                                        <app-custom-dropdown [options]="col.options"
+                                                            [placeholder]="'Select...'" [(ngModel)]="member[col.key]">
+                                                        </app-custom-dropdown>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </ng-container>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="light-modal-footer">
+                <button class="btn-light-cancel" (click)="currentStep > 0 ? prevStep() : closeForm()">
+                    {{ currentStep > 0 ? 'Previous' : 'previous' }}
+                </button>
+
+                <!-- Dynamic Button: Blue Next OR Green Submit -->
+                <button [ngClass]="currentStep === wizardSteps.length - 1 ? 'btn-submit-final' : 'btn-light-next'"
+                    (click)="currentStep === wizardSteps.length - 1 ? save() : nextStep()">
+                    <i class="fa fa-check-circle" *ngIf="currentStep === wizardSteps.length - 1"
+                        style="margin-right: 5px;"></i>
+                    {{ currentStep === wizardSteps.length - 1 ? 'Submit Final' : 'Next' }}
+                    <i class="fa fa-arrow-right" *ngIf="currentStep < wizardSteps.length - 1"
+                        style="margin-left: 5px;"></i>
+                </button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div *ngIf="isViewOpen" class="custom-modal-backdrop fade-in">
+        <div class="details-modal-content">
+
+            <header class="modal-gradient-header">
+                <h4 class="modal-title">JFMC DETAILS</h4>
+                <button class="btn-close-x" (click)="closeView()">&times;</button>
+            </header>
+
+            <div class="details-body">
+
+                <div class="row-flex">
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">General Info</h4>
+                            <div class="info-grid">
+                                <div class="info-item"><label>Name:</label> <span>{{
+                                        selectedJfmcDetails?.name_of_committee || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Type:</label> <span>{{ selectedJfmcDetails?.commitee_name
+                                         }}</span></div>
+                                <div class="info-item"><label>Formed Under:</label> <span>{{
+                                        selectedJfmcDetails?.formed_under || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Year of Formation:</label> <span>{{
+                                        selectedJfmcDetails?.formation_year || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Committee is in ADC of Village:</label> <span>{{
+                                        selectedJfmcDetails?.is_adc_village || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Date of MOU Signed:</label> <span>{{
+                                        (selectedJfmcDetails?.mou_date | date:'dd-MM-yyyy') || 'N/A' }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Microplan Status</h4>
+                            <div class="info-grid">
+                                <button class="btn-download"
+                                    *ngIf="selectedJfmcDetails?.is_microplan_prepared === 'Yes'"
+                                    (click)="downloadMicroplan()">
+                                    <i class="fa fa-cloud-download"></i> Download Microplan
+                                </button>
+                                <div class="info-item"><label>Microplan Prepared:</label> <span>{{
+                                        selectedJfmcDetails?.is_microplan_prepared || 'No' }}</span></div>
+                                <div class="info-item"><label>Date of Preparation:</label> <span>{{
+                                        (selectedJfmcDetails?.mp_prep_date | date:'dd-MM-yyyy') || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Approved by DFO:</label> <span>{{
+                                        selectedJfmcDetails?.is_mp_approved || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Date of Microplan Approval:</label> <span>{{
+                                        (selectedJfmcDetails?.mp_approval_date | date:'dd-MM-yyyy') || 'N/A' }}</span>
+                                </div>
+                                <div class="info-item"><label>Microplan has been Revised:</label> <span>{{
+                                        selectedJfmcDetails?.is_mp_revised || 'No' }}</span></div>
+                                <div class="info-item"><label>Committee having the APO:</label> <span>{{
+                                        selectedJfmcDetails?.has_apo || 'No' }}</span></div>
+
+                                <div><button class="btn-edit mt-2" (click)="openEditMicroplan()">Edit</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-flex">
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Household Details</h4>
+
+                            <!-- 1. Social Category -->
+                            <div class="sub-cat-title">Social Category</div>
+                            <div class="info-grid-3 mb-3"> <!-- Changed to grid-3 for better spacing -->
+                                <div class="info-item"><label>SC:</label> <span>{{ selectedJfmcDetails?.sc_count || 0
+                                        }}</span></div>
+                                <div class="info-item"><label>ST:</label> <span>{{ selectedJfmcDetails?.st_count || 0
+                                        }}</span></div>
+                                <div class="info-item"><label>Others:</label> <span>{{ selectedJfmcDetails?.other_count
+                                        || 0 }}</span></div>
+                            </div>
+
+                            <!-- 2. Other Category -->
+                            <div class="sub-cat-title">Other Category</div>
+                            <div class="info-grid mb-3">
+                                <div class="info-item"><label>Below Poverty Line (BPL):</label> <span>{{
+                                        selectedJfmcDetails?.bpl_count || 0 }}</span></div>
+                                <div class="info-item"><label>Women Headed HHs:</label> <span>{{
+                                        selectedJfmcDetails?.women_headed || 0 }}</span></div>
+                            </div>
+
+                            <!-- 3. General Body (This was missing) -->
+                            <div class="sub-cat-title">General Body</div>
+                            <div class="info-grid">
+                                <div class="info-item"><label>No. of Households in General Body:</label> <span>{{
+                                        selectedJfmcDetails?.total_hh || 0 }}</span></div>
+                                <div class="info-item"><label>ST Percentage:</label> <span>{{
+                                        selectedJfmcDetails?.st_percent || 0 }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Geographic Details</h4>
+                            <div class="info-grid">
+                                <div class="info-item"><label>Village Name :</label> <span>{{
+                                        selectedJfmcDetails?.village_name || 'N/A' }}</span></div>
+                                <div class="info-item"><label>Mauza Name :</label> <span>{{
+                                        selectedJfmcDetails?.mauza_name || 'N/A' }}</span></div>
+                                <div class="info-item"><label>No.of hamlet :</label> <span>{{
+                                        selectedJfmcDetails?.no_of_hamlet || 0 }}</span></div>
+                                <div class="info-item"><label>Project area hect :</label> <span>{{
+                                        selectedJfmcDetails?.project_area_hect || 0 }}</span></div>
+                                <div class="info-item"><label>Type of forest :</label> <span>{{
+                                        selectedJfmcDetails?.forest_type || 'N/A' }}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-flex">
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Bank Details</h4>
+                            <div class="tab-header">
+                                <button class="tab-btn" [class.active]="activeBankTab==='committee'"
+                                    (click)="activeBankTab='committee'">Committee A/C</button>
+                                <button class="tab-btn" [class.active]="activeBankTab==='revolving'"
+                                    (click)="activeBankTab='revolving'">Revolving Fund A/C</button>
+                            </div>
+                            <div class="tab-body fade-in" *ngIf="activeBankTab==='committee'">
+                                <div class="info-grid">
+                                    <div class="info-item"><label>Name:</label> <span>{{
+                                            selectedJfmcDetails?.com_bank_name || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Date:</label> <span>{{
+                                            (selectedJfmcDetails?.com_bank_date | date:'dd-MM-yyyy') || 'N/A' }}</span>
+                                    </div>
+                                    <div class="info-item"><label>Account No:</label> <span>{{
+                                            selectedJfmcDetails?.com_acc_number || 'N/A' }}</span></div>
+                                </div>
+                            </div>
+                            <div class="tab-body fade-in" *ngIf="activeBankTab==='revolving'">
+                                <div class="info-grid">
+                                    <div class="info-item"><label>Name:</label> <span>{{
+                                            selectedJfmcDetails?.rev_bank_name || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Date:</label> <span>{{
+                                            (selectedJfmcDetails?.rev_bank_date | date:'dd-MM-yyyy') || 'N/A' }}</span>
+                                    </div>
+                                    <div class="info-item"><label>Account No:</label> <span>{{
+                                            selectedJfmcDetails?.rev_acc_number || 'N/A' }}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-half">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Household Members Details</h4>
+                            <div class="flex-between">
+                                <div>
+                                    <button class="btn-add-member" (click)="openAddHHModal()">Add</button>
+                                    <button class="btn-icon-excel ml-2" (click)="downloadHHExcel()"><i
+                                            class="fa fa-file-excel-o"></i></button>
+                                </div>
+                                <div>
+                                    <label class="mr-2">Search:</label>
+                                    <input type="text" class="search-input-small">
+                                </div>
+                            </div>
+                            <div class="custom-table-wrapper">
+                                <table class="custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl.No.</th>
+                                            <th>Name</th>
+                                            <th>Gender</th>
+                                            <th>Social Category</th>
+                                            <th>Bpl</th>
+                                            <th>Landless</th>
+                                            <th>Women Headed</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let m of householdMembers; let idx = index">
+                                            <td>{{ m.sl }}</td>
+                                            <td>{{ m.name }}</td>
+                                            <td>{{ m.gender }}</td>
+                                            <td>{{ m.category }}</td>
+                                            <td>{{ m.bpl }}</td>
+                                            <td>{{ m.landless }}</td>
+                                            <td>{{ m.womenHeaded }}</td>
+
+                                            <td>
+                                                <button class="btn-delete" (click)="deleteHHMember(m.id, idx)">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                        <tr *ngIf="householdMembers.length === 0">
+                                            <td colspan="8" class="text-center">No matching records found</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-footer mt-2">
+                                <span class="text-sm">Showing {{ householdMembers.length > 0 ? 1 : 0 }} to {{
+                                    householdMembers.length }} of {{ householdMembers.length }} entries</span>
+                                <div class="pagination-controls">
+                                    <button class="page-btn">Previous</button>
+                                    <button class="page-btn active">1</button>
+                                    <button class="page-btn">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-flex mb-3">
+                    <div class="col-full">
+                        <div class="info-card">
+                            <h4 class="card-title-light">Executive Member Details</h4>
+                            <div class="tab-header">
+                                <button class="tab-btn" [class.active]="activeExecutiveTab==='member'"
+                                    (click)="activeExecutiveTab='member'">Executive Member</button>
+                                <button class="tab-btn" [class.active]="activeExecutiveTab==='history'"
+                                    (click)="activeExecutiveTab='history'">History</button>
+                            </div>
+
+                            <div class="tab-body fade-in" *ngIf="activeExecutiveTab==='member'">
+                                <button class="btn-delete mb-3" *ngIf="selectedJfmcDetails?.exec_election_date"
+                                    (click)="deleteExecMembers()">Delete</button>
+                                <button class="btn-add-member mb-3" *ngIf="!selectedJfmcDetails?.exec_election_date"
+                                    (click)="openUpdateExecModal()">Update</button>
+
+
+                                <div class="section-divider">Membership Details</div>
+                                <div class="info-grid-3">
+                                    <div class="info-item"><label>Male:</label> <span>{{ selectedJfmcDetails?.exec_male
+                                            || 0 }}</span></div>
+                                    <div class="info-item"><label>Female:</label> <span>{{
+                                            selectedJfmcDetails?.exec_female || 0 }}</span></div>
+                                    <div class="info-item"><label>Female Ratio:</label> <span>{{
+                                            selectedJfmcDetails?.exec_ratio || 0 }}</span></div>
+                                </div>
+
+                                <div class="section-divider mt-3">Election Details</div>
+                                <div class="info-grid">
+                                    <div class="info-item"><label>Last Election Date of Executive Committee:</label>
+                                        <span>{{ (selectedJfmcDetails?.exec_election_date | date:'dd-MM-yyyy') || 'N/A'
+                                            }}</span></div>
+                                </div>
+
+                                <div class="section-divider mt-3">President</div>
+                                <div class="info-grid-3">
+                                    <div class="info-item"><label>Name:</label> <span>{{
+                                            selectedJfmcDetails?.president_name || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Gender:</label> <span>{{
+                                            selectedJfmcDetails?.president_gender || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Mobile:</label> <span>{{
+                                            selectedJfmcDetails?.president_mobile || 'N/A' }}</span></div>
+                                </div>
+
+                                <div class="section-divider mt-3">Vice President</div>
+                                <div class="info-grid-3">
+                                    <div class="info-item"><label>Name:</label> <span>{{ selectedJfmcDetails?.vp_name ||
+                                            'N/A' }}</span></div>
+                                    <div class="info-item"><label>Gender:</label> <span>{{
+                                            selectedJfmcDetails?.vp_gender || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Mobile:</label> <span>{{
+                                            selectedJfmcDetails?.vp_mobile || 'N/A' }}</span></div>
+                                </div>
+
+                                <div class="section-divider mt-3">Member Representing Gram Panchayat:</div>
+                                <div class="info-grid-3">
+                                    <div class="info-item"><label>Name:</label> <span>{{ selectedJfmcDetails?.gp_name ||
+                                            'N/A' }}</span></div>
+                                    <div class="info-item"><label>Gender:</label> <span>{{
+                                            selectedJfmcDetails?.gp_gender || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Mobile:</label> <span>{{
+                                            selectedJfmcDetails?.gp_mobile || 'N/A' }}</span></div>
+                                </div>
+
+                                <div class="section-divider mt-3">Member Secretary:</div>
+                                <div class="info-grid-3">
+                                    <div class="info-item"><label>Name:</label> <span>{{
+                                            selectedJfmcDetails?.secretary_name || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Gender:</label> <span>{{
+                                            selectedJfmcDetails?.secretary_gender || 'N/A' }}</span></div>
+                                    <div class="info-item"><label>Mobile:</label> <span>{{
+                                            selectedJfmcDetails?.secretary_mobile || 'N/A' }}</span></div>
+                                </div>
+                            </div>
+
+                            <div class="tab-body fade-in" *ngIf="activeExecutiveTab==='history'">
+                                <div class="sub-cat-title mb-2">Old Executive Members</div>
+                                <div class="custom-table-wrapper">
+                                    <table class="custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl.No.</th>
+                                                <th>Male</th>
+                                                <th>Female</th>
+                                                <th>Ratio</th>
+                                                <th>President</th>
+                                                <th>Mobile</th>
+                                                <th>VP name</th>
+                                                <th>Mobile</th>
+                                                <th>GP Member</th>
+                                                <th>Mobile</th>
+                                                <th>Secretary</th>
+                                                <th>Mobile</th>
+                                                <th>Createdat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let hist of executiveHistory">
+                                                <td>{{ hist.sl }}</td>
+                                                <td>{{ hist.male }}</td>
+                                                <td>{{ hist.female }}</td>
+                                                <td>{{ hist.ratio }}</td>
+                                                <td>{{ hist.president }}</td>
+                                                <td>{{ hist.pmobile }}</td>
+                                                <td>{{ hist.vp }}</td>
+                                                <td>{{ hist.vmobile }}</td>
+                                                <td>{{ hist.gp }}</td>
+                                                <td>{{ hist.gmobile }}</td>
+                                                <td>{{ hist.sec }}</td>
+                                                <td>{{ hist.smobile }}</td>
+                                                <td>{{ hist.created | date:'dd-MM-yyyy' }}</td>
+                                            </tr>
+                                            <tr *ngIf="executiveHistory.length === 0">
+                                                <td colspan="13" class="text-center">No data available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-cancel" (click)="closeView()">cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= EDIT MICROPLAN MODAL  ================= -->
+    <div *ngIf="isEditMicroplanOpen" class="custom-modal-backdrop fade-in"
+        style="position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.6); height: 100vh; z-index: 1050; align-items: center;">
+        <div class="light-modal-content" style="max-width: 900px; height: auto;">
+
+            <header class="light-modal-header">
+                <h2 class="light-modal-title">Update Microplan Details</h2>
+                <button class="light-btn-close" (click)="closeEditMicroplan()">&times;</button>
+            </header>
+
+            <div class="light-modal-body" style="padding: 30px;">
+                <div class="dynamic-form-grid">
+
+                    <div class="form-group col-4">
+                        <label class="light-label">WHETHER MICROPLAN PREPARED?</label>
+                        <div class="light-radio-group">
+                            <label class="light-radio-label"><input type="radio" value="Yes" name="edit_prep"
+                                    [(ngModel)]="editMpData.is_microplan_prepared"> Yes</label>
+                            <label class="light-radio-label"><input type="radio" value="No" name="edit_prep"
+                                    [(ngModel)]="editMpData.is_microplan_prepared"> No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="light-label">DATE OF MICROPLAN PREPARATION</label>
+                        <input type="date" class="light-input" [(ngModel)]="editMpData.mp_prep_date">
+                    </div>
+
+                    <div class="form-group col-4"
+                        *ngIf="editMpData.is_mp_revised === 'Yes' || editMpData.is_microplan_prepared === 'Yes'">
+                        <label class="light-label">UPLOAD MICROPLAN</label>
+                        <div class="file-upload-wrapper mt-0">
+                            <label class="file-upload-box" style="padding: 10px;">
+                                <i class="fa fa-cloud-upload"></i>
+                                <span>CHOOSE FILE...</span>
+                                <input type="file" (change)="onEditFileChange($event)" hidden>
+                            </label>
+                            <div class="file-name-display" *ngIf="editMpData.file">{{ editMpData.file.name }}</div>
+                            <div class="file-name-display"
+                                *ngIf="!editMpData.file && selectedJfmcDetails?.microplan_doc_filename"
+                                style="color: #666;">
+                                Current: {{ selectedJfmcDetails.microplan_doc_filename }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="light-label">WHETHER MICROPLAN APPROVED BY DFO?</label>
+                        <div class="light-radio-group">
+                            <label class="light-radio-label"><input type="radio" value="Yes" name="edit_appr"
+                                    [(ngModel)]="editMpData.is_mp_approved"> Yes</label>
+                            <label class="light-radio-label"><input type="radio" value="No" name="edit_appr"
+                                    [(ngModel)]="editMpData.is_mp_approved"> No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="light-label">DATE OF MICROPLAN APPROVAL</label>
+                        <input type="date" class="light-input" [(ngModel)]="editMpData.mp_approval_date">
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="light-label">WHETHER MICROPLAN HAS BEEN REVISED?</label>
+                        <div class="light-radio-group">
+                            <label class="light-radio-label"><input type="radio" value="Yes" name="edit_rev"
+                                    [(ngModel)]="editMpData.is_mp_revised"> Yes</label>
+                            <label class="light-radio-label"><input type="radio" value="No" name="edit_rev"
+                                    [(ngModel)]="editMpData.is_mp_revised"> No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-4">
+                        <label class="light-label">WHETHER COMMITTEE HAVING THE APO?</label>
+                        <div class="light-radio-group">
+                            <label class="light-radio-label"><input type="radio" value="Yes" name="edit_apo"
+                                    [(ngModel)]="editMpData.has_apo"> Yes</label>
+                            <label class="light-radio-label"><input type="radio" value="No" name="edit_apo"
+                                    [(ngModel)]="editMpData.has_apo"> No</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="light-modal-footer">
+                <button class="btn-light-cancel" (click)="closeEditMicroplan()">Cancel</button>
+                <button class="btn-submit-final" (click)="saveEditMicroplan()">
+                    <i class="fa fa-check-circle" style="margin-right: 5px;"></i> Submit Update
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= ADD HOUSEHOLD MEMBER MODAL  ================= -->
+    <div *ngIf="isAddHHModalOpen" class="custom-modal-backdrop fade-in">
+        <div class="light-modal-content" style="max-width: 900px;">
+            <header class="light-modal-header">
+                <h2 class="light-modal-title">Add Household Member</h2>
+                <button class="light-btn-close" (click)="closeAddHHModal()">&times;</button>
+            </header>
+          <div *ngIf="isAddHHModalOpen" class="custom-modal-backdrop fade-in">
+  <div class="light-modal-content" style="max-width: 900px;">
+
+    <!-- Header -->
+    <header class="light-modal-header">
+      <h2 class="light-modal-title">Add Household Member</h2>
+      <button class="light-btn-close" (click)="closeAddHHModal()">&times;</button>
+    </header>
+
+    <!-- Body -->
+    <div class="light-modal-body" style="padding: 20px 30px; overflow-y: auto;">
+      
+      <div class="dynamic-form-grid">
+
+        <!-- Village -->
+        <div class="form-group col-12">
+          <label class="light-label">Village</label>
+          <input type="text" class="light-input"
+                 [(ngModel)]="addHHData.village"
+                 readonly>
+        </div>
+
+        <!-- Social Category -->
+        <div class="form-section-header col-12">Social Category</div>
+
+        <div class="form-group col-4">
+          <label class="light-label">Scheduled Castes (SC):</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.sc_count"
+                 readonly>
+        </div>
+
+        <div class="form-group col-4">
+          <label class="light-label">Scheduled Tribes (ST):</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.st_count"
+                 readonly>
+        </div>
+
+        <div class="form-group col-4">
+          <label class="light-label">Others:</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.other_count"
+                 readonly>
+        </div>
+
+        <!-- Other Category -->
+        <div class="form-section-header col-12">Other Category</div>
+
+        <div class="form-group col-6">
+          <label class="light-label">Below Poverty Line (BPL):</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.bpl_count"
+                 readonly>
+        </div>
+
+        <div class="form-group col-6">
+          <label class="light-label">Women Headed HHs:</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.women_headed"
+                 readonly>
+        </div>
+
+        <!-- General Body -->
+        <div class="form-section-header col-12">General Body</div>
+
+        <div class="form-group col-12">
+          <label class="light-label">No. of Households in General Body:</label>
+          <input type="number" class="light-input"
+                 [(ngModel)]="addHHData.total_hh"
+                 >
+        </div>
+
+        <!-- Dynamic Members Section -->
+        <div class="hh-dynamic-section col-12">
+
+          <!-- Controls -->
+          <div class="hh-table-controls" style="margin-bottom: 10px;">
+            <button class="btn-icon-green" (click)="addModalHHRow()">
+              <i class="fa fa-plus"></i>
+            </button>
+            <button class="btn-icon-green" (click)="removeModalHHRow()">
+              <i class="fa fa-minus"></i>
+            </button>
+          </div>
+
+          <!-- Members List -->
+          <div class="hh-list-container" style="max-height: 400px; overflow-y: auto;">
+
+            <div *ngFor="let member of addHHDynamicMembers; let i = index"
+                 style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+
+              <!-- Member Title -->
+              <div *ngIf="addHHDynamicMembers.length > 1"
+                   style="font-weight: bold; color: #555; margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
+                Member {{ i + 1 }}
+              </div>
+
+              <div class="dynamic-form-grid">
+
+                <!-- Name -->
+                <div class="form-group col-4">
+                  <label class="light-label">Name</label>
+                  <input type="text" class="light-input"
+                         [(ngModel)]="member.name"
+                         placeholder="Enter Name">
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group col-4">
+                  <label class="light-label">Gender</label>
+                  <app-custom-dropdown
+                    [options]="['Male', 'Female', 'Other']"
+                    [(ngModel)]="member.gender">
+                  </app-custom-dropdown>
+                </div>
+
+                <!-- Social Category -->
+                <div class="form-group col-4">
+                  <label class="light-label">Social Category</label>
+                  <app-custom-dropdown
+                    [options]="['SC', 'ST', 'Others']"
+                    [(ngModel)]="member.category">
+                  </app-custom-dropdown>
+                </div>
+
+                <!-- BPL -->
+                <div class="form-group col-4">
+                  <label class="light-label">Below Poverty Line?</label>
+                  <app-custom-dropdown
+                    [options]="['Yes', 'No']"
+                    [(ngModel)]="member.bpl">
+                  </app-custom-dropdown>
+                </div>
+
+                <!-- Women Headed -->
+                <div class="form-group col-4">
+                  <label class="light-label">Women Headed?</label>
+                  <app-custom-dropdown
+                    [options]="['Yes', 'No']"
+                    [(ngModel)]="member.womenHeaded">
+                  </app-custom-dropdown>
+                </div>
+
+                <!-- Landless -->
+                <div class="form-group col-4">
+                  <label class="light-label">Landless?</label>
+                  <app-custom-dropdown
+                    [options]="['Yes', 'No']"
+                    [(ngModel)]="member.landless">
+                  </app-custom-dropdown>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="light-modal-footer">
+      <button class="btn-light-cancel" (click)="closeAddHHModal()">Cancel</button>
+      <button class="btn-submit-final" (click)="submitAddHHModal()">
+        <i class="fa fa-check-circle" style="margin-right: 5px;"></i> Submit
+      </button>
+    </div>
+
+  </div>
+</div>
+            <div class="light-modal-footer">
+                <button class="btn-light-cancel" (click)="closeAddHHModal()">Cancel</button>
+                <button class="btn-submit-final" (click)="submitAddHHModal()"><i class="fa fa-check-circle"
+                        style="margin-right: 5px;"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= UPDATE EXECUTIVE MEMBER MODAL ================= -->
+    <div *ngIf="isUpdateExecModalOpen" class="custom-modal-backdrop fade-in">
+        <div class="light-modal-content" style="max-width: 900px; height: 90vh;">
+            <header class="light-modal-header">
+                <h2 class="light-modal-title">Membership Details</h2>
+                <button class="light-btn-close" (click)="closeUpdateExecModal()">&times;</button>
+            </header>
+            <div class="light-modal-body" style="padding: 20px 30px; overflow-y: auto;">
+                <div class="dynamic-form-grid">
+                    <div class="form-group col-4"><label class="light-label">Male:</label><input type="number"
+                            class="light-input" [(ngModel)]="updateExecData.exec_male"></div>
+                    <div class="form-group col-4"><label class="light-label">Female:</label><input type="number"
+                            class="light-input" [(ngModel)]="updateExecData.exec_female"></div>
+                    <div class="form-group col-4"><label class="light-label">Female Ratio:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.exec_ratio"></div>
+
+                    <div class="form-section-header col-12">Election Details</div>
+                    <div class="form-group col-6"><label class="light-label">Last Election Date:</label><input
+                            type="date" class="light-input" [(ngModel)]="updateExecData.exec_election_date"></div>
+
+                    <div class="form-section-header col-12">President</div>
+                    <div class="form-group col-4"><label class="light-label">Name:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.president_name"></div>
+                    <div class="form-group col-4"><label class="light-label">Gender:</label><app-custom-dropdown
+                            [options]="['Male', 'Female']"
+                            [(ngModel)]="updateExecData.president_gender"></app-custom-dropdown></div>
+                    <div class="form-group col-4"><label class="light-label">Mobile:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.president_mobile"></div>
+
+                    <div class="form-section-header col-12">Vice President</div>
+                    <div class="form-group col-4"><label class="light-label">Name:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.vp_name"></div>
+                    <div class="form-group col-4"><label class="light-label">Gender:</label><app-custom-dropdown
+                            [options]="['Male', 'Female']" [(ngModel)]="updateExecData.vp_gender"></app-custom-dropdown>
+                    </div>
+                    <div class="form-group col-4"><label class="light-label">Mobile:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.vp_mobile"></div>
+
+                    <div class="form-section-header col-12">Member Representing Gram Panchayat</div>
+                    <div class="form-group col-4"><label class="light-label">Name:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.gp_name"></div>
+                    <div class="form-group col-4"><label class="light-label">Gender:</label><app-custom-dropdown
+                            [options]="['Male', 'Female']" [(ngModel)]="updateExecData.gp_gender"></app-custom-dropdown>
+                    </div>
+                    <div class="form-group col-4"><label class="light-label">Mobile:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.gp_mobile"></div>
+
+                    <div class="form-section-header col-12">Member Secretary</div>
+                    <div class="form-group col-4"><label class="light-label">Name:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.secretary_name"></div>
+                    <div class="form-group col-4"><label class="light-label">Gender:</label><app-custom-dropdown
+                            [options]="['Male', 'Female']"
+                            [(ngModel)]="updateExecData.secretary_gender"></app-custom-dropdown></div>
+                    <div class="form-group col-4"><label class="light-label">Mobile:</label><input type="text"
+                            class="light-input" [(ngModel)]="updateExecData.secretary_mobile"></div>
+                </div>
+            </div>
+            <div class="light-modal-footer">
+                <button class="btn-light-cancel" (click)="closeUpdateExecModal()">Cancel</button>
+                <button class="btn-submit-final" (click)="submitUpdateExecModal()"><i class="fa fa-check-circle"
+                        style="margin-right: 5px;"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>

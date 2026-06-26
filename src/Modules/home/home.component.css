@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:host {
+  /* Colors from your reference image */
+  --header-orange: linear-gradient(135deg, #f2994a 0%, #e68a00 100%);
+  --row-cream: #fffdf5;  /* Very light cream */
+  --row-peach: #fff9e6;  /* Soft pastel peach for nth rows */
+  
+  --primary-blue: #0369a1; 
+  --captured-blue: #0284c7;
+  --pending-orange: #ea580c;
+  --approved-green: #16a34a;
+
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboard-content {
+  padding: 25px;
+  background: #fdfbf7; /* Matching soft warm background */
+  min-height: 100vh;
+}
+
+/* ================= TITLE ================= */
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  color: #4338ca; /* Deep indigo for contrast */
+  display: flex;
+  align-items: center;
+}
+
+.title::before {
+  content: "";
+  height: 24px;
+  width: 6px;
+  background: #e68a00;
+  margin-right: 12px;
+  border-radius: 10px;
+}
+
+/* ================= FILTER BAR ================= */
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+  align-items: flex-end;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(230, 138, 0, 0.08);
+  margin-bottom: 30px;
+  border: 1.5px solid #fed7aa; /* Soft orange border */
+}
+
+.filter-bar span {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #9a3412; /* Deep orange-brown text */
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ================= DATE PICKER ================= */
+.date-input {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid #fdba74;
+  background: #fff;
+  font-size: 13px;
+  color: #431407;
+}
+
+.date-input:focus {
+  border-color: #e68a00;
+  box-shadow: 0 0 0 3px rgba(230, 138, 0, 0.15);
+  outline: none;
+}
+
+/* ================= BUTTONS ================= */
+.apply-button {
+  height: 40px;
+  padding: 0 30px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0ea5e9; /* Kept Blue to match Header UI */
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+.btn-download {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #e68a00;
+  background: white;
+  color: #e68a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+/* ================= THE VIBRANT TABLE ================= */
+.table-wrapper {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #fed7aa;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* HEADER - Orange Gradient from Image */
+.dashboard-table thead th {
+  background: var(--header-orange); 
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 20px 15px;
+  letter-spacing: 1.2px;
+  border: none;
+}
+
+/* Alignment */
+.dashboard-table th:nth-child(1), .dashboard-table td:nth-child(1),
+.dashboard-table th:nth-child(2), .dashboard-table td:nth-child(2) {
+  text-align: left;
+  padding-left: 30px;
+}
+
+.dashboard-table th:nth-child(3), .dashboard-table td:nth-child(3),
+.dashboard-table th:nth-child(4), .dashboard-table td:nth-child(4),
+.dashboard-table th:nth-child(5), .dashboard-table td:nth-child(5) {
+  text-align: center;
+}
+
+/* CELLS */
+.dashboard-table td {
+  padding: 18px 15px;
+  font-size: 14px;
+  color: #431407;
+  border-bottom: 1px solid rgba(254, 215, 170, 0.3);
+}
+
+/* Data Column Highlighting */
+.dashboard-table td:nth-child(3) { color: var(--captured-blue); font-weight: 800; }
+.dashboard-table td:nth-child(4) { color: var(--pending-orange); font-weight: 800; }
+.dashboard-table td:nth-child(5) { color: var(--approved-green); font-weight: 800; }
+
+/* Zebra Striping - Cream & Peach Pastel */
+.dashboard-table tbody tr:nth-child(odd) {
+  background-color: var(--row-cream);
+}
+
+.dashboard-table tbody tr:nth-child(even) {
+  background-color: var(--row-peach);
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: #ffedd5; /* Slightly deeper peach on hover */
+  transition: background 0.2s;
+}
+
+/* Bold Labels */
+.dashboard-table td:first-child {
+  font-weight: 700;
+  color: #7c2d12; /* Deep Brick color for text */
+}
+
+/* SCROLLBAR */
+.table-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #e68a00;
+  border-radius: 10px;
+}

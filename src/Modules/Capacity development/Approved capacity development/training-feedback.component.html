@@ -1,0 +1,140 @@
+<div class="feedback-page-wrapper">
+  <div class="feedback-card animated-entry">
+    <div class="card-header brand-gradient">
+
+        <div class="card-header brand-gradient" style="position: relative;">
+      
+      <!-- The Close Button -->
+      <button class="close-icon-btn" (click)="closeForm()">
+        <i class="fa fa-times"></i>
+      </button>
+
+      <h2><i class="fa fa-comments"></i> Enter Training Feedback</h2>
+      <p>Please rate your experience to help us improve future trainings.</p>
+    </div>
+
+    <div class="card-body">
+      <div class="form-section">
+        <label class="section-label">Participant Details</label>
+        <div class="form-group">
+          <label>Select Participant</label>
+          <div class="elegant-select-wrapper">
+            <select class="form-input" [(ngModel)]="feedback.participantId" name="participantSelect">
+              <option value="" disabled selected>Select Participant...</option>
+            
+              <option *ngFor="let p of participants" [value]="p.id || p.ParticipantId || p.participant_id">
+    {{ p.name || p.ParticipantName || p.name_of_participant }}
+  </option>
+            </select>
+            <i class="fa fa-chevron-down arrow-icon"></i>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-section">
+        <label class="section-label">Training Rating</label>
+        <p class="rating-legend">Rate from 1 (Poor) to 5 (Excellent)</p>
+        <div class="rating-grid">
+          <div class="rating-item">
+            <span class="question-text">A) Usefulness of the training:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qA" [value]="n" [(ngModel)]="feedback.qA">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <span class="question-text">B) Knowledge of the trainers on the subject:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qB" [value]="n" [(ngModel)]="feedback.qB">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <span class="question-text">C) Quality and understanding:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qC" [value]="n" [(ngModel)]="feedback.qC">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <span class="question-text">D) Appropriateness of materials:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qD" [value]="n" [(ngModel)]="feedback.qD">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <span class="question-text">E) Usefulness in day-to-day work:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qE" [value]="n" [(ngModel)]="feedback.qE">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rating-item">
+            <span class="question-text">F) Boarding/Lodging facilities:</span>
+            <div class="rating-options">
+              <label *ngFor="let n of [1,2,3,4,5]" class="radio-circle">
+                <input type="radio" name="qF" [value]="n" [(ngModel)]="feedback.qF">
+                <span class="circle-number">{{n}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-group mt-3">
+          <label class="question-text">G) Need a refresher training:</label>
+           <div class="elegant-select-wrapper">
+            <select class="form-input" [(ngModel)]="feedback.refresherNeeded" name="refresher">
+              <option value="" disabled selected>Select Option...</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+             <i class="fa fa-chevron-down arrow-icon"></i>
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-section">
+        <div class="text-grid">
+          <div class="form-group">
+            <label>H) What did you like best?</label>
+            <textarea class="form-textarea" rows="4" [(ngModel)]="feedback.commentH" name="h"></textarea>
+          </div>
+          <div class="form-group">
+            <label>I) Most important topics learned?</label>
+            <textarea class="form-textarea" rows="4" [(ngModel)]="feedback.commentI" name="i"></textarea>
+          </div>
+          <div class="form-group">
+            <label>J) Any other Comments:</label>
+            <textarea class="form-textarea" rows="4" [(ngModel)]="feedback.commentJ" name="j"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button class="btn-save-feedback" (click)="submitFeedback()">
+        <i class="fa fa-paper-plane"></i> Save Feedback
+      </button>
+    </div>
+  </div>
+</div>

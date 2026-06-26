@@ -1,0 +1,87 @@
+<div class="magic-forest-wrapper">
+  <div class="glass-content-layer">
+    <header class="page-header">
+      <h1 class="page-title">SMC Planning</h1>
+      <div class="breadcrumb-container">
+        <div class="v-accent-bar"></div>
+        <nav class="breadcrumb-nav">
+          Catchment Area Management/ SMC / <span class="active">Planning</span>
+        </nav>
+      </div>
+    </header>
+
+    <div class="toolbar-panel">
+      <div class="toolbar-inner">
+        <div class="upload-controls">
+          <!-- Watershed Shape Zip Upload -->
+          <label for="watershed-shape-zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Watershed Shape Zip</strong>
+              <span>{{ watershedName || 'Select Watershed Shape Zip' }}</span>
+            </div>
+          </label>
+          <input id="watershed-shape-zip" type="file" (change)="onFileChange($event, 'watershed')" hidden>
+
+          <!-- Water Stock Zip Upload -->
+          <label for="water-stock-zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Water Stock Zip</strong>
+              <span>{{ waterStockName || 'Select Water Stock Zip' }}</span>
+            </div>
+          </label>
+          <input id="water-stock-zip" type="file" (change)="onFileChange($event, 'waterStock')" hidden>
+
+          <!-- Pour Point Zip Upload -->
+          <label for="pour-point-zip" class="glass-tile">
+            <i class="fa fa-cloud-upload"></i>
+            <div class="tile-info">
+              <strong>Pour Point Zip</strong>
+              <span>{{ pourPointName || 'Select Pour Point Zip' }}</span>
+            </div>
+          </label>
+          <input id="pour-point-zip" type="file" (change)="onFileChange($event, 'pourPoint')" hidden>
+        </div>
+
+        <div class="action-btn-wrap">
+          <button class="btn-go-orange" (click)="Compare()" [disabled]="isLoading">
+            <span *ngIf="!isLoading">GO</span>
+            <i *ngIf="isLoading" class="fa fa-spinner fa-spin gradient-spinner-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+      <!-- Map Overview Section -->
+      <div class="glass-card map-view">
+        <div class="card-header">
+          <div class="left-title"><i class="fa fa-compass"></i> MAP OVERVIEW</div>
+          <div class="map-actions">
+            <button class="btn-kml-sky" (click)="downloadKml()">
+              <i class="fa fa-download"></i> KML
+            </button>
+            <button class="btn-shp-green" (click)="downloadShp()">
+              <i class="fa fa-download"></i> SHP
+            </button>
+          </div>
+        </div>
+        <div id="map"></div>
+      </div>
+
+      <!-- Custom Grid View Section -->
+      <div class="glass-card grid-view selection-grid-context">
+        <app-custom-grid
+          [title]="'Selection Results'"
+          [data]="data"
+          [columns]="columns"
+          [showAdd]="false"
+          [displayPrint]="false"
+          [displayExcel]="false"
+          [showprintbuttons]="true">
+        </app-custom-grid>
+      </div>
+    </div>
+  </div>
+</div>

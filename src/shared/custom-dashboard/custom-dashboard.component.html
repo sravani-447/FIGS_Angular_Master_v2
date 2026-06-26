@@ -1,0 +1,110 @@
+<div class="dashboard-root" id="dashboard-container" *ngIf="config">
+  <div class="title">{{ config.title }}</div>
+
+  <!-- 1. Filters -->
+  <div class="filter-card">
+    <div class="filter-row">
+      <div class="flex-drop" *ngFor="let f of config.filters">
+        <span>{{ f.label }}</span>
+        <app-custom-dropdown [options]="f.options" [(ngModel)]="f.value" (selectionChange)="onFilterChange(f.key, $event)"></app-custom-dropdown>
+      </div>
+       <div class="date-drop">
+    <span>From Date</span>
+    <input type="date" class="date-input" 
+           [(ngModel)]="config.fromDate" 
+           (change)="onFilterChange('fromDate', config.fromDate)">
+  </div>
+
+  <div class="date-drop">
+    <span>To Date</span>
+    <input type="date" class="date-input" 
+           [(ngModel)]="config.toDate" 
+           (change)="onFilterChange('toDate', config.toDate)">
+  </div>
+      <button class="btn-download" (click)="onDownload()">⬇</button>
+    </div>
+  </div>
+
+  <!-- 2. KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card" *ngFor="let stat of config.kpis" [ngClass]="stat.gradientClass">
+      <div class="kpi-icon-box"><i class="fa" [ngClass]="stat.icon"></i></div>
+      <div class="kpi-info">
+        <span class="kpi-label">{{ stat.title }}</span>
+        <span class="kpi-value">{{ stat.value | number }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Split Layout (4 Charts Left | Map Right) -->
+  <div class="split-layout">
+    <div class="charts-2x2">
+      <ng-container *ngFor="let w of config.widgets">
+        <div class="card compact-card" *ngIf="w.type === 'CHART'">
+          <div class="card-header-sm">{{ w.title }}</div>
+          <div class="canvas-box">
+             <app-common-chart [type]="w.chartType || 'pie'" [data]="w.processedData"></app-common-chart>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+   <!-- Map Section -->
+<div class="map-half">
+  <ng-container *ngFor="let w of config.widgets">
+    <div class="card full-height-card" *ngIf="w.type === 'MAP'">
+      <div class="card-header-sm">{{ w.title }}</div>
+      
+      <!-- Container for Map and Floating UI -->
+      <div class="map-container-wrapper">
+         <app-map-view #dashboardMap [data]="w.data"></app-map-view>
+         <!-- Floating Layer Control Overlay -->
+         <div class="floating-layer-control">
+            <div class="layer-icon-box" (click)="showBasemapMenu = !showBasemapMenu">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+
+            <!-- The Selection Menu from your image -->
+            -<!-- The Selection Menu -->
+<div class="layer-menu-popup" *ngIf="showBasemapMenu">
+  
+  <label class="layer-radio-row">
+    <input type="radio" name="base" 
+           [checked]="activeBaseLayerName === 'streets'" 
+           (change)="onBaseLayerChange('streets')">
+    <span>Google Streets</span>
+  </label>
+
+  <label class="layer-radio-row">
+    <input type="radio" name="base" 
+           [checked]="activeBaseLayerName === 'osm'" 
+           (change)="onBaseLayerChange('osm')">
+    <span>OpenStreetMap</span>
+  </label>
+
+  <label class="layer-radio-row">
+    <input type="radio" name="base" 
+           [checked]="activeBaseLayerName === 'satellite'" 
+           (change)="onBaseLayerChange('satellite')">
+    <span>Google Satellite</span>
+  </label>
+  
+</div>
+
+
+         </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+  </div>
+
+  <!-- 4. Table Section -->
+  <div class="table-section mt-4" *ngFor="let w of config.widgets">
+    <div class="card table-card" *ngIf="w.type === 'TABLE'">
+      <app-custom-grid [title]="w.title"  [data]="w.data" [columns]="w.columns || []" [showAdd]="false"></app-custom-grid>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+/* ✅ FIXED VARIABLE NAME */
+$figs-v2-client-theme: mat.define-theme(( color: ( theme-type: light, primary: mat.$azure-palette, tertiary: mat.$blue-palette, ), density: ( scale: 0, ) ));
+
+:root {
+  @include mat.all-component-themes($figs-v2-client-theme);
+}
+
+/* Optional typography */
+// @include mat.typography-hierarchy($figs-v2-client-theme);

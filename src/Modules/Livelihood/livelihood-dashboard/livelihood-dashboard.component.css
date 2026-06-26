@@ -1,0 +1,98 @@
+/* Layout Wrapper */
+.custom-tables-wrapper {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+/* Card Container Styling */
+.table-card {
+  border-radius: 6px;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04); /* Subtle shadow like the image */
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Card Header (Title area) */
+.table-card .card-header {
+  background-color: #ffffff;
+  border-bottom: none; /* No line before the orange header */
+  padding: 18px 20px;
+}
+
+.table-card .card-header h6 {
+  color: #0b2b4e; /* Dark Navy Blue from the screenshot */
+  font-size: 14px;
+  font-weight: 800; /* Bold text */
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Custom Table Theme */
+.custom-theme-table {
+  width: 100%;
+  background-color: transparent;
+}
+
+/* Orange Table Header */
+.custom-theme-table thead {
+  background-color: #ef9336; /* Exact Orange color from screenshot */
+}
+
+.custom-theme-table thead th {
+  color: #ffffff !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center; /* Centered text */
+  padding: 12px 10px;
+  border: none !important; /* Removes Bootstrap borders */
+  white-space: nowrap;
+}
+
+/* Table Body Rows */
+.custom-theme-table tbody tr {
+  background-color: #ffffff;
+}
+
+.custom-theme-table tbody td {
+  color: #333333;
+  font-size: 13px;
+  text-align: center; /* Centered numbers/text like the image */
+  padding: 12px 10px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9; /* Very subtle line between rows */
+  border-top: none;
+}
+
+/* Remove bottom border from the last row to look clean */
+.custom-theme-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Scrollbar for overflow on small screens */
+.table-responsive {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.table-responsive::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.force-side-by-side {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 15px;
+  width: 100%;
+}
+
+.table-card .card-header h6 {
+  text-align: center; 
+}

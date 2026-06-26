@@ -1,0 +1,20 @@
+<div class="dropdown-wrapper">
+  <label *ngIf="label">{{ label }}</label>
+
+  <div class="dropdown" (click)="toggle($event)">
+    <span class="text" [class.placeholder-style]="!selectedItem">
+      <!-- Logic: If selectedItem is object, try displayKey, else use item itself -->
+      {{ selectedItem ? (selectedItem[displayKey] || selectedItem) : placeholder }}
+    </span>
+    <span class="arrow" [class.open]="isOpen">▼</span>
+  </div>
+
+  <div class="dropdown-menu" *ngIf="isOpen">
+    <p *ngFor="let option of options" (click)="select(option, $event)">
+      {{ option[displayKey] || option }}
+    </p>
+     <p *ngIf="options && options.length === 0" style="color: #999; cursor: default; padding: 10px;">
+    No options available
+  </p>
+  </div>
+</div>

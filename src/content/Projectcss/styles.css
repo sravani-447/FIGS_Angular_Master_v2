@@ -1,0 +1,46 @@
+.brand-login {
+  height: 8rem;
+  width: auto;
+}
+
+.brand-container {
+  color: #ffffff !important;
+  border-radius: 6px;
+}
+
+.brand-title {
+  color: #efe7d8 !important;
+}
+
+.brand-bg {
+  background-image: url("/assets/images/brand-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.brand-image {
+  text-align: center;
+}
+
+  .brand-image img {
+    height: 12rem;
+    width: auto;
+  }
+
+.dark-overlay {
+  background-color: rgba(25, 48, 1, 0.57);
+  height: 100%;
+  padding: 30px 10px;
+}
+
+.form-control {
+  background-color: #004b30ab;
+  color: #fff;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}

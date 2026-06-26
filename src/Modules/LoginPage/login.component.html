@@ -1,0 +1,71 @@
+<div class="login-container">
+  <!-- TOP LOGOS -->
+  <div class="top-logos">
+    <img src="assets/images/tripura_logo.png" alt="" />
+    <img src="assets/images/forest_logo.png" alt="" />
+  </div>
+
+  <div class="login-content-wrapper">
+    <!-- LEFT TEXT (Clean & Simple) -->
+    <div class="login-left">
+      <h1>
+        Transforming Forest Management <br />
+        Through <span>Geospatial Intelligence.</span>
+       
+      </h1>
+      <p>
+        Bringing together maps, data, and decision tools for the
+       Tripura JICA Project ( SCATFORM).
+      </p>
+    </div>
+
+    <!-- SMALL GLASS LOGIN CARD -->
+    <div class="login-right">
+      <div class="login-card">
+        
+        <!-- COMPACT LOADER (Only shows inside the card during login) -->
+        <div class="loader-container" *ngIf="isLoading">
+          <div class="leaf-loader">
+            <div class="spinner"></div>
+            <i class="fa fa-leaf"></i>
+          </div>
+          <p>Verifying Credentials...</p>
+        </div>
+
+        <!-- LOGIN FORM (Hidden when loading) -->
+        <div *ngIf="!isLoading">
+          <h3>Login</h3>
+          <form #loginForm="ngForm" (ngSubmit)="login()">
+            
+            <div class="form-group">
+              <input type="text"
+                     class="form-control"
+                     placeholder="User Name"
+                     name="userid"
+                     [(ngModel)]="userid"
+                     required />
+            </div>
+
+            <div class="form-group password-wrapper">
+              <input [type]="showPassword ? 'text' : 'password'"
+                     class="form-control"
+                     placeholder="Password"
+                     name="password"
+                     [(ngModel)]="password"
+                     required />
+              <!-- Password Eye Toggle -->
+              <span class="eye-icon" (click)="togglePassword()">
+                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </span>
+            </div>
+
+            <button type="submit" class="btn-login">
+              Sign in
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

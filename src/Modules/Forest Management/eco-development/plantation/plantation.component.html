@@ -1,0 +1,71 @@
+<app-custom-grid title="Eco Plantation" [columns]="columns"
+[hiddenFields]="hiddenFields"
+
+[data]="data" [showAdd]="false" [showprintbuttons]="true"
+  (actionClicked)="onGridAction($event)" *ngIf="!mappopup"
+  (onUpdateView)="handleStatusUpdate($event)"
+  (actionClicked)="onGridAction($event)" 
+  [editableFields]="['comments','no_of_lines','no_of_signboard']"
+  [Modulewiserejectbox]= "true">
+</app-custom-grid>
+
+<!-- IMAGE POPUP -->
+<!-- IMAGE POPUP -->
+<div class="image-popup-overlay" *ngIf="showImagePopup">
+  <div class="image-popup-box">
+
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+
+    <img [src]="popupImageUrl" class="popup-img" />
+
+  </div>
+</div>
+
+
+<div class="map-popup-overlay" *ngIf="mappopup">
+  <div class="map-popup-container">
+
+    <div class="map-header">
+      <span>📍Map View</span>
+      <button class="close-btn" (click)="closeMapPopup()">✖</button>
+    </div>
+
+    <div id="map" class="map-body"></div>
+
+  </div>
+</div>
+
+<div *ngIf="showImagePopup" class="img-popup">
+  <div class="img-box">
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+    <img [src]="popupImageUrl" />
+  </div>
+</div>
+
+
+<div class="species-popup-backdrop" *ngIf="showSpeciesPopup">
+  <div class="species-popup">
+
+    <div class="popup-header">
+       <h3>Species Details</h3>
+  <button class="close-btn" (click)="closeSpeciesPopup()">×</button>
+</div>
+
+    <table class="species-table">
+      <thead>
+        <tr>
+          <th>Species Name</th>
+          <th>No. of Seedlings</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of speciesDetails">
+          <td>{{ item.name_of_species }}</td>
+          <td>{{ item.no_seedling }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

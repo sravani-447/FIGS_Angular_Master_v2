@@ -1,0 +1,68 @@
+[
+    {
+      "id": 1,
+      "scheme_name": "SCATFORM(JICA)",
+      "scheme_desc": "SCATFORM(JICA)",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 2,
+      "scheme_name": "CAMPA",
+      "scheme_desc": "CAMPA",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 3,
+      "scheme_name": "IGDC",
+      "scheme_desc": "IGDC",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 4,
+      "scheme_name": "MGNREGA",
+      "scheme_desc": "MGNREGA",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 5,
+      "scheme_name": "NAP",
+      "scheme_desc": "NAP",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 6,
+      "scheme_name": "ELEMENT",
+      "scheme_desc": "ELEMENT",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 7,
+      "scheme_name": "PE (PROJECT ELEPHANT)",
+      "scheme_desc": "PE (PROJECT ELEPHANT)",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 8,
+      "scheme_name": "GIM (GREEN INDIA MISSION)",
+      "scheme_desc": "GIM (GREEN INDIA MISSION)",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 9,
+      "scheme_name": "SP (STATE PLAN)",
+      "scheme_desc": "SP (STATE PLAN)",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 10,
+      "scheme_name": "IDWH (WILDLIFE)",
+      "scheme_desc": "IDWH (WILDLIFE)",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 11,
+      "scheme_name": "TBB",
+      "scheme_desc": "TBB",
+      "isactive": "TRUE"
+    }
+  ]

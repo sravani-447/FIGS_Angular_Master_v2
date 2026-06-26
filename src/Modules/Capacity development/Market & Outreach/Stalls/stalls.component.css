@@ -1,0 +1,462 @@
+/* STALLS COMPONENT STANDARD CSS */
+
+.content-wrapper {
+    padding: 20px;
+    background-color: #f1f4f8;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.breadcrumb-bar {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.breadcrumb-bar .active {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+.modern-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+    border: none;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.modal {
+  z-index: 10000 !important;
+}
+.modal-backdrop {
+  z-index: 9999 !important;
+}
+
+.card-header {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.card-header .title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #2c3e50;
+    letter-spacing: 0.8px;
+    margin: 0;
+}
+
+.header-tools {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper input {
+    padding: 8px 12px 8px 35px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    width: 220px;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 12px;
+    top: 11px;
+    color: #aaa;
+}
+
+.tool-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-blue { background: #4b89ff; }
+.btn-orange { background: #ff9800; }
+.btn-green { background: #28a745; }
+.btn-red { background: #dc3545; }
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.stall-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stall-table thead {
+    background: #ff9800;
+    color: white;
+}
+
+.stall-table th {
+    padding: 12px 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.stall-table tbody tr {
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.stall-table tbody tr:hover {
+    background: #fffaf2;
+}
+
+.stall-table td {
+    padding: 14px 15px;
+    font-size: 13px;
+    color: #444;
+}
+
+.id-badge {
+    background: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-outline-img {
+    background: transparent;
+    border: 1px solid #28a745;
+    color: #28a745;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-outline-img:hover {
+    background: #28a745;
+    color: white;
+}
+
+.btn-map {
+    background: #ff9800;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.img-preview {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+}
+
+.custom-modal .modal-header {
+    background: #ff9800;
+    color: white;
+}
+
+#stallMap {
+  z-index: 1;
+}
+
+/* --- HEADER STYLES (MATCHED TO 2nd IMAGE) --- */
+.page-header-container {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-top: 10px;
+}
+
+.page-main-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 5px;
+}
+
+.modern-breadcrumb {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.orange-pipe {
+    color: #f2994a;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.crumb-gray {
+    color: #95a5a6;
+    letter-spacing: 0.5px;
+}
+
+.crumb-orange {
+    color: #f2994a;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --- GRID ACTION BUTTONS MODERNIZATION --- */
+/* We use ::ng-deep to reach into the custom-grid component */
+:host ::ng-deep .btn-action {
+    background: white !important;
+    border: 1px solid #dcdde1 !important;
+    color: #2f3640 !important;
+    border-radius: 6px !important;
+    padding: 6px 14px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03) !important;
+}
+:host ::ng-deep .btn-action:hover {
+    background: #f2994a !important;
+    color: white !important;
+    border-color: #f2994a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(242, 153, 74, 0.3) !important;
+}
+:host ::ng-deep .btn-action i {
+    margin-right: 5px;
+}
+
+/* Style for Image Buttons (Greenish Modern) */
+:host ::ng-deep .btn-action:has(.fa-image) {
+    background: #ebfaf0 !important;
+    color: #27ae60 !important;
+    border: 1px solid #27ae60 !important;
+}
+
+:host ::ng-deep .btn-action:has(.fa-image):hover {
+    background: #27ae60 !important;
+    color: white !important;
+}
+
+/* Style for Map Button (Orange Modern) */
+:host ::ng-deep .btn-action:has(.fa-location-arrow) {
+    background: #fff4e6 !important;
+    color: #e67e22 !important;
+    border: 1px solid #e67e22 !important;
+}
+
+:host ::ng-deep .btn-action:has(.fa-location-arrow):hover {
+    background: #e67e22 !important;
+    color: white !important;
+}
+
+/* --- MAP & CARDS --- */
+.modern-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #eef2f3;
+    overflow: hidden;
+}
+
+.card-header-modern {
+    padding: 15px 25px;
+    background: #fff;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: uppercase;
+}
+
+.map-frame {
+    height: 450px;
+    width: 100%;
+}
+
+.img-fluid-modern {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.modern-modal .modal-header {
+    background: #6366f1;
+    color: white;
+    border: none;
+}
+
+.page-title-section {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.main-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.breadcrumb-container {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 25px 0;
+}
+.orange-indicator {
+    width: 4px;
+    height: 22px;
+    background-color: #f2994a; /* Orange from image */
+    margin-right: 15px;
+    border-radius: 2px;
+}
+
+.breadcrumb-path {
+    font-size: 14px;
+    color: #7f8c8d;
+    letter-spacing: 0.3px;
+}
+
+.current-page {
+    color: #f2994a;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.section-gap {
+    height: 35px; /* Creates the gap between table and map */
+}
+
+.modern-modal {
+    border-radius: 15px;
+    border: none;
+}
+
+/* Full-screen Overlay with Blur */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    backdrop-filter: blur(8px); /* This creates the blur effect on the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Ensure it's above everything including the map */
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Centered Container Styling */
+.stall-modal-centered {
+    width: 90%;
+    max-width: 650px;
+    background-color: #0c2920; 
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bounce effect */
+}
+
+/* Header Styles */
+.stall-modal-header {
+    background-color: #081c16;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1e4d3e;
+}
+
+.modal-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.close-icon-btn {
+    background: transparent;
+    border: none;
+    color: #95a5a6;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-icon-btn:hover {
+    color: white;
+}
+
+/* Body Styles */
+.stall-modal-body {
+    padding: 25px;
+    background-color: #0c2920;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-frame {
+    width: 100%;
+    background: #081c16;
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #1e4d3e;
+    display: flex;
+    justify-content: center;
+}
+
+.img-preview-main {
+    max-width: 100%;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
+/* White Footer Styles */
+.stall-modal-footer {
+    background-color: #ffffff;
+    padding: 15px 25px;
+    text-align: right;
+    border-top: 1px solid #eee;
+}
+
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

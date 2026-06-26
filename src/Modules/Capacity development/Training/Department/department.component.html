@@ -1,0 +1,123 @@
+<div class="dept-container" (click)="closeAllDropdowns()">
+
+  <div class="page-header">
+    <h2 class="page-title">Department</h2>
+    <div class="breadcrumb">
+      <span>Capacity Development</span> <span class="separator">/</span>
+      <span>Training</span> <span class="separator">/</span>
+      <span class="active">DEPARTMENT</span>
+    </div>
+  </div>
+
+  <div class="content-card filter-card">
+    <div class="filter-row">
+      
+      <!-- 1. Activity Type -->
+      <div class="filter-item" (click)="$event.stopPropagation(); toggleSpecific('activity')">
+        <label class="filter-label">ACTIVITY TYPE</label>
+        <app-custom-dropdown 
+           #activityRef
+           placeholder="Select Type"
+           [options]="activityType" 
+           displayKey="name" 
+           valueKey="id"
+           [(ngModel)]="activityTypeID"
+           (selectionChange)="selectedActivityType($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <!-- 2. Participants Type -->
+      <div class="filter-item" (click)="$event.stopPropagation(); toggleSpecific('participant')">
+        <label class="filter-label">PARTICIPANTS TYPE</label>
+        <app-custom-dropdown 
+           #participantRef
+           placeholder="Select Participants"
+           [options]="partispantstype"
+           displayKey="name"
+           valueKey="id"
+           [(ngModel)]="partispantstypeID"
+           (selectionChange)="selectedpartispantType($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <!-- 3. Category -->
+      <div class="filter-item" (click)="$event.stopPropagation(); toggleSpecific('category')">
+        <label class="filter-label">CATEGORY OF ACTIVITY</label>
+        <!-- Note: Category usually uses 'description' or 'name', check your API -->
+        <app-custom-dropdown 
+           #categoryRef
+           placeholder="Select Category"
+           [options]="categoryofactivity"
+           displayKey="description" 
+           valueKey="id"
+           [(ngModel)]="categoryofactivityID"
+           (selectionChange)="selectedcatgeoryType($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <!-- 4. Trainings -->
+      <div class="filter-item" (click)="$event.stopPropagation(); toggleSpecific('training')">
+        <label class="filter-label">TRAININGS</label>
+        <app-custom-dropdown 
+           #trainingRef
+           placeholder="Select Training"
+           [options]="listofTrainings"
+           displayKey="listofTrainings" 
+           valueKey="listofTrainings"
+           (selectionChange)="selectedtrainingType($event)">
+        </app-custom-dropdown>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Table Section (Same as before) -->
+  <div class="content-card table-card">
+    <div class="table-toolbar">
+      <h3 class="table-heading">PARTICIPANTS LIST</h3>
+      <div class="search-box">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" placeholder="Search records..." class="search-input">
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th (click)="sortData('name')">Name <i [class]="getSortIcon('name')"></i></th>
+            <th (click)="sortData('age')">Age <i [class]="getSortIcon('age')"></i></th>
+            <th (click)="sortData('gender')">Gender <i [class]="getSortIcon('gender')"></i></th>
+            <th (click)="sortData('aadhar')">Aadhar <i [class]="getSortIcon('aadhar')"></i></th>
+            <th (click)="sortData('mobile')">Mobile <i [class]="getSortIcon('mobile')"></i></th>
+            <th>Comments</th>
+            <th>Image 1</th>
+            <th>Image 2</th>
+            <th (click)="sortData('isPresent')">Present <i [class]="getSortIcon('isPresent')"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of participantsList">
+            <td class="name-col">{{ p.name }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.gender }}</td>
+            <td>{{ p.aadhar }}</td>
+            <td>{{ p.mobile }}</td>
+            <td>{{ p.comments }}</td>
+            <td><div class="img-placeholder"></div></td>
+            <td><div class="img-placeholder"></div></td>
+            <td>
+              <input type="checkbox" [checked]="p.isPresent">
+            </td>
+          </tr>
+          <tr *ngIf="participantsList.length === 0">
+            <td colspan="9" style="padding: 30px; text-align: center; color: #999;">
+              No records found. Please select filters.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

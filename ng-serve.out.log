@@ -1,0 +1,14 @@
+
+> figs-v2.client@0.0.0 prestart
+> node aspnetcore-https
+
+
+> figs-v2.client@0.0.0 start
+> run-script-os
+
+
+> figs-v2.client@0.0.0 start:windows
+> ng serve --ssl --ssl-cert "%APPDATA%\ASP.NET\https\%npm_package_name%.pem" --ssl-key "%APPDATA%\ASP.NET\https\%npm_package_name%.key" --host=127.0.0.1
+
+ [1mPort 62958 is already in use.
+Would you like to use a different port?[22m [2m(Y/n)[22m[47G

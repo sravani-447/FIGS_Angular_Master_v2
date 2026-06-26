@@ -1,0 +1,273 @@
+<div class="dashboard-wrapper">
+<div class="loader-overlay" *ngIf="isLoading">
+    <div class="spinner-box">
+      <i class="fa fa-spinner fa-spin"></i>
+      <p>Loading report data...</p>
+    </div>
+  </div>
+  <div class="dashboard-header">
+    <div class="title-section">
+      <div class="accent-bar"></div>
+      <h1 class="main-title">MONITORING DASHBOARD</h1>
+    </div>
+    <div class="header-controls">
+      <i class="fa fa-cog"></i>
+      <i class="fa fa-bell"></i>
+    </div>
+  </div>
+
+  <div class="content-card filter-card">
+    <div class="filter-bar-custom">
+      
+      <div class="flex-drop">
+        <label>SCHEME TYPE</label>
+        <app-custom-dropdown [options]="schematype" (selectionChange)="selectedschematype($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="flex-drop">
+        <label>DISTRICT</label>
+        <app-custom-dropdown [options]="districttype" [(ngModel)]="selectedDistrict"
+          (selectionChange)="onDistrictChange($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="flex-drop">
+        <label>SUB DIVISION</label>
+        <div class="input-wrapper" style="position: relative; width: 100%;">
+          
+          <div class="chip-container-box" (click)="toggleDropdown('division', $event)">
+            <div class="chips-wrapper">
+              <span *ngIf="divisionchange.length === 0" class="placeholder">Select Sub Division</span>
+              
+              <div class="filter-chip" *ngFor="let item of divisionchange">
+                {{ item }}
+                <span class="remove-chip" (click)="removeChip('division', item, $event)">×</span>
+              </div>
+            </div>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+
+          <div class="dropdown-list-popup" *ngIf="isDropdownOpen['division']">
+            <div *ngFor="let opt of division" 
+                 class="selectable-item" 
+                 [class.active-item]="isChecked('division', opt)"
+                 (click)="toggleSelection('division', opt, $event)">
+              {{ opt }}
+              <i class="fa fa-check" *ngIf="isChecked('division', opt)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-drop">
+        <label>RANGE</label>
+        <div class="input-wrapper" style="position: relative; width: 100%;">
+          <div class="chip-container-box" (click)="toggleDropdown('range', $event)">
+            <div class="chips-wrapper">
+              <span *ngIf="rangechanged.length === 0" class="placeholder">Select Range</span>
+              <div class="filter-chip" *ngFor="let item of rangechanged">
+                {{ item }}
+                <span class="remove-chip" (click)="removeChip('range', item, $event)">×</span>
+              </div>
+            </div>
+            <i class="fa fa-chevron-down"></i>
+          </div>
+
+          <div class="dropdown-list-popup" *ngIf="isDropdownOpen['range']">
+            <div *ngFor="let opt of range" 
+                 class="selectable-item" 
+                 [class.active-item]="isChecked('range', opt)"
+                 (click)="toggleSelection('range', opt, $event)">
+              {{ opt }}
+              <i class="fa fa-check" *ngIf="isChecked('range', opt)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-drop">
+        <label>BEAT</label>
+        <app-custom-dropdown [options]="beat" [(ngModel)]="beatchanged" 
+          (selectionChange)="beatchange($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="date-drop">
+        <label>DATE</label>
+        <input type="date" [(ngModel)]="selectedDate" class="date-input">
+      </div>
+
+      <div class="filter-actions">
+        <button class="apply-button" (click)="getpendingreport()">Apply</button>
+      </div>
+      <!-- <button class="btn btn-pdf" (click)="exportPDF()">DOWNLOAD PDF</button> -->
+
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card purple">
+      <div class="kpi-icon"><i class="fa fa-users"></i></div>
+      <div class="kpi-info">
+        <span class="kpi-label">ACTIVE USERS</span>
+        <span class="kpi-value">{{stats.activeUsers}}</span>
+      </div>
+    </div>
+    <div class="kpi-card pink">
+      <div class="kpi-icon"><i class="fa fa-database"></i></div>
+      <div class="kpi-info">
+        <span class="kpi-label">CAPTURING DATA</span>
+        <span class="kpi-value">{{stats.capturingData}}</span>
+      </div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-icon"><i class="fa fa-check-circle"></i></div>
+      <div class="kpi-info">
+        <span class="kpi-label">QC COMPLETED</span>
+        <span class="kpi-value">{{stats.qcCompleted}}</span>
+      </div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-icon"><i class="fa fa-clock-o"></i></div>
+      <div class="kpi-info">
+        <span class="kpi-label">PENDING FOR QC</span>
+        <span class="kpi-value">{{stats.pendingQC}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-card module-card">
+    <div class="module-grid">
+      
+      <div class="flex-drop">
+        <label>MODULE NAME</label>
+        <app-custom-dropdown 
+          [options]="modules" 
+          (selectionChange)="onModuleChange($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="flex-drop">
+        <label>SUB MODULE NAME</label>
+        <app-custom-dropdown 
+          [options]="subModules" 
+          (selectionChange)="onSubModuleChange($event)">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="flex-drop">
+        <label>FORMS</label>
+        <app-custom-dropdown 
+          [options]="forms" 
+          (selectionChange)="onFormChange($event)">
+        </app-custom-dropdown>
+      </div>
+
+    </div>
+  </div>
+
+<div class="forms-grid-section" *ngIf="formDataList.length > 0">
+  <table class="expandable-table">
+    <thead>
+      <tr>
+        <th>RECORD ID / STRUCTURE ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of formDataList; let i = index" class="main-row" (click)="openRecordPopup(row, i)">
+        <td>
+          <div class="row-header">
+            <i class="fa fa-external-link" style="margin-right: 8px; color: #6f42c1;"></i>
+            <span>{{ row.loan_id || row.structure_id || row.nursery_id || row.plantation_id || row.site_id || row.protection_id || row.shg_id || row.jfmc_id }}</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal-overlay-custom" *ngIf="activeSelectedRow" (click)="closeRecordPopup()">
+    <div class="modal-content-container" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header-custom">
+        <h3>
+          <i class="fa fa-folder-open"></i> 
+          Record Details: {{ activeSelectedRow.loan_id || activeSelectedRow.structure_id || activeSelectedRow.nursery_id || activeSelectedRow.plantation_id || activeSelectedRow.site_id || activeSelectedRow.protection_id || activeSelectedRow.shg_id || activeSelectedRow.jfmc_id || activeSelectedRow.name_center_id}}
+        </h3>
+        <button class="close-modal-btn" (click)="closeRecordPopup()">×</button>
+      </div>
+
+      <div class="modal-body-custom">
+        <div class="details-wrapper">
+          
+          <div class="data-items-grid">
+            <ng-container *ngFor="let item of activeSelectedRow | keyvalue">
+              <div class="detail-item" *ngIf="item.key !== 'isExpanded' && item.key !== 'status' && item.key !== 'remarks' && item.key !== 'comments' && !$any(item.key).startsWith('image')">
+                <span class="item-label">{{ $any(item).key.replace('_', ' ') | uppercase }}:</span>
+                <span class="item-value">{{ item.value === '' || item.value === null ? '-' : item.value }}</span>
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="comments-block" *ngIf="activeSelectedRow.comments">
+            <span class="item-label">COMMENTS:</span>
+            <p class="comments-text">{{ activeSelectedRow.comments }}</p>
+          </div>
+
+        <div class="image-gallery-section" *ngIf="hasBase64Images(activeSelectedRow)">
+  <h4 class="gallery-title"><i class="fa fa-image"></i> Attached Media Documents</h4>
+  <div class="image-grid">
+    
+    <div class="image-card" *ngIf="isValidBase64(activeSelectedRow.image1)">
+      <div class="image-wrapper" (click)="zoomImage(activeSelectedRow.image1, activeSelectedRow.image1_name || 'IMAGE 1')">
+        <img [src]="'data:image/jpeg;base64,' + activeSelectedRow.image1" class="gallery-thumb zoomable-thumb" alt="Attachment Image 1" />
+        <div class="thumb-overlay"><i class="fa fa-search-plus"></i></div>
+      </div>
+      <span class="image-label">{{ activeSelectedRow.image1_name || 'IMAGE 1' }}</span>
+    </div>
+
+    <div class="image-card" *ngIf="isValidBase64(activeSelectedRow.image2)">
+      <div class="image-wrapper" (click)="zoomImage(activeSelectedRow.image2, activeSelectedRow.image2_name || 'IMAGE 2')">
+        <img [src]="'data:image/jpeg;base64,' + activeSelectedRow.image2" class="gallery-thumb zoomable-thumb" alt="Attachment Image 2" />
+        <div class="thumb-overlay"><i class="fa fa-search-plus"></i></div>
+      </div>
+      <span class="image-label">{{ activeSelectedRow.image2_name || 'IMAGE 2' }}</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="image-zoom-overlay" *ngIf="activeZoomedImage" (click)="closeZoom()">
+  <div class="zoom-container" (click)="$event.stopPropagation()">
+    <div class="zoom-header">
+      <span>{{ zoomedImageTitle }}</span>
+      <button class="close-zoom-btn" (click)="closeZoom()">×</button>
+    </div>
+    <div class="zoom-body">
+      <img [src]="'data:image/jpeg;base64,' + activeZoomedImage" alt="Zoomed View" />
+    </div>
+  </div>
+</div>
+
+          <div class="action-panel">
+            <div class="status-input-group">
+              <select class="form-control status-select" [(ngModel)]="activeSelectedRow.status">
+                <option value="Correct">Correct</option>
+                <option value="Incorrect">Incorrect</option>
+                <option value="Duplicate">Duplicate</option>
+              </select>
+              <button class="btn btn-success save-btn" (click)="saveRemarks(activeSelectedRow, activeSelectedIndex)">
+                <i class="fa fa-save"></i> SAVE
+              </button>
+            </div>
+            <textarea *ngIf="activeSelectedRow.status === 'Incorrect' || activeSelectedRow.status === 'Duplicate'" [(ngModel)]="activeSelectedRow.remarks" class="form-control remarks-textarea" placeholder="Provide reason or remarks for incorrect status..."></textarea>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>

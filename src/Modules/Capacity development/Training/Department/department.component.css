@@ -1,0 +1,254 @@
+/* =========================================================
+   1. MAIN LAYOUT & FONTS
+   ========================================================= */
+.dept-container {
+  background-color: #f4f7f6; /* Very light clean grey */
+  min-height: 100vh;
+  padding: 25px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 25px;
+  border-left: 5px solid #f39c12; /* Orange Accent */
+  padding-left: 15px;
+}
+
+.page-title {
+  color: #2c3e50;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  letter-spacing: 0.5px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: #7f8c8d;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb .separator {
+  margin: 0 10px;
+  color: #bdc3c7;
+  font-weight: bold;
+}
+
+.breadcrumb .active {
+  color: #e67e22; /* Orange Text */
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   2. CARDS (White Boxes)
+   ========================================================= */
+.content-card {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  margin-bottom: 25px;
+  border-top: 3px solid transparent;
+}
+
+.filter-card {
+  border-top-color: #3498db; /* Blue top border for Filters */
+}
+
+.table-card {
+  border-top-color: #f39c12; /* Orange top border for Table */
+  padding: 0; /* Flush content for table */
+  overflow: hidden;
+}
+
+/* =========================================================
+   3. FILTER SECTION
+   ========================================================= */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Equal Columns */
+  gap: 30px;
+}
+
+.filter-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #34495e; /* Dark Grey/Blue */
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+/* =========================================================
+   4. DROPDOWN STYLING (The Critical Parts)
+   ========================================================= */
+
+/* Button Styling */
+::ng-deep .custom-dropdown-button {
+  background-color: #fff !important;
+  border: 1px solid #dfe6e9 !important;
+  border-radius: 4px !important;
+  padding: 10px 15px !important;
+  font-size: 13px !important;
+  color: #2c3e50 !important;
+  min-height: 42px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-shadow: none !important;
+}
+
+/* Open List Container */
+::ng-deep .custom-dropdown-list {
+  border: 1px solid #3498db !important; /* Blue Border when open */
+  border-radius: 0 0 4px 4px !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+  margin-top: 2px !important;
+  z-index: 9999 !important; /* Force on top */
+}
+
+/* List Items */
+::ng-deep .custom-dropdown-list-item {
+  padding: 10px 15px !important;
+  font-size: 13px !important;
+  color: #555 !important;
+  transition: all 0.1s ease !important;
+}
+
+/* --- HOVER COLOR: BLUE (#3498db) --- */
+::ng-deep .custom-dropdown-list-item:hover {
+  background-color: #3498db !important;
+  color: #ffffff !important;
+}
+
+/* Selected Item */
+::ng-deep .custom-dropdown-list-item.selected {
+  background-color: #ecf0f1 !important;
+  color: #333 !important;
+  font-weight: bold !important;
+}
+
+/* =========================================================
+   5. TABLE STYLING (Orange Header + Sort)
+   ========================================================= */
+.table-toolbar {
+  padding: 15px 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.table-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-input {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 15px 8px 35px;
+  font-size: 13px;
+  width: 250px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* --- TABLE HEADER (ORANGE) --- */
+.styled-table thead th {
+  background-color: #f39c12; /* ORANGE */
+  color: white;
+  padding: 14px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  cursor: pointer; /* Hand Cursor for Sorting */
+  user-select: none;
+  white-space: nowrap;
+}
+
+.styled-table thead th:hover {
+  background-color: #e67e22; /* Darker Orange Hover */
+}
+
+.styled-table thead th i {
+  margin-left: 5px;
+  opacity: 0.8;
+}
+
+/* Table Body */
+.styled-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #fff8e1; /* Very light orange/yellow hover */
+}
+
+.styled-table td {
+  padding: 12px 10px;
+  color: #2c3e50;
+  font-size: 13px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.name-col {
+  font-weight: 600;
+  color: #d35400; /* Dark Orange Text */
+}
+
+.img-placeholder {
+  width: 28px;
+  height: 28px;
+  background-color: #eee;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .filter-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 576px) {
+  .filter-row { grid-template-columns: 1fr; }
+}

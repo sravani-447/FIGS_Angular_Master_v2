@@ -1,0 +1,372 @@
+<div class="component-wrapper">
+
+  <!-- ================= NEW PAGE HEADER (Title + Breadcrumb + Button) ================= -->
+  <div class="custom-header-container" *ngIf="!isAddingNew && !disablebox">
+
+    <!-- 1. Centered Main Title -->
+    <h1 class="main-component-title">Approved Capacity Developement</h1>
+
+    <!-- 2. Row: Breadcrumb (Left) & Button (Right) -->
+    <div class="header-actions-row">
+
+      <!-- Breadcrumb with Orange Bar -->
+      <div class="breadcrumb-wrapper">
+        <div class="orange-vertical-bar"></div>
+        <p class="breadcrumb-text-styled">
+          Capacity Development / <span class="active-crumb">Approved Capacity development</span>
+        </p>
+      </div>
+
+      <!-- Add New Button -->
+      <button class="btn-blue-fill" (click)="toggleAddNew(true)">
+        <i class="fa fa-plus"></i> &nbsp; Add New
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ================= VIEW 1: GRID VIEW ================= -->
+  <div *ngIf="!isAddingNew && !disablebox" class="view-container">
+    <app-custom-grid title="Training list" [columns]="columns" [data]="data" [showAdd]="false" [showprintbuttons]="true"
+      (actionClicked)="onGridAction($event)">
+    </app-custom-grid>
+  </div>
+
+
+  <!-- ================= VIEW 2: WIZARD FORM (The Magic Design) ================= -->
+  <div *ngIf="isAddingNew" class="wizard-card animated-entry">
+
+    <!-- 1. HEADER: Brand Gradient -->
+    <div class="wizard-header brand-gradient">
+      <div class="header-content">
+        <h3> Create Training Session</h3>
+      </div>
+      <button class="btn-close-wizard" (click)="toggleAddNew(false)">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- 2. STEPPER: Orange Themed -->
+    <div class="stepper">
+      <!-- Step 1 -->
+      <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+        <span class="step-circle">
+          <i *ngIf="currentStep > 1" class="fa fa-check"></i>
+          <span *ngIf="currentStep <= 1">1</span>
+        </span>
+        <span class="step-label">Training Details</span>
+      </div>
+      <div class="step-line" [class.filled]="currentStep > 1"></div>
+
+      <!-- Step 2 -->
+      <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+        <span class="step-circle">
+          <i *ngIf="currentStep > 2" class="fa fa-check"></i>
+          <span *ngIf="currentStep <= 2">2</span>
+        </span>
+        <span class="step-label">Session Plan</span>
+      </div>
+      <div class="step-line" [class.filled]="currentStep > 2"></div>
+
+      <!-- Step 3 -->
+      <div class="step" [class.active]="currentStep === 3">
+        <span class="step-circle">3</span>
+        <span class="step-label">Participant List</span>
+      </div>
+    </div>
+
+    <!-- ================= STEP 1 CONTENT ================= -->
+    <div class="step-content" *ngIf="currentStep === 1">
+      <div class="training-grid">
+        <div class="form-group">
+          <label>ACTIVITY TYPE</label>
+          <app-custom-dropdown placeholder="Select Type" [options]="activityType" displayKey="name" valueKey="id"
+            [(ngModel)]="activityTypeID" (selectionChange)="selectedActivityType($event)">
+          </app-custom-dropdown>
+        </div>
+        <div class="form-group">
+          <label>PARTICIPANTS TYPE</label>
+          <app-custom-dropdown placeholder="Select Type" [options]="partispantstype" displayKey="name" valueKey="id"
+            [(ngModel)]="partispantstypeID" (selectionChange)="selectedpartispantType($event)">
+          </app-custom-dropdown>
+        </div>
+        <div class="form-group">
+          <label>CATEGORY OF ACTIVITY</label>
+          <app-custom-dropdown placeholder="Select Category" [options]="categoryofactivity" displayKey="description"
+            valueKey="id" [(ngModel)]="categoryofactivityID" (selectionChange)="selectedcatgeoryType($event)">
+          </app-custom-dropdown>
+        </div>
+        <div class="form-group">
+          <label>LIST OF TRAININGS</label>
+          <app-custom-dropdown placeholder="Trainings" [options]="listofTrainings" displayKey="topic" valueKey="topic"
+            [(ngModel)]="listofTrainingsID" (selectionChange)="selectedtrainingType($event)">
+          </app-custom-dropdown>
+          <small *ngIf="showTrainingError" class="error-msg animated-fade">
+            <i class="fa fa-exclamation-circle"></i> Please select a training to proceed.
+          </small>
+        </div>
+      <div class="form-group">
+  <label>DATE</label>
+
+  <!-- Single visible field -->
+  <input 
+  type="text"
+  class="date-display-field form-input elegant-date"
+  [ngModel]="session.date"
+  placeholder="Select date"
+  readonly
+  (click)="datePicker.showPicker()"
+/>
+
+  <!-- Hidden actual picker -->
+  <input 
+    #datePicker
+    type="date"
+    [(ngModel)]="session.startDate"
+    (change)="calculateDateRange()"
+    style="position:absolute; opacity:0; pointer-events:none;"
+  />
+</div>
+        <div class="form-group">
+          <label>VENUE</label>
+          <input type="text" class="form-input" placeholder="Enter Location" [(ngModel)]="training_venue" />
+        </div>
+        <div class="form-group">
+          <label>TRAINING DURATION (IN DAYS)</label>
+          <input type="number" class="form-input" [(ngModel)]="trainingduration" [disabled]="true" />
+        </div>
+      </div>
+
+      <div class="center-btn">
+        <button class="btn-prev" (click)="toggleAddNew(false)">Cancel</button>
+        <button class="btn-next" (click)="nextStep()">Next &nbsp; <i class="fa fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+
+    <!-- ================= STEP 2 CONTENT ================= -->
+    <div class="step-content" *ngIf="currentStep === 2">
+
+      <div class="training-grid">
+        <div class="form-group">
+          <label>NAME OF THE SESSION</label>
+          <input type="text" class="form-input" [(ngModel)]="session.nameSession" placeholder="Enter session topic" />
+        </div>
+        <div class="form-group">
+          <label>NAME OF THE RESOURCE</label>
+          <input type="text" class="form-input" [(ngModel)]="session.nameResource" placeholder="Enter speaker name" />
+        </div>
+        <div class="form-group">
+          <label>RESOURCE SPECIALIZATION</label>
+          <input type="text" class="form-input" [(ngModel)]="session.resourceSpec"
+            placeholder="e.g. Senior Scientist" />
+        </div>
+        <div class="form-group">
+          <label>START DATE</label>
+          <input type="datetime-local" class="form-input elegant-date" [(ngModel)]="session.startDate" />
+        </div>
+        <div class="form-group">
+          <label>END DATE</label>
+          <input type="datetime-local" class="form-input elegant-date" [(ngModel)]="session.endDate" />
+        </div>
+
+        <!-- ELEGANT FILE INPUT -->
+        <div class="form-group">
+          <label>UPLOAD SESSION MATERIAL</label>
+          <div class="elegant-file-input">
+            <input type="file" id="sessionFile" (change)="onFileSelected($event)" class="hidden-file-input" />
+            <label for="sessionFile" class="file-label">
+              <i class="fa fa-cloud-upload"></i>
+              <span *ngIf="!session.resourceFileName">Choose File...</span>
+              <span *ngIf="session.resourceFileName" style="color:#333">{{session.resourceFileName}}</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADD SESSION BUTTON -->
+      <div class="center-btn" style="justify-content: center; border: none; margin-bottom: 20px;">
+        <button class="btn-orange-add" (click)="Addsession()">
+          <i class="fa fa-plus-circle"></i> Add Session
+        </button>
+      </div>
+
+      <!-- SAVED SESSIONS TABLE -->
+
+      <div class="table-responsive" *ngIf="showsessionlist">
+        <table class="styled-session-table">
+          <thead>
+            <tr>
+              <th>Session Name</th>
+              <th>Resource</th>
+              <th>Specialization</th>
+              <th>Date</th>
+              <th>Material</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- CHANGE 1: Add *ngFor to loop through the list -->
+            <tr *ngFor="let s of savedSessionsList; let i = index">
+
+              <!-- CHANGE 2: Use 's' instead of 'session' -->
+              <td>{{ s.nameSession || '-' }}</td>
+              <td>{{ s.nameResource || '-' }}</td>
+              <td>{{ s.resourceSpec || '-' }}</td>
+              <td>{{ s.startDate | date:'dd-MM-yyyy' }}</td>
+              <td>
+                <span class="file-tag" *ngIf="s.resourceFileName" (click)="openLocalFile(s.actualFileObj)"
+                  style="cursor: pointer; color: blue; text-decoration: underline;">
+                  <i class="fa fa-paperclip"></i> {{ s.resourceFileName }}
+                </span>
+                <span *ngIf="!s.resourceFileName">-</span>
+              </td>
+
+              <td>
+                <!-- CHANGE 3: Pass the index 'i' to delete -->
+                <button class="btn-icon-delete" (click)="deleteSession(i)">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="center-btn">
+        <button class="btn-prev" (click)="prevStep()">Previous</button>
+        <button class="btn-next" (click)="nextStep()">Next &nbsp; <i class="fa fa-arrow-right"></i></button>
+      </div>
+
+    </div>
+
+
+    <!-- ================= STEP 3 CONTENT ================= -->
+    <div class="step-content" *ngIf="currentStep === 3">
+
+      <div class="participant-upload-container">
+
+        <!-- LEFT: UPLOAD BOX -->
+        <div class="upload-box">
+          <div class="icon-circle">
+            <!-- 1. Change icon dynamically if file is uploaded -->
+            <i class="fa" [ngClass]="participantFileName ? 'fa-file-text-o' : 'fa-users'"></i>
+          </div>
+          <label class="box-label">Upload Participant's List</label>
+
+          <div class="elegant-file-input center-align">
+            <!-- 2. ADD (change) EVENT HERE -->
+            <input type="file" id="partFile" (change)="onParticipantFileSelected($event)" class="hidden-file-input" />
+
+            <label for="partFile" class="file-label-large">
+              <i class="fa fa-folder-open"></i>
+              <!-- 3. DISPLAY VARIABLE HERE (This fixes the name not showing) -->
+              {{ participantFileName ? participantFileName : 'Upload file' }}
+            </label>
+          </div>
+        </div>
+
+        <!-- RIGHT: DOWNLOAD TEMPLATE BOX -->
+        <div class="upload-box">
+          <div class="icon-circle blue-icon">
+            <i class="fa fa-file-text"></i>
+          </div>
+          <!-- <input type="file" (change)="onParticipantFileSelected($event)" accept=".csv" /> -->
+
+          <label class="box-label">Need a Template?</label>
+
+
+          <!-- 4. ADD (click) EVENT HERE (This fixes the download button) -->
+          <button class="btn-download-blue" (click)="downloadTemplate()">
+            <i class="fa fa-download"></i> Download Template
+          </button>
+        </div>
+        <div class="table-responsive">
+          <table class="styled-session-table">
+            <thead *ngIf="tableData.length > 0" lis>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Aadhar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of tableData; let i = index">
+                <td>{{ p.Name }}</td>
+                <td>{{ p.Age }}</td>
+                <td>{{ p.Gender }}</td>
+                <td>{{ p.Phone_number }}</td>
+                <td>{{ p.Adhar_number }}</td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="center-btn">
+        <button class="btn-prev" (click)="prevStep()">Previous</button>
+        <button class="btn-submit-final" (click)="saveTrainingSession()">
+          <i class="fa fa-check-circle"></i> Submit Final
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- END WIZARD -->
+
+
+  <!-- ================= CENTERED MODAL VIEW (The New Look) ================= -->
+  <div *ngIf="showPanel" class="modal-overlay" (click)="closePanel()">
+
+    <!-- Stop propagation prevents closing when clicking inside the box -->
+    <div class="centered-modal-card animated-zoom" (click)="$event.stopPropagation()">
+
+      <!-- Gradient Header -->
+      <div class="modal-header brand-gradient">
+        <h3>{{ panelData.title }}</h3>
+        <button class="btn-close-modal" (click)="closePanel()">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Content Area -->
+      <div class="modal-body">
+        <div class="table-container">
+          <table class="elegant-data-table">
+            <thead>
+              <tr>
+                <th *ngFor="let c of panelData.columns">{{ c.header }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of panelData.rows; let i=index">
+                <td *ngFor="let c of panelData.columns" [ngSwitch]="c.field">
+
+                  <!-- Serial No -->
+                  <span *ngSwitchCase="'sno'" class="sno-badge">{{ i + 1 }}</span>
+
+                  <!-- Download Button Logic -->
+                  <ng-container *ngSwitchCase="'fileIDs'">
+                    <button *ngIf="row.fileIDs?.length" class="btn-download-sm" (click)="downloadFile(row)">
+                      <i class="fa fa-download"></i> Download
+                    </button>
+                    <span *ngIf="!row.fileIDs?.length" class="text-muted">-</span>
+                  </ng-container>
+
+                  <!-- Default Text -->
+                  <span *ngSwitchDefault>{{ row[c.field] || '-' }}</span>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Footer with Close Button -->
+      <div class="modal-footer">
+        <button class="btn-prev" (click)="closePanel()">Close</button>
+      </div>
+
+    </div>
+  </div>

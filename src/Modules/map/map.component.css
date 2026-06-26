@@ -1,0 +1,664 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+/* WMS Legend Box */
+.wms-legend-container {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1100;
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  min-width: 120px;
+  pointer-events: none; /* Allows clicks to pass through to the map if needed */
+}
+
+.legend-header {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.legend-content img {
+  display: block;
+  max-width: 150px;
+  height: auto;
+}
+
+/* Optional: Animation for appearing */
+.wms-legend-container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Page layout */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Dashboard */
+app-dashboard {
+  height: 70px;
+  flex-shrink: 0;
+}
+
+/* Map wrapper */
+.map-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+/* Map */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Overlay base */
+.overlay {
+  position: absolute;
+  z-index: 1000;
+}
+
+/* Top left */
+.overlay-top-left {
+  top: 15px;
+  left: 85px;
+}
+
+/* Top center */
+.overlay-top-center {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  width: auto; /* ✅ FIX: remove full width */
+}
+
+/* Buttons */
+.btn-map {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 10px;
+  height: 31px;
+}
+
+.btn-map svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  fill: rgb(0, 0, 0);
+}
+
+.basemap-menu {
+  margin-top: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 6px; /* FIXED */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+}
+
+/* Each row */
+.basemap-menu label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* Optional: make radio consistent */
+.basemap-menu input[type="radio"] {
+  transform: scale(1.1);
+}
+/* This targets the WMS tiles and blends away the white pixels */
+::ng-deep .remove-white-bg {
+    mix-blend-mode: multiply;
+    /* Optional: extra filter if the background isn't pure white */
+    filter: contrast(1.1) brightness(1.1); 
+}
+
+/* Ensure the leaflet container isn't forcing a white background on images */
+::ng-deep .leaflet-tile-pane img {
+    background-color: transparent !important;
+}
+.btn-map:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.main-btn {
+  font-weight: 600;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Layers panel */
+.layers-panel {
+  margin-top: 8px;
+  width: 340px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  padding: 0;
+  max-height: 650px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.layers-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.layers-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.layers-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.layers-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.panel-header {
+  padding: 12px 14px;
+  font-weight: bold;
+  background: #1a1a1a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px 8px 0 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+.panel-content {
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Layer Tree */
+.layer-tree {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-item {
+  list-style: none;
+  margin: 0;
+}
+
+/* Tree node container */
+.tree-node {
+  display: flex;
+  align-items: center;
+  padding: 8px 4px;
+  cursor: pointer;
+  user-select: none;
+  gap: 6px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.tree-node:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Expand/Collapse button */
+.expand-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.expand-btn:hover {
+  color: #fff;
+}
+
+.expand-btn .arrow {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+.expand-btn.expanded .arrow {
+  transform: rotate(90deg);
+}
+
+/* Spacer for items without children */
+.spacer {
+  width: 16px;
+  height: 16px;
+}
+
+/* Folder and file icons */
+.folder-icon {
+  font-size: 14px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Node label */
+.node-label {
+  font-size: 13px;
+  color: #ccc;
+  font-weight: 500;
+}
+
+/* Layer checkbox */
+.layer-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  user-select: none;
+  flex: 1;
+}
+
+.layer-checkbox:hover {
+  color: #fff;
+}
+
+/* Checkbox size */
+.layer-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: #4CAF50;
+  margin: 0;
+}
+
+.label-text {
+  color: #ddd;
+}
+
+/* Tree children (nested) */
+.tree-children {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tree-children .tree-item {
+  border-left: none;
+}
+
+/* Fix the background and layout of the measurement tool */
+::ng-deep .leaflet-control-measure-interaction {
+  background: #ffffff !important;
+  border: 1px solid #ccc !important;
+  padding: 15px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  color: #333 !important;
+}
+
+/* Style the "Create a new measurement" button */
+::ng-deep .js-start {
+  display: inline-block !important;
+  background-color: #007bff !important;
+  color: white !important;
+  padding: 6px 12px !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  margin-top: 10px !important;
+  cursor: pointer !important;
+}
+
+/* Style the text results */
+::ng-deep .leaflet-control-measure-interaction .results {
+  color: #000 !important;
+  margin-top: 10px !important;
+}
+
+.measure-tooltip {
+  background: #2c3e50;
+  color: white;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* WMS Layer white background removal */
+::ng-deep .wms-no-white {
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.1));
+  mix-blend-mode: multiply;
+}
+
+::ng-deep .wms-no-white img {
+  filter: brightness(0.9) contrast(1.1) !important;
+  mix-blend-mode: screen;
+}
+
+/* Remove white pixels from WMS tiles */
+::ng-deep img.wms-no-white[src] {
+  filter: brightness(0.85) saturate(1.2) drop-shadow(0 0 0px transparent);
+  image-rendering: crisp-edges;
+}
+
+/* Alternative blend mode for better compatibility */
+::ng-deep .leaflet-tile-pane .wms-no-white {
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+}
+
+/* Remove white background from WMS tiles specifically */
+::ng-deep .leaflet-tile {
+  image-rendering: crisp-edges;
+}
+
+/* Leaflet Side-by-Side Slider Styling */
+::ng-deep .leaflet-control-sideBySide {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: ew-resize;
+  z-index: 999;
+}
+
+::ng-deep .leaflet-control-sideBySide:hover {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Slider divider line styling */
+::ng-deep .leaflet-control-sideBySide-full {
+  width: 4px;
+  background: linear-gradient(to bottom, #4CAF50, #2196F3, #FF9800);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* FORCE slider to center */
+::ng-deep .leaflet-sbs-divider {
+  left: 50% !important;
+}
+
+/* Optional: make divider clearly visible */
+::ng-deep .leaflet-sbs-divider {
+  width: 2px;
+  background: #000;
+}
+::ng-deep .leaflet-sbs-range {
+  left: 50% !important;
+}
+/* Top center container */
+.overlay-top-center {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none; /* allows map interaction except buttons */
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  pointer-events: all; /* enable button clicks */
+}
+
+/* Parent container controls position */
+.legend-wrapper {
+  position: absolute;
+  bottom: 14%;
+  right: 1%;
+  display: flex;
+  flex-direction: row;   /* side by side */
+  gap: 10px;             /* space between boxes */
+  z-index: 1000;
+}
+
+/* Common style for all legends */
+.legend-wrapper {
+  position: absolute;
+  bottom: 14%;
+  right: 1%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 1000;
+}
+
+/* 👇 FIXED SIZE FOR EACH LEGEND BOX */
+.legend-wrapper > div {
+  width: 220px;        /* ✅ fixed width */
+  height: 250px;       /* ✅ fixed height (optional) */
+  overflow-y: auto;    /* ✅ scroll if content is more */
+
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+.fcd-legend {
+ 
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+.fds-legend {
+
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+.soilerosion-legend {
+  
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+.lulc-legend {
+
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+.ppa-legend {
+
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+.jfmc_veg_type-legend {
+ 
+  background: white;
+  padding: 10px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+}
+
+
+
+.legend-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-box {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* Colors */
+.dark-green { background: #1b5e20; }
+.green      { background: #2e7d32; }
+.light-green{ background: #66bb6a; }
+.yellow     { background: #fdd835; }
+.orange     { background: #fb8c00; }
+.red        { background: #e53935; }
+
+
+/* Parent container */
+.legend-container {
+  display: flex;
+  flex-wrap: wrap;        /* allows next row if space not enough */
+  gap: 12px;              /* space between legends */
+  align-items: flex-start;
+}
+
+/* Each legend box */
+
+
+.map-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* Slider Line */
+/* Slider divider line */
+::ng-deep .leaflet-sbs-divider {
+  width: 3px !important;
+  background: white !important;
+  box-shadow: 0 0 6px rgba(0,0,0,0.5) !important;
+}
+
+/* The range input track */
+::ng-deep .leaflet-sbs-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  width: 100% !important;
+  cursor: ew-resize !important;
+}
+
+/* ✅ CHROME / SAFARI / EDGE - The circular handle */
+::ng-deep .leaflet-sbs-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 2px solid #cccccc !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35) !important;
+  cursor: ew-resize !important;
+  position: relative;
+
+  /* Three vertical bars inside */
+  background-image:
+    linear-gradient(90deg, #888 0%, #888 100%),
+    linear-gradient(90deg, #888 0%, #888 100%),
+    linear-gradient(90deg, #888 0%, #888 100%);
+  background-size: 2px 18px, 2px 18px, 2px 18px;
+  background-position: center left 14px, center, center right 14px;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+/* ✅ FIREFOX - The circular handle */
+::ng-deep .leaflet-sbs-range::-moz-range-thumb {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: #ffffff !important;
+  border: 2px solid #cccccc !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35) !important;
+  cursor: ew-resize !important;
+  background-image:
+    linear-gradient(90deg, #888 0%, #888 100%),
+    linear-gradient(90deg, #888 0%, #888 100%),
+    linear-gradient(90deg, #888 0%, #888 100%);
+  background-size: 2px 18px, 2px 18px, 2px 18px;
+  background-position: center left 14px, center, center right 14px;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+}

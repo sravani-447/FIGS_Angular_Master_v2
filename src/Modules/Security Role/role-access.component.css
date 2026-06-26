@@ -1,0 +1,233 @@
+.role-access-page {
+  min-height: calc(100vh - 90px);
+  padding: 24px;
+  background: #f5f7fb;
+  color: #243247;
+}
+
+.role-access-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.role-access-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.role-access-header p {
+  margin: 6px 0 0;
+  color: #65758b;
+  font-size: 14px;
+}
+
+.role-access-toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.role-container {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn.secondary {
+  height: 40px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 14px;
+  background: #ffffff;
+  color: #157347;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #d7dee8;
+}
+
+.btn.secondary:hover {
+  background: #f6faf6;
+}
+
+.role-field {
+  display: grid;
+  gap: 6px;
+  color: #536274;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.role-field input {
+  width: 220px;
+  height: 40px;
+  border: 1px solid #d7dee8;
+  border-radius: 6px;
+  padding: 0 12px;
+  color: #243247;
+  background: #fff;
+  outline: none;
+}
+
+/* Material form-field width override for toolbar */
+mat-form-field.full-width {
+  width: 280px;
+}
+
+.role-field input:focus {
+  border-color: #157347;
+  box-shadow: 0 0 0 3px rgba(21, 115, 71, 0.12);
+}
+
+.save-button {
+  height: 40px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 18px;
+  background: #157347;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #115c39;
+}
+
+.save-alert {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+.save-alert.success {
+  background: #157347;
+  color: #fff;
+}
+.save-alert.error {
+  background: #d9534f;
+  color: #fff;
+}
+
+.access-shell {
+  max-width: 920px;
+  background: #fff;
+  border: 1px solid #e4e9f1;
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(36, 50, 71, 0.06);
+  overflow: hidden;
+}
+
+.access-summary {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 18px;
+  border-bottom: 1px solid #edf1f6;
+  color: #65758b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.access-tree,
+.tree-children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.access-tree {
+  padding: 18px;
+}
+
+.tree-row {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 10px;
+}
+
+.tree-row:hover {
+  background: #f8fafc;
+}
+
+.expand-button {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 3px;
+  background: #7a7f86;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 20px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.expand-button.empty {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tree-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.tree-check input {
+  width: 20px;
+  height: 20px;
+  accent-color: #157347;
+  cursor: pointer;
+}
+
+.tree-check span {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .role-access-page {
+    padding: 16px;
+  }
+
+  .role-access-header,
+  .role-access-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .role-field input,
+  .save-button {
+    width: 100%;
+  }
+
+  .tree-check {
+    font-size: 15px;
+  }
+  .role-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.full-width {
+  width: 300px;
+}
+}

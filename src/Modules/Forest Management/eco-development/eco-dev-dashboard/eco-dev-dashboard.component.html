@@ -1,0 +1,6 @@
+  <app-custom-dashboard 
+    *ngIf="dashboardConfig"
+    [config]="dashboardConfig" 
+    (filterChanged)="onFilterUpdate($event)"
+    (download)="downloadDashboard()">
+  </app-custom-dashboard>

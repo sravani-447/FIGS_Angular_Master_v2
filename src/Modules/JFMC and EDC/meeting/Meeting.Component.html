@@ -1,0 +1,123 @@
+<div class="page-wrapper">
+    
+   <div class="content-panel fade-in">
+    <div class="grid-card">
+        
+        <!-- WRAPPER FOR SCROLLING -->
+        
+            <app-custom-grid 
+                [title]="'MEETING LIST'"
+                [data]="gridData"
+                [columns]="columns"  [hiddenFields]="hiddenFields"
+                [showAdd]="false"
+                [showprintbuttons]="true"
+                (actionClicked)="onGridAction($event)"
+                (onUpdateView)="handleStatusUpdate($event)"
+                [editableFields]="[ 'comments', 'attendance']",
+                [Modulewiserejectbox]= "true">
+            </app-custom-grid>
+      
+
+    </div>
+</div>
+
+  <!-- MAP POPUP (Front side view) -->
+<div class="custom-modal-backdrop fade-in" *ngIf="isMapModalOpen" style="z-index: 11000 !important;">
+    <div class="light-modal-content" style="width: 80%; max-width: 900px;">
+        <div class="light-modal-header" style="background: #f97316;">
+            <h2 class="light-modal-title">📍 Location View</h2>
+            <button class="light-btn-close" (click)="isMapModalOpen = false">✖</button>
+        </div>
+        <div class="light-modal-body" style="padding: 0; height: 450px;">
+            <!-- The ID used here must match the one in TypeScript -->
+            <div id="modal-map-container" style="height: 100%; width: 100%;"></div>
+        </div>
+        <div class="light-modal-footer">
+            <button class="btn-light-cancel" (click)="isMapModalOpen = false">Close</button>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+<!-- ================= MODALS (Light Theme) ================= -->
+
+<!-- UPDATE MODAL -->
+<div class="custom-modal-backdrop fade-in" *ngIf="isUpdateModalOpen">
+    <div class="light-modal-content">
+        <div class="light-modal-header">
+            <h2 class="light-modal-title">Update Meeting Details</h2>
+            <button class="light-btn-close" (click)="isUpdateModalOpen = false">&times;</button>
+        </div>
+        <div class="light-modal-body p-4">
+            <div class="dynamic-form-grid">
+                <div class="form-group col-6">
+                    <label class="light-label">ATTENDANCE</label>
+                    <input type="number" [(ngModel)]="selectedMeeting.attendance" class="light-input">
+                </div>
+                <div class="form-group col-6">
+                    <label class="light-label">AMOUNT DISBURSED</label>
+                    <input type="number" [(ngModel)]="selectedMeeting.amount_disbursed" class="light-input">
+                </div>
+                <div class="form-group col-6">
+                    <label class="light-label">INTEREST RATE</label>
+                    <input type="number" [(ngModel)]="selectedMeeting.rate_of_interest" class="light-input">
+                </div>
+                <div class="form-group col-6">
+                    <label class="light-label">TENURE (MONTHS)</label>
+                    <input type="number" [(ngModel)]="selectedMeeting.tenure_of_loan" class="light-input">
+                </div>
+                <div class="form-group col-12">
+                    <label class="light-label">COMMENTS</label>
+                    <textarea [(ngModel)]="selectedMeeting.comments" class="light-input" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="light-modal-footer">
+            <button class="btn-light-cancel" (click)="isUpdateModalOpen = false">Cancel</button>
+            <button class="btn-submit-final" (click)="submitUpdate()">Update</button>
+        </div>
+    </div>
+</div>
+
+<!-- REJECT MODAL -->
+<div class="custom-modal-backdrop fade-in" *ngIf="isRejectModalOpen">
+    <div class="light-modal-content" style="max-width: 500px;">
+        <div class="light-modal-header" style="background: linear-gradient(to right, #e74c3c, #c0392b);">
+            <h2 class="light-modal-title">Reject Meeting</h2>
+            <button class="light-btn-close" (click)="isRejectModalOpen = false">&times;</button>
+        </div>
+        <div class="light-modal-body p-4">
+            <div class="form-group col-12">
+                <label class="light-label">REASON FOR REJECTION</label>
+                <textarea [(ngModel)]="rejectComment" class="light-input" rows="4" placeholder="Enter reason..."></textarea>
+            </div>
+        </div>
+        <div class="light-modal-footer">
+            <button class="btn-light-cancel" (click)="isRejectModalOpen = false">Cancel</button>
+            <button class="btn-submit-final" style="background: #e74c3c;" (click)="submitReject()">Confirm Reject</button>
+        </div>
+    </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="custom-modal-backdrop fade-in" *ngIf="isImageModalOpen">
+<div class="light-modal-content" style="width: fit-content; max-width: 90%; height: auto;">     
+        <div class="light-modal-header">
+            <h2 class="light-modal-title">View Photo</h2>
+            <button class="light-btn-close" (click)="isImageModalOpen = false">&times;</button>
+        </div>
+        <div class="light-modal-body" style="padding: 0; display: flex; justify-content: center; background-color: #000;">
+            <!-- Changed styles here -->
+            <img [src]="selectedImageSrc" 
+                 style="width: 100%; 
+                        max-height: 80vh; 
+                        object-fit: contain; 
+                        display: block; 
+                        margin: 0 auto;">
+        </div>
+    </div>
+</div>

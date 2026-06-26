@@ -1,0 +1,98 @@
+<section class="role-access-page">
+  <div class="role-access-header">
+    <div>
+      <h2>Security Role Access</h2>
+      <p>Manage module, sub-module, and action permissions for the selected role.</p>
+    </div>
+
+    <div *ngIf="saveMessage" class="save-alert" [class.success]="saveSuccess" [class.error]="saveSuccess === false">
+      {{ saveMessage }}
+    </div>
+
+    <div class="role-access-toolbar">
+    <div class="role-container">
+
+  <!-- User Designation -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>User Designation</mat-label>
+    <mat-select
+      [(ngModel)]="selectedDesignation"
+      (selectionChange)="onDesignationChange()">
+
+      <mat-option value="">
+        -- Select Designation --
+      </mat-option>
+
+      <mat-option
+        *ngFor="let d of userDesignations"
+        [value]="d.value">
+        {{ d.name }}
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Landing Module -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Landing Module</mat-label>
+    <mat-select [(ngModel)]="selectedLanding">
+
+      <mat-option value="">
+        -- Select Landing Module --
+      </mat-option>
+
+      <mat-option
+        *ngFor="let m of landingOptions"
+        [value]="m.route">
+        {{ m.label }}
+      </mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+</div>
+
+      <div class="actions">
+        <button type="button" class="save-button" (click)="saveAccess()">Save Access</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="access-shell">
+    <div class="access-summary">
+      <span>{{ getSelectedCount() }} permissions selected</span>
+    </div>
+
+    <ul class="access-tree">
+      <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: accessTree, level: 0 }"></ng-container>
+    </ul>
+  </div>
+</section>
+
+<ng-template #treeNode let-nodes let-level="level">
+  <li *ngFor="let node of nodes" class="tree-item">
+    <div class="tree-row" [style.padding-left.px]="level * 38">
+      <button
+        type="button"
+        class="expand-button"
+        [class.empty]="!hasChildren(node)"
+        (click)="toggleExpand(node)"
+        [attr.aria-label]="node.expanded ? 'Collapse ' + node.title : 'Expand ' + node.title">
+        <span *ngIf="hasChildren(node)">{{ node.expanded ? '-' : '+' }}</span>
+      </button>
+
+      <label class="tree-check">
+        <input
+          type="checkbox"
+          [checked]="node.checked"
+          [indeterminate]="isIndeterminate(node)"
+          (change)="toggleNode($event, node)">
+        <span>{{ node.title }}</span>
+      </label>
+    </div>
+
+    <ul class="tree-children" *ngIf="hasChildren(node) && node.expanded">
+      <ng-container *ngTemplateOutlet="treeNode; context: { $implicit: node.children, level: level + 1 }"></ng-container>
+    </ul>
+  </li>
+</ng-template>

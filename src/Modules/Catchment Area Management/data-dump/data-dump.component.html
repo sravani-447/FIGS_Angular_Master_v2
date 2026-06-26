@@ -1,0 +1,82 @@
+<div class="data-dump-container">
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">
+        <i class="fas fa-file-upload"></i> Upload Excel Data
+      </h2>
+      <p class="card-subtitle">Upload the Excel data for Implementation or technical  or Montoring</p>
+    </div>
+
+    <div class="card-body">
+      <!-- File Upload Section -->
+      <div class="upload-section">
+        <div class="upload-box">
+          <label for="fileInput" class="file-input-label">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="upload-text">
+              <p class="main-text">Click to select or drag and drop your Excel file</p>
+              <p class="sub-text">Supported formats: .xls, .xlsx</p>
+            </div>
+            <input 
+              type="file" 
+              id="fileInput" 
+              (change)="onFileSelected($event)"
+              accept=".xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              class="file-input">
+          </label>
+        </div>
+
+        <!-- Selected File Display -->
+        <div *ngIf="selectedFileName" class="selected-file-info">
+          <div class="file-details">
+            <i class="fas fa-file-excel"></i>
+            <span class="file-name">{{ selectedFileName }}</span>
+            <button 
+              type="button" 
+              class="btn-remove" 
+              (click)="resetFileInput()"
+              title="Remove file">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div *ngIf="uploadSuccess" class="alert alert-success">
+        <i class="fas fa-check-circle"></i>
+        <span>{{ uploadMessage }}</span>
+      </div>
+
+      <div *ngIf="uploadError" class="alert alert-error">
+        <i class="fas fa-exclamation-circle"></i>
+        <span>{{ uploadMessage }}</span>
+      </div>
+
+      <div *ngIf="isLoading" class="alert alert-info">
+        <div class="spinner"></div>
+        <span>{{ uploadMessage }}</span>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="card-footer">
+      <button 
+        (click)="uploadFile()" 
+        class="btn btn-primary"
+        [disabled]="!selectedFile || isLoading">
+        <i class="fas fa-upload"></i>
+        <span>{{ isLoading ? 'Uploading...' : 'Upload File' }}</span>
+      </button>
+      <button 
+        (click)="cancel()" 
+        class="btn btn-secondary"
+        [disabled]="isLoading">
+        <i class="fas fa-times"></i>
+        <span>Cancel</span>
+      </button>
+    </div>
+  </div>
+</div>

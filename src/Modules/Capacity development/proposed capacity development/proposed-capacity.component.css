@@ -1,0 +1,247 @@
+/* =========================================================
+   1. LAYOUT & SPACING
+   ========================================================= */
+:host {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-layout {
+  display: flex;
+  width: 75%;
+  height: 100%;
+  background-color: #f1f5f9; /* Light grey background */
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: #1e293b;
+  flex-shrink: 0;
+}
+
+/* Page Content Area */
+.page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  /* Padding creates the gap between the Top Header and the White Box */
+  padding: 30px;
+}
+
+/* *** THE WHITE GRID CONTAINER *** */
+.grid-wrapper {
+  background: white;
+  border-radius: 36px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  flex: -1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  position: relative;
+  padding: 0px;
+  margin-top: -28px;
+  margin-left: -30px;
+}
+/* =========================================================
+   NEW SECTION: HEADER & BREADCRUMB (Image 3 Style)
+   ========================================================= */
+.custom-header-container {
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.main-component-title {
+  text-align: center;
+  color: #1e293b;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 5px;
+}
+
+.orange-vertical-bar {
+  width: 4px;
+  height: 20px;
+  background-color: #f97316; /* Theme Orange */
+  border-radius: 4px;
+}
+
+.breadcrumb-text {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.active-crumb {
+  color: #f97316;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   FIXED SECTION 2: BUTTON SCOPING & PAGINATION ARROWS
+   ========================================================= */
+
+/* Target TOP buttons only (stops them from affecting pagination) */
+::ng-deep app-custom-grid .card-header button {
+  font-size: 0 !important; 
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background-color: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   2. BUTTON STYLING (White Backgrounds + Colored Icons)
+   ========================================================= */
+
+/* General Button Reset inside the Grid */
+::ng-deep app-custom-grid .card-header button { 
+  font-size: 0 !important; /* Hide text */
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #ffffff !important; /* FORCE WHITE BACKGROUND */
+  margin-left: 10px;
+  position: relative;
+  transition: all 0.2s ease;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+  ::ng-deep app-custom-grid button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+
+  /* --- BUTTON 1: ADD NEW (Blue) --- */
+  ::ng-deep app-custom-grid .card-header button:nth-of-type(1)
+  {
+    border: 1px solid #6366f1 !important;
+  }
+
+::ng-deep app-custom-grid .card-header button:nth-of-type(1)::before {
+      content: "\2b"; /* Plus */
+      font-family: "FontAwesome", sans-serif;
+      font-size: 18px;
+      color: #6366f1;
+      font-weight: bold;
+    }
+
+  /* --- BUTTON 2: PRINT (ORANGE) --- */
+  ::ng-deep app-custom-grid .card-header button:nth-of-type(2)  {
+    border: 1px solid #f97316 !important;
+  }
+
+    ::ng-deep app-custom-grid .card-header button:nth-of-type(2) ::after {
+      content: "\f02f"; /* Print Icon */
+      font-family: "Font Awesome 6 Free", "FontAwesome";
+      font-size: 16px;
+      color: #f97316 !important; /* Orange Icon */
+      position: absolute;
+    }
+    /* Fallback */
+    ::ng-deep app-custom-grid .card-header button:nth-of-type(2) ::before {
+      content: "P";
+      font-size: 16px;
+      color: #f97316;
+      font-weight: bold;
+    }
+
+  /* --- BUTTON 3: EXCEL (Green) --- */
+  ::ng-deep app-custom-grid .card-header button:nth-of-type(3) {
+    border: 1px solid #10b981 !important;
+  }
+
+    ::ng-deep app-custom-grid button:nth-of-type(3)::after {
+      content: "\f1c3"; /* Excel Icon */
+      font-family: "Font Awesome 6 Free", "FontAwesome";
+      font-size: 16px;
+      color: #10b981 !important;
+      position: absolute;
+    }
+
+  /* --- BUTTON 4: PDF (Red) --- */
+  ::ng-deep app-custom-grid .card-header button:nth-of-type(4)  {
+    border: 1px solid #ef4444 !important;
+  }
+
+    ::ng-deep app-custom-grid .card-header button:nth-of-type(4) ::after {
+      content: "\f1c1"; /* PDF Icon */
+      font-family: "Font Awesome 6 Free", "FontAwesome";
+      font-size: 16px;
+      color: #ef4444 !important;
+      position: absolute;
+    }
+
+/* =========================================================
+   3. TABLE STYLING (Orange Header)
+   ========================================================= */
+
+/* Fix the Title Spacing */
+::ng-deep app-custom-grid h3,
+::ng-deep app-custom-grid .card-title {
+  margin-bottom: 0 !important;
+  color: #334155;
+  font-weight: 700;
+}
+
+/* TABLE HEADER (TH) - THE ORANGE COLOR */
+::ng-deep .grid-wrapper th {
+  background-color: #e79b57 !important; /* REQUESTED ORANGE */
+  color: #ffffff !important; /* White text to match the orange */
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  padding: 16px !important;
+  text-align: center !important;
+  border: none;
+}
+
+  /* Rounded corners for the header row */
+  ::ng-deep .grid-wrapper th:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  ::ng-deep .grid-wrapper th:last-child {
+    border-top-right-radius: 8px;
+  }
+
+/* TABLE CELLS (TD) */
+::ng-deep .grid-wrapper td {
+  padding: 14px !important;
+  text-align: center !important;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+/* Zebra Stripes (Light Grey) */
+::ng-deep .grid-wrapper tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover Row Effect */
+::ng-deep .grid-wrapper tr:hover td {
+  background-color: #fff7ed; /* Very light orange tint on hover */
+  color: #c2410c;
+}

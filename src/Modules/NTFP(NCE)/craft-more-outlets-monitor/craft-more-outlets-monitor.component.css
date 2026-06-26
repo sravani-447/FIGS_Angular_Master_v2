@@ -1,0 +1,149 @@
+/* Custom Popup Styling */
+.custom-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+
+.custom-modal {
+  background: white;
+  width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  background-color: #5b62f4; /* Match your app theme */
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-primary { background-color: #5b62f4; color: white; border: none; }
+.btn-secondary { background-color: #64748b; color: white; border: none; }
+
+
+
+
+/* The background overlay */
+.custom-modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The modal box */
+.modal-content {
+    background-color: #fff;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 12px; /* Rounded corners like the picture */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Clips the gradient header to the rounded corners */
+    position: relative;
+    border: none;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Matching the Gradient Header from the picture */
+.modal-content h3 {
+    margin: 0;
+    padding: 20px 30px;
+    background: linear-gradient(to right, #5CB9F2, #F5AF19); /* Blue to Orange gradient */
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Styling the table inside the modal */
+.modal-content .table {
+    margin: 30px;
+    width: calc(100% - 60px);
+    border-collapse: collapse;
+}
+
+/* Uppercase Labels (Header cells) matching the picture's label style */
+.modal-content thead tr {
+    background-color: transparent !important; /* Overriding the inline #333 */
+}
+
+.modal-content th {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #999; /* Grey labels from the picture */
+    letter-spacing: 1px;
+    text-align: center;
+    border: none;
+    padding-bottom: 10px;
+}
+
+/* Table body row styling */
+.modal-content td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #eee;
+    color: #333;
+    font-size: 14px;
+}
+
+/* The "Close" button matching the green "Update" button from the picture */
+.modal-content .btn-danger {
+    float: right;
+    margin: 0 30px 30px 0;
+    background-color: #10B981 !important; /* Emerald Green */
+    border: none;
+    color: white;
+    padding: 10px 35px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+    transition: background 0.3s ease;
+}
+
+.modal-content .btn-danger:hover {
+    background-color: #059669 !important;
+}

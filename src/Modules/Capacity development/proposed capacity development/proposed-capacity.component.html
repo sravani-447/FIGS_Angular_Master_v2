@@ -1,0 +1,13 @@
+<app-custom-grid 
+    title="Proposed Capacity Development"
+    [columns]="columns"
+    [data]="data"
+    [dialogFields]="dialogFields"
+    [showAdd]="showadd"
+    [showprintbuttons]="true"
+    (onSaveData)="SaveRecord($event)"
+    (fieldChange)="participantsChange($event)"
+    (actionClicked)="onGridAction($event)" 
+    (onUpdateView)="handleStatusUpdate($event)"
+    [Modulewiserejectbox]="true">
+</app-custom-grid>

@@ -1,0 +1,308 @@
+.page-body {
+    padding: 20px 40px;
+    background-color: #fcfcfc;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- HEADER CHANGES --- */
+.header-container {
+    display: flex;
+    flex-direction: column; /* Stacks Title on top of Breadcrumbs */
+    align-items: flex-start;
+    margin-bottom: 30px;
+     width: 100%;   
+}
+
+.page-title {
+    font-size: 32px;
+    color: #34495e;
+    font-weight: 700;
+    margin: 0 0 10px 0; /* Space below title */
+   text-align: center;      /* Centers the text */
+    width: 100%;            
+}
+
+.breadcrumb-section {
+    display: flex;
+    align-items: center;
+}
+
+.orange-line {
+    width: 4px;
+    height: 20px; /* Shorter line to match breadcrumb height */
+    background-color: #f39c12;
+    margin-right: 12px;
+}
+
+.breadcrumbs {
+    font-size: 14px;
+    color: #888;
+}
+
+.breadcrumbs .active {
+    color: #f39c12;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- CARD STYLING --- */
+.ui-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+.card-blue-top { border-top: 4px solid #3498db; }
+.card-orange-top { border-top: 4px solid #f39c12; }
+
+/* --- FILTER ROW --- */
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 10px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-group label {
+    font-size: 11px;
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.ui-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px; /* Smoother corners */
+    color: #7f8c8d;
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    /* These two lines center the text inside the box */
+    text-align: center;
+    text-align-last: center; 
+
+    /* Removes the default browser arrow to allow custom styling */
+    appearance: none;
+    -webkit-appearance: none;
+    
+    /* Adds a subtle custom arrow (the blue triangle look) */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%233498db%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%;
+    background-size: 12px auto;
+}
+
+.ui-select:focus {
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.ui-select option {
+    text-align: center;
+    padding: 10px;
+}
+
+.list-title {
+    font-size: 14px; /* Decreased from 16px */
+    color: #2c3e50;
+    font-weight: 600; /* Slightly lighter than 700 */
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* --- TABLE & SCROLLBAR CHANGES --- */
+.table-container {
+    overflow-x: auto; /* Enables horizontal scroll */
+    width: 100%;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1800px; /* Forces table to be wide so scrollbar appears when zoomed */
+}
+
+.data-table thead th {
+    background-color: #f39c12;
+    color: white;
+    padding: 12px 15px;
+    font-size: 12px;
+    text-align: left;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.data-table tbody td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 13px;
+    color: #333;
+}
+
+/* THIN CUSTOM SCROLLBAR */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 6px; /* Very thin scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #f39c12; /* Turns orange on hover */
+}
+
+/* Firefox Support */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+}
+
+/* Search Box */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-field {
+    width: 250px;
+    padding: 8px 15px 8px 35px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.search-wrapper { position: relative; }
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+.text-center { text-align: center; }
+
+
+.dropdown {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #dce0e4; /* Forces the box border */
+  border-radius: 6px;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; /* Centers text horizontally */
+  align-items: center;
+  min-height: 42px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.dropdown:hover {
+  border-color: #3498db;
+}
+
+.dropdown .text {
+  font-size: 13px;
+  color: #2c3e50;
+}
+
+.dropdown .arrow {
+  position: absolute;
+  right: 12px;
+  color: #3498db;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Positions exactly below the box */
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Floating Shadow */
+  margin-top: 5px;
+  z-index: 9999; /* Forces it to stay on top of everything */
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.dropdown-menu p {
+  padding: 12px;
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  text-align: center; /* Centered items like Pic 1 */
+  border-bottom: 1px solid #f9f9f9;
+}
+.dropdown-menu p:hover {
+  background-color: #3498db; /* The Blue Hover */
+  color: #ffffff;
+}
+/* Ensure the arrow stays to the right even if text is centered */
+.arrow {
+  position: absolute;
+  right: 15px;
+}
+
+/* Ensure the wrapper handles the grid column properly */
+.dropdown-wrapper {
+  position: relative; /* CRITICAL: Keeps the menu attached to the box */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers label and box */
+}
+
+.dropdown-wrapper label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #34495e;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Styling for the first 'Select' option */
+.dropdown-menu p.default-option {
+  color: #95a5a6; /* Lighter grey for the static text */
+  border-bottom: 2px solid #f1f1f1; /* The thin line separator */
+  font-style: italic;
+  background-color: #fafafa; /* Subtle background color difference */
+}
+
+/* Ensure the hover effect still works nicely */
+.dropdown-menu p.default-option:hover {
+  background-color: #3498db;
+  color: #ffffff;
+}
+
+/* Small improvement: add a small margin to the list items after the separator */
+.dropdown-menu p:not(.default-option) {
+  font-weight: 500;
+}

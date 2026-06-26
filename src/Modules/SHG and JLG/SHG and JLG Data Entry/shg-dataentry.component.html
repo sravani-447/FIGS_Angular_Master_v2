@@ -1,0 +1,448 @@
+<div class="component-wrapper">
+
+  <!-- ================= HEADER ================= -->
+  <div class="custom-header-container" *ngIf="!isAddingNew && !disablebox">
+    <h1 class="main-component-title">SHG-JlG Data Entry</h1>
+
+    <div class="header-actions-row">
+      <div class="breadcrumb-wrapper">
+        <div class="orange-vertical-bar"></div>
+        <p class="breadcrumb-text-styled">
+          <span class="active-crumb">Shg Data Entry</span>
+        </p>
+      </div>
+
+      <button class="btn-blue-fill" (click)="toggleAddNew(true)" *ngIf="!isViewPopupOpen">
+        <i class="fa fa-plus"></i> Add New
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= GRID ================= -->
+  <div *ngIf="!isAddingNew && !disablebox && !isViewPopupOpen" class="view-container">
+    <app-custom-grid title="SHG list" [columns]="columns" [data]="data" [showAdd]="false" [showprintbuttons]="true"
+      (actionClicked)="onGridAction($event)">
+    </app-custom-grid>
+  </div>
+ <!-- ================= VIEW SECTION: NEAT ALIGNMENT ================= -->
+<div *ngIf="isViewPopupOpen" class="animated-fade">
+    
+    <!-- 1. Top Section: 3-Column Grid -->
+    <div class="jfmc-container">
+      
+      <!-- General Info -->
+      <div class="jfmc-card">
+        <h3 class="card-title">General Info</h3>
+        <div class="card-row" *ngFor="let item of generalInfoList">
+          <span class="label">{{item.label}}</span>
+          <span class="value">{{item.value || 'N/A'}}</span>
+        </div>
+      </div>
+
+      <!-- Household Details -->
+      <div class="jfmc-card">
+        <h3 class="card-title">Household Details</h3>
+        <div class="card-row" *ngFor="let item of microplanList">
+          <span class="label">{{item.label}}</span>
+          <span class="value">{{item.value || 'N/A'}}</span>
+        </div>
+      </div>
+
+      <!-- Bank Details -->
+      <div class="jfmc-card" *ngIf="bankDetails.length">
+        <h3 class="card-title">Bank Details</h3>
+        <div class="card-row"><span class="label">Bank</span><span class="value">{{bankDetails[0]?.name_of_bank || 'N/A'}}</span></div>
+        <div class="card-row"><span class="label">Branch</span><span class="value">{{bankDetails[0]?.name_of_branch || 'N/A'}}</span></div>
+        <div class="card-row"><span class="label">A/C No</span><span class="value">{{bankDetails[0]?.account_number || 'N/A'}}</span></div>
+      </div>
+    </div>
+
+    <!-- 2. Member Details: Table Layout -->
+    <div class="member-table-container">
+      <div class="table-header-row">
+        <h3>Member Details</h3>
+        <button class="add-btn" (click)="openMemberPopup()">+ Add Member</button>
+      </div>
+      
+      <table class="member-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Aadhar</th>
+            <th>Monthly Saving</th>
+            <th>Gender</th>
+            <th>Joining Date</th>
+              <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of membersList">
+            <td>{{m.name || 'N/A'}}</td>
+            <td>{{m.designation || 'N/A'}}</td>
+            <td>{{m.aadhar_no || 'N/A'}}</td>
+            <td>{{m.month_saving_amount || '0'}}</td>
+            <td>{{m.gender || 'N/A'}}</td>
+             <td>{{m.date_of_joining || 'N/A'}}</td>
+      
+      <!-- Action Buttons: Only delete button remains -->
+      <td>
+        <button class="btn-icon-delete" (click)="DeletehhChild(m)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ================= ADD MEMBER POPUP ================= -->
+<div class="popup-overlay" *ngIf="showMemberPopup" (click)="closePopup()">
+  <div class="popup-box" (click)="$event.stopPropagation()">
+
+    <div class="popup-header">
+      <h3>Add Member</h3>
+      <span class="close-btn" (click)="closePopup()">✖</span>
+    </div>
+
+    <div class="popup-body">
+      
+      <!-- Name -->
+      <div class="form-row">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="newMember.name">
+      </div>
+
+      <!-- Designation (Moved here) -->
+      <div class="form-row">
+        <label>Designation</label>
+        <select [(ngModel)]="newMember.designation">
+          <option value="">Select</option>
+          <option value="President">President</option>
+          <option value="Secretary">Secretary</option>
+          <option value="Treasurer">Treasurer</option>
+          <option value="Member">Member</option>
+        </select>
+      </div>
+
+      <!-- Aadhar (Fixed to 12 digits) -->
+     <div class="form-row">
+  <label>Aadhar</label>
+ <input type="text" 
+       maxlength="12" 
+       [(ngModel)]="newMember.aadhar_no" 
+       (input)="onlyDigits($event)" 
+       name="aadhar_no"
+       placeholder="Enter 12 digit Aadhar">
+
+  <!-- Check length directly. Only show if user typed something and it's not 12 -->
+  <small style="color:red; display: block;" *ngIf="newMember.aadhar_no && newMember.aadhar_no.length !== 12">
+    Aadhar must be 12 digits (Currently: {{newMember.aadhar_no.length}})
+  </small>
+</div>
+
+      <div class="form-row">
+        <label>Saving</label>
+        <input type="number"[(ngModel)]="newMember.month_saving_amount">
+      </div>
+
+      <div class="form-row">
+        <label>Gender</label>
+        <select [(ngModel)]="newMember.gender">
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Joining Date</label>
+        <input type="date" [(ngModel)]="newMember.date_of_joining">
+      </div>
+    </div>
+
+    <div class="popup-footer">
+      <button class="save-btn" (click)="saveMember()">Save</button>
+      <button class="cancel-btn" (click)="closePopup()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+    <div style="padding: 20px;">
+      <button class="cancel-btn" (click)="closeViewPopup()">Back</button>
+    </div>
+</div>
+
+
+  <!-- ================= WIZARD ================= -->
+  <div *ngIf="isAddingNew" class="wizard-card animated-entry">
+
+    <!-- HEADER -->
+    <div class="wizard-header brand-gradient">
+      <div class="header-content">
+        <h3>SHG-Data Entry</h3>
+      </div>
+      <button class="btn-close-wizard" (click)="toggleAddNew(false)">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <!-- STEPPER -->
+    <div class="stepper">
+      <div class="step" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+        <span class="step-circle">
+          <i *ngIf="currentStep > 1" class="fa fa-check"></i>
+          <span *ngIf="currentStep <= 1">1</span>
+        </span>
+        <span class="step-label">General</span>
+      </div>
+
+      <div class="step-line" [class.filled]="currentStep > 1"></div>
+
+      <div class="step" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+        <span class="step-circle">
+          <i *ngIf="currentStep > 2" class="fa fa-check"></i>
+          <span *ngIf="currentStep <= 2">2</span>
+        </span>
+        <span class="step-label">Bank Status</span>
+      </div>
+
+      <div class="step-line" [class.filled]="currentStep > 2"></div>
+
+      <div class="step" [class.active]="currentStep === 3">
+        <span class="step-circle">3</span>
+        <span class="step-label">House Hold Details</span>
+      </div>
+    </div>
+
+    <!-- ================= STEP 1 ================= -->
+    <div class="step-content" *ngIf="currentStep === 1">
+      <div class="training-grid">
+
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" class="form-input" [(ngModel)]="session.name" />
+        </div>
+
+        <div class="form-group">
+          <label>Scheme Type</label>
+          <app-custom-dropdown [options]="schemaMaster" displayKey="scheme_name" valueKey="id" [(ngModel)]="schemaname"
+            (selectionChange)="selectedschematype($event)">
+          </app-custom-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label>Type</label>
+          <app-custom-dropdown [options]="categoryofactivity" displayKey="name" valueKey="name"
+            [(ngModel)]="categoryofactivityID" (selectionChange)="selectedcatgeoryType($event)">
+          </app-custom-dropdown>
+        </div>
+
+         <div class="form-group">
+      <label>Date of Formation</label>
+      <input type="date" class="form-input elegant-date" [(ngModel)]="session.date_of_formation" />
+    </div>
+
+        <div class="form-group">
+          <label>District</label>
+          <app-custom-dropdown [options]="districttype" displayKey="districttype" valueKey="districttype"
+            [(ngModel)]="selectedDistrict" (selectionChange)="onDistrictChange($event)">
+          </app-custom-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label>Sub Division</label>
+          <app-custom-dropdown [options]="division" displayKey="subdivision_name" valueKey="subdivision_name"
+            [(ngModel)]="divisionchange" (selectionChange)="subdivisionchange($event)">
+          </app-custom-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label>Range</label>
+          <app-custom-dropdown [options]="range" displayKey="rangename" valueKey="rangename" [(ngModel)]="rangechanged"
+            (selectionChange)="rangechange($event)">
+          </app-custom-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label>Beat Type</label>
+          <app-custom-dropdown [options]="beat" displayKey="beat" valueKey="beat" (selectionChange)="Beattype($event)">
+          </app-custom-dropdown>
+        </div>
+
+        <div class="form-group">
+          <label>JFMC/EDC</label>
+          <app-custom-dropdown [options]="Jfmc_edc" displayKey="Jfmc_edc" valueKey="Jfmc_edc"
+            (selectionChange)="Jfmc_edctype($event)">
+          </app-custom-dropdown>
+        </div>
+
+      </div>
+
+      <div class="center-btn">
+        <button class="btn-prev" (click)="toggleAddNew(false)">Cancel</button>
+        <button class="btn-next" (click)="nextStep()">Next</button>
+      </div>
+    </div>
+
+    <!-- ================= STEP 2 ================= -->
+    <div class="step-content" *ngIf="currentStep === 2">
+
+      <div class="training-grid">
+        <div class="form-group">
+          <label>Bank Name</label>
+          <input class="form-input" [(ngModel)]="session.nameBank" />
+        </div>
+
+        <div class="form-group">
+          <label>Branch</label>
+          <input class="form-input" [(ngModel)]="session.nameBranch" />
+        </div>
+
+        <div class="form-group">
+          <label>Account Number</label>
+          <input class="form-input" [(ngModel)]="session.accountNumber" />
+        </div>
+
+        <div class="form-group">
+          <label>IFSC</label>
+          <input class="form-input" [(ngModel)]="session.Ifsc" />
+        </div>
+      </div>
+
+
+
+      <div class="center-btn">
+        <button class="btn-prev" (click)="prevStep()">Previous</button>
+        <button class="btn-next" (click)="nextStep()">Next</button>
+      </div>
+
+    </div>
+
+    <!-- ================= STEP 3 ================= -->
+    <div class="step-content" *ngIf="currentStep === 3">
+
+      <div class="training-grid">
+
+        <div class="form-group">
+          <label>SC MEMBERS NUMBERS</label>
+          <input type="text" class="form-input" [(ngModel)]="session.noofSCMembers" (keypress)="onlyNumber($event)" />
+        </div>
+
+        <div class="form-group">
+          <label>ST MEMBERS NUMBERS</label>
+          <input type="text" class="form-input" [(ngModel)]="session.noofSTMembers" (keypress)="onlyNumber($event)" />
+        </div>
+
+        <div class="form-group">
+          <label>MINORITY NUMBERS</label>
+          <input type="text" class="form-input" [(ngModel)]="session.minorityMemebers"
+            (keypress)="onlyNumber($event)" />
+        </div>
+
+        <div class="form-group">
+          <label>GENERAL NUMBERS</label>
+          <input type="text" class="form-input" [(ngModel)]="session.generalNumber" (keypress)="onlyNumber($event)" />
+        </div>
+
+      </div>
+
+      <div class="member-container">
+
+        <div class="member-card">
+
+          <!-- TITLE -->
+          <div class="member-header">
+            <h3>Member Details</h3>
+          </div>
+
+          <!-- TOP CONTROLS -->
+          <div class="member-controls">
+
+            <div class="member-count-box">
+              <label>No. of Members</label>
+              <input type="number" [(ngModel)]="memberCount">
+            </div>
+
+            <div class="member-btns">
+              <button class="btn-add" (click)="addMember()">＋</button>
+              <button class="btn-remove" (click)="removeMember()">－</button>
+            </div>
+
+          </div>
+
+          <!-- TABLE -->
+          <div class="table-wrapper">
+            <table class="member-table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Designation</th>
+                  <th>Aadhar Number</th>
+                  <th>Monthly Saving</th>
+                  <th>Gender</th>
+                  <th>Date of Joining</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let m of membersList; let i = index">
+
+                  <td>
+                    <input type="text" [(ngModel)]="m.name" placeholder="Enter name">
+                  </td>
+
+                  <td>
+                    <select [(ngModel)]="m.designation">
+                      <option value="">Select</option>
+                      <option>Chairman</option>
+                      <option>Secretary</option>
+                      <option>Member</option>
+                    </select>
+                  </td>
+
+                  <td>
+                    <input type="text" maxlength="12" [(ngModel)]="m.aadhar_no" (keypress)="onlyNumber($event)"
+                      placeholder="Aadhar No">
+                  </td>
+
+                  <td>
+                    <input type="number" [(ngModel)]="m.month_saving_amount" (keypress)="onlyNumber($event)"
+                      placeholder="Amount">
+                  </td>
+
+                  <td>
+                    <select [(ngModel)]="m.gender">
+                      <option value="">Select</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                      <option>Other</option>
+                    </select>
+                  </td>
+
+                  <td>
+                    <input type="date" [(ngModel)]="m.joinDate">
+                  </td>
+
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+
+          <div class="center-btn">
+            <button class="btn-prev" (click)="prevStep()">Previous</button>
+            <button class="btn-finish" (click)="save()">
+              <span class="btn-text">Finish & Save</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

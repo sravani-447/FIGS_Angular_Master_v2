@@ -1,0 +1,150 @@
+/* ================= PAGE & CARD LAYOUT ================= */
+.feedback-page-wrapper {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.feedback-card {
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.animated-entry { animation: slideUp 0.4s ease-out; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+
+/* ================= HEADER (Brand Gradient) ================= */
+.card-header.brand-gradient {
+  background: linear-gradient(135deg, #4FACFE 0%, #f2994a 100%);
+  padding: 25px 30px;
+  color: white;
+}
+
+.card-header h2 { margin: 0; font-size: 22px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.card-header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 13px; font-weight: 400; }
+
+
+/* ================= BODY & INPUTS ================= */
+.card-body { padding: 30px; }
+
+.section-label {
+  display: block; font-size: 16px; font-weight: 700; color: #334155;
+  margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;
+  border-left: 4px solid #F09440; padding-left: 10px; /* Orange accent */
+}
+
+.form-group label {
+  display: block; font-size: 12px; font-weight: 700; color: #64748b;
+  margin-bottom: 6px; text-transform: uppercase;
+}
+
+/* Common Input Style */
+.form-input, .form-textarea {
+  width: 100%; border: 1px solid #e2e8f0; background: #fff;
+  padding: 10px 15px; border-radius: 8px; font-size: 14px; color: #334155;
+  transition: all 0.2s; font-family: inherit;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #4FACFE; box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.15); outline: none;
+}
+
+/* Select Dropdown Arrow Fix */
+.elegant-select-wrapper { position: relative; }
+.form-input { appearance: none; -webkit-appearance: none; cursor: pointer; }
+.arrow-icon {
+  position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+  color: #94a3b8; pointer-events: none; font-size: 12px;
+}
+
+/* ================= RATING SECTION (The Magic Part) ================= */
+.rating-legend { font-size: 12px; color: #94a3b8; font-style: italic; margin-bottom: 15px; }
+
+.rating-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 25px 40px;
+}
+@media(max-width: 768px) { .rating-grid { grid-template-columns: 1fr; } }
+
+.rating-item { display: flex; flex-direction: column; gap: 8px; }
+.question-text { font-size: 13px; color: #334155; font-weight: 500; }
+
+.rating-options { display: flex; gap: 10px; }
+
+/* Custom Radio Circles */
+.radio-circle { cursor: pointer; position: relative; }
+.radio-circle input { display: none; } /* Hide default radio */
+
+.circle-number {
+  width: 35px; height: 35px; border-radius: 50%;
+  background: #f1f5f9; border: 1px solid #cbd5e1;
+  color: #64748b; font-weight: 600; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-circle:hover .circle-number { border-color: #F09440; color: #F09440; background: #fff7ed; }
+
+/* Active State (Checked) - Turns Orange */
+.radio-circle input:checked + .circle-number {
+  background: #F09440; border-color: #F09440; color: white;
+  transform: scale(1.1); box-shadow: 0 4px 10px rgba(240, 148, 64, 0.3);
+}
+
+.mt-3 { margin-top: 20px; }
+.divider { border: 0; height: 1px; background: #e2e8f0; margin: 30px 0; }
+
+
+/* ================= TEXT AREAS & FOOTER ================= */
+.text-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+@media(max-width: 900px) { .text-grid { grid-template-columns: 1fr; } }
+
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.card-footer {
+  padding: 20px 30px; background: #f8fafc; border-top: 1px solid #e2e8f0;
+  display: flex; justify-content: flex-end;
+}
+
+.btn-save-feedback {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Green Gradient */
+  /* OR Use Brand Gradient: background: linear-gradient(135deg, #4FACFE 0%, #f2994a 100%); */
+  
+  color: white; border: none; padding: 12px 35px;
+  border-radius: 6px; font-weight: 600; font-size: 14px;
+  cursor: pointer; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transition: 0.2s; display: flex; align-items: center; gap: 8px;
+}
+
+.btn-save-feedback:hover { transform: translateY(-2px); opacity: 0.95; }
+
+
+/* Inside training-feedback.component.css */
+
+.close-icon-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #fff; /* White text to match brand-gradient text usually */
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-icon-btn:hover {
+  opacity: 1;
+  transform: rotate(90deg) scale(1.1); /* Nice rotation effect on hover */
+}

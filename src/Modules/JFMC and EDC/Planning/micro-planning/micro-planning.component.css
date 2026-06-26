@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:host {
+  font-family: 'Poppins', sans-serif;
+  display: block;
+}
+
+/* --- Wrapper & Background --- */
+.magic-forest-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  /* background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
+              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560');
+ 
+              background-size: cover; */
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.glass-content-layer {
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.35); 
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 20px 40px; /* Adjusted padding */
+}
+
+/* --- Header --- */
+.page-header { margin-bottom: 20px; }
+.page-title { 
+  font-size: 28px; 
+  font-weight: 800; 
+  color: #000000; 
+  margin: 0; 
+}
+.breadcrumb-container { display: flex; align-items: center; gap: 12px; margin-top: 5px; }
+.v-accent-bar { width: 5px; height: 18px; background: #f2994a; border-radius: 2px; }
+.breadcrumb-nav { font-size: 14px; font-weight: 700; color: #000000; }
+.breadcrumb-nav .active { color: #f2994a; }
+
+/* --- Toolbar & Inputs --- */
+.glass-card, .toolbar-panel {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.toolbar-inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 15px 25px; 
+  background: rgba(255, 255, 255, 0.9); 
+  border-radius: 20px;
+  gap: 20px;
+}
+
+.upload-controls { 
+  display: flex; 
+  gap: 15px; 
+  flex-wrap: wrap; /* Allows wrapping if screen is small */
+  flex: 1;
+}
+
+.glass-tile {
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  background: white;
+  border: 2px solid #edf2f7; 
+  padding: 8px 15px; 
+  border-radius: 12px;
+  cursor: pointer; 
+  flex: 1; /* Distribute space evenly */
+  min-width: 160px; /* Minimum width before wrapping */
+  transition: 0.3s;
+}
+
+.glass-tile:hover { border-color: #f2994a; }
+.glass-tile i { font-size: 20px; color: #27ae60; }
+.tile-info strong { display: block; font-size: 12px; color: #1a202c; font-weight: 800; white-space: nowrap; }
+.file-name { 
+  font-size: 10px; 
+  color: #718096; 
+  font-weight: 600; 
+  display: block; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  max-width: 120px;
+}
+
+/* --- Go Button --- */
+.btn-go-orange {
+  background: #f2994a; color: white; border: none; width: 80px; height: 50px;
+  border-radius: 12px; font-weight: 800; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.dotted-loader {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 3px dotted transparent;
+  background-image: linear-gradient(white, white), linear-gradient(135deg, #4FACFE 0%, #f2994a 100%);
+  background-origin: border-box; background-clip: content-box, border-box;
+  animation: spin 1.5s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* --- Layout Grid --- */
+.main-layout { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 30px; height: calc(100vh - 220px); }
+
+/* --- Card Headers --- */
+.card-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 12px 20px; 
+  background: rgba(237, 242, 247, 0.5); 
+  border-bottom: 1px solid #edf2f7;
+}
+.left-title { font-size: 11px; font-weight: 800; color: #1a202c; letter-spacing: 0.5px; }
+
+/* --- Map --- */
+#map { height: 100%; width: 100%; min-height: 400px; background: #e2e8f0; }
+.glass-card.map-view, .glass-card.grid-view { 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%;
+}
+
+/* --- Table & Downloads --- */
+.table-container {
+    flex: 1;
+    overflow: auto;
+    padding: 10px;
+}
+
+.download-section {
+    padding: 15px 20px;
+    background: #0f2a1d; /* Dark background like image */
+    display: flex;
+    gap: 15px;
+    margin-top: auto; /* Pushes to bottom */
+}
+
+.btn-dark-download {
+    background: #1e3a29; /* Slightly lighter dark green/black */
+    color: white;
+    border: 1px solid #2f4f3a;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+}
+
+.btn-dark-download:hover {
+    background: #2f4f3a;
+}
+
+/* --- Helper for internal grid styles --- */
+::ng-deep .selection-grid-context .card-title { display: none !important; }
+::ng-deep .selection-grid-context .fa-print, ::ng-deep .selection-grid-context .fa-file-excel-o { display: none !important; }
+
+
+.glass-card.map-view {
+  transition: all 0.3s ease-in-out; /* Smooth animation */
+}
+
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #ffffff; 
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px 12px 0 0;
+}
+
+.left-title {
+  font-weight: 800;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.map-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-download-kml, 
+.btn-download-shp {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn-download-kml:hover, 
+.btn-download-shp:hover {
+  opacity: 0.85;
+}
+
+/* Blue KML Button */
+.btn-download-kml {
+  background-color: #52a8ff; 
+}
+
+/* Green SHP Button */
+.btn-download-shp {
+  background-color: #28b868; 
+}

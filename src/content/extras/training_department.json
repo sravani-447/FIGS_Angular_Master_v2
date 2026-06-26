@@ -1,0 +1,32 @@
+[
+    {
+      "id": 1,
+      "training_id": 1,
+      "name": "Nisit",
+      "age": 32,
+      "gender": "Male",
+      "aadhar_no": 123456789124,
+      "mobile_no": 7091365555,
+      "image1": "",
+      "image2": "",
+      "comments": "",
+      "is_present": "Y",
+      "created_by": 1,
+      "created_at": ""
+    },
+    {
+      "id": 2,
+      "training_id": 1,
+      "name": "Debasis",
+      "age": 35,
+      "gender": "Male",
+      "aadhar_no": 123456789654,
+      "mobile_no": 7091365556,
+      "image1": "",
+      "image2": "",
+      "comments": "",
+      "is_present": "Y",
+      "created_by": 1,
+      "created_at": ""
+    }
+  ]

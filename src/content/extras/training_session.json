@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "training_id": 1,
+      "name_of_session": "Introduction to Fish Farming",
+      "name_of_resource": "Sonalika Saha",
+      "resource_specilization": "Fishery Expert",
+      "start_date": "22-05-2024 10:30:00",
+      "end_date": "22-05-2023 14:00:00"
+    },
+    {
+      "id": 2,
+      "training_id": 1,
+      "name_of_session": "Theory on Fish Farming",
+      "name_of_resource": "Sonalika Saha",
+      "resource_specilization": "Fishery Expert",
+      "start_date": "22-06-2024 10:30:00",
+      "end_date": "22-06-2023 14:00:00"
+    },
+    {
+      "id": 3,
+      "training_id": 2,
+      "name_of_session": "Introduction to Community Livlihood",
+      "name_of_resource": "Prasenjit Paul",
+      "resource_specilization": "Expert",
+      "start_date": "22-05-2024 10:30:00",
+      "end_date": "22-05-2023 14:00:00"
+    }
+  ]

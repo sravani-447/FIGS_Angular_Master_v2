@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "name": "OFFICERS",
+      "desc": "OFFICERS",
+      "isactive": "TRUE",
+      "participant_type_id": 1
+    },
+    {
+      "id": 2,
+      "name": "STAFF",
+      "desc": "STAFF",
+      "isactive": "TRUE",
+      "participant_type_id": 1
+    },
+    {
+      "id": 3,
+      "name": "PROJECT STAFF",
+      "desc": "PROJECT STAFF",
+      "isactive": "TRUE",
+      "participant_type_id": 1
+    },
+    {
+      "id": 4,
+      "name": "OTHERS",
+      "desc": "OTHERS",
+      "isactive": "TRUE",
+      "participant_type_id": 1
+    },
+    {
+      "id": 5,
+      "name": "JFMC",
+      "desc": "JFMC",
+      "isactive": "TRUE",
+      "participant_type_id": 2
+    },
+    {
+      "id": 6,
+      "name": "EDC",
+      "desc": "EDC",
+      "isactive": "TRUE",
+      "participant_type_id": 2
+    },
+    {
+      "id": 7,
+      "name": "SHG",
+      "desc": "SHG",
+      "isactive": "TRUE",
+      "participant_type_id": 2
+    }
+  ]

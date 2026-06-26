@@ -1,0 +1,1442 @@
+:host {
+  font-family: 'Segoe UI', sans-serif;
+  --primary-color: #4f46e5;
+  --header-orange: #f2994a;
+}
+
+/* ========================================================
+   CRITICAL RESET: Forces Text Buttons to behave
+   ======================================================== */
+.btn-text::before, .btn-text::after,
+.btn-main-add::before, .btn-main-add::after,
+.modal-close-x::before, .modal-close-x::after,
+.btn-icon-toggle::before, .btn-icon-toggle::after,
+.btn-icon-export::before, .btn-icon-export::after { /* Added this to kill the ghosts */
+  content: none !important;
+  display: none !important;
+}
+
+/* CONTAINER */
+.grid-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+/* HEADER */
+.grid-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Top row */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Export buttons row */
+.export-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Actions row */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* SEARCH */
+.search-wrapper {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.search-box {
+  padding: 8px 10px 8px 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 13px;
+  outline: none;
+  width: 180px;
+}
+
+/* ========================================================
+   BUTTON STYLES
+   ======================================================== */
+
+/* FIX 1: MAIN ADD BUTTON (Icon Only - Blue Square) */
+.btn-main-add {
+  width: 38px !important;
+  height: 38px !important;
+  background-color: #3b82f6 !important; /* Blue */
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 !important;
+  font-size: 0 !important; /* Hide any accidental text */
+}
+
+  .btn-main-add i {
+    font-size: 16px !important; /* Icon visible */
+    margin: 0 !important;
+  }
+
+  .btn-main-add:hover {
+    background-color: #2563eb !important;
+  }
+
+/* EXPORT ICONS */
+.btn-icon-export {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 6px !important;
+  background: white !important;
+  cursor: pointer;
+  display: inline-flex !important; /* Ensures centering */
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  transition: all 0.2s;
+  
+  /* IMPORTANT: This fixes the invisible icons */
+  font-size: 16px !important; 
+  padding: 0 !important;
+}
+
+
+  /* Print */
+ .btn-icon-export.print {
+  border: 1px solid #f97316 !important;
+  color: #f97316 !important;
+}
+.btn-icon-export.print:hover {
+  background-color: #fff7ed !important;
+}
+
+    .btn-icon-export.print::before {
+      content: "\f02f";
+      font-family: "FontAwesome";
+      font-size: 16px;
+      color: #f97316;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  /* Excel */
+  .btn-icon-export.excel {
+  border: 1px solid #10b981 !important;
+  color: #10b981 !important;
+}
+
+.btn-icon-export.excel:hover {
+  background-color: #ecfdf5 !important;
+}
+
+    .btn-icon-export.excel::before {
+      content: "\f1c3";
+      font-family: "FontAwesome";
+      font-size: 16px;
+      color: #10b981;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  /* PDF */
+  .btn-icon-export.pdf {
+  border: 1px solid #ef4444 !important;
+  color: #ef4444 !important;
+}
+
+.btn-icon-export.pdf:hover {
+  background-color: #fef2f2 !important;
+}
+
+.btn-icon-export i {
+  font-size: 16px !important; /* Force visible size */
+  color: inherit;
+  display: inline-block;
+  line-height: 1;
+}
+
+    .btn-icon-export.pdf::before {
+      content: "\f1c1";
+      font-family: "FontAwesome";
+      font-size: 16px;
+      color: #ef4444;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+/* ========================================================
+   MODAL STYLES
+   ======================================================== */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-content {
+  background: white;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* MODAL HEADER */
+.modal-header {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+  .modal-header h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+.modal-close-x {
+  background: transparent !important;
+  border: none !important;
+  color: white !important;
+  font-size: 20px !important;
+  cursor: pointer;
+  padding: 0 !important;
+}
+
+/* MODAL BODY */
+.modal-body {
+  padding: 25px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.custom-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.full-span {
+  grid-column: 1 / -1;
+}
+
+.custom-form-group label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.required-star {
+  color: red;
+}
+
+/* INPUTS */
+.custom-form-control {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 10px;
+    background: white; /* Covers chips that slide under the arrow */
+    padding-left: 5px;
+    z-index: 5;
+}
+
+select.custom-form-control {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* MULTISELECT DROPDOWN */
+.dropdown-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown-box label {
+  display: block;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.dropdown-box label:hover {
+  background: #f1f5f9;
+}
+
+.dropdown-box input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* FIX 3: SAVE & CANCEL BUTTONS (Text Alignment) */
+.custom-form-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 15px;
+}
+
+.btn-text {
+  /* Force reset of any icon button styles */
+  font-size: 13px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 24px !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  display: inline-flex !important; /* Aligns text center */
+  align-items: center !important;
+  justify-content: center !important;
+  text-indent: 0 !important;
+  line-height: normal !important;
+}
+
+  .btn-text.cancel {
+    background: white !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #64748b !important;
+  }
+
+    .btn-text.cancel:hover {
+      background: #f1f5f9 !important;
+    }
+
+  .btn-text.save {
+    background: #6366f1 !important;
+    border: 1px solid #6366f1 !important;
+    color: white !important;
+  }
+
+    .btn-text.save:hover {
+      background: #4f46e5 !important;
+    }
+
+/* TABLE */
+.table-wrapper {
+  width: 100%;
+  max-height: 450px;       /* Required for vertical scrollbar */
+  overflow-x: auto;        /* Horizontal scroll */
+  overflow-y: auto;        /* Vertical scroll */
+
+  scrollbar-width: auto;   /* Firefox */
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;   /* vertical */
+  height: 8px;  /* horizontal */
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px; 
+}
+
+th {
+  background-color: var(--header-orange) !important;
+  color: white !important;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px;
+  text-align: left;
+  border: none;
+}
+
+td {
+  padding: 10px;
+  font-size: 13px;
+  color: #334155;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border-top: 1px solid #f1f5f9;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.pagination-controls button:disabled {
+  background: #f8fafc;
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Add this to your existing CSS */
+.header-container {
+  display: flex;
+  flex-direction: column; /* THIS makes buttons go below title */
+  gap: 10px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 10px;
+}
+.btn-icon-toggle {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important; /* Removes the circle shadow/border */
+  color: #6366f1; /* Primary Blue color for arrow */
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.btn-icon-toggle:hover {
+  background-color: transparent !important;
+  opacity: 0.7;
+}
+
+.btn-icon-toggle i {
+  font-size: 14px;
+}
+
+/* TRUNCATED TEXT HOVER STYLE */
+.truncated-text {
+  cursor: help; /* Shows a question mark or info cursor */
+  display: inline-block;
+}
+
+/* 1. HORIZONTAL SCROLLBAR FIX */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scroll */
+  display: block;   /* Important for overflow to work */
+  white-space: nowrap; /* Prevents text wrapping so columns hold width */
+  padding-bottom: 10px; /* Space for the scrollbar */
+}
+
+/* Custom Scrollbar Styling (Optional but nice) */
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc; 
+  border-radius: 4px;
+}
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #aaa; 
+}
+
+/* 2. MODERN ACTION BUTTONS */
+.btn-action.modern-btn {
+  background: transparent;
+  border: 1px solid transparent; /* No border by default */
+  cursor: pointer;
+  padding: 6px 8px; /* Bigger touch target */
+  margin-right: 4px;
+  border-radius: 4px; /* Rounded corners */
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+/* Hover Effect: Light Grey Background & slight lift */
+.btn-action.modern-btn:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Icon scaling */
+.btn-action.modern-btn i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* --- 1. FORCE HORIZONTAL SCROLL --- */
+.table-wrapper {
+  display: block;
+  width: 100%;
+  overflow-x: auto; /* Enables scrollbar */
+  white-space: nowrap; /* Prevents wrapping */
+  padding-bottom: 15px;
+}
+
+/* Scrollbar Styling */
+.table-wrapper::-webkit-scrollbar { height: 10px; }
+.table-wrapper::-webkit-scrollbar-track { background: #f1f1f1; }
+.table-wrapper::-webkit-scrollbar-thumb { background: #bbb; border-radius: 5px; }
+.table-wrapper::-webkit-scrollbar-thumb:hover { background: #888; }
+
+/* --- 2. MODERN ACTION BUTTONS --- */
+.btn-action-modern {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.btn-action-modern:hover {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  border-color: #ccc;
+}
+
+.btn-action-modern i { font-size: 14px; }
+/* BACKDROP */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
+
+/* MAIN MODAL */
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90vh;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  animation: popupFade 0.25s ease-in-out;
+}
+
+/* ANIMATION */
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* HEADER */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #5b5bd6, #6a5af9);
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  background: #ffffff;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #f3f4f6;
+}
+
+/* BODY */
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+/* GRID DATA VIEW */
+.grid-view {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px 1fr;
+  gap: 10px 20px;
+}
+
+.grid-view .label {
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.grid-view .value {
+  color: #111827;
+}
+
+/* STATUS BUTTONS */
+.status-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.status-buttons button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #e5e7eb;
+  transition: 0.2s;
+}
+
+.status-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+.status-buttons button.active:first-child {
+  background: #22c55e;
+  color: white;
+}
+
+.status-buttons button.active:last-child {
+  background: #ef4444;
+  color: white;
+}
+
+/* COMMENT BOX */
+.form-control {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  padding: 8px;
+  margin-top: 10px;
+  resize: none;
+}
+
+/* FOOTER */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 20px;
+  background: #f3f4f6;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* FOOTER BUTTONS */
+.btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-success {
+  background: #10b981;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #059669;
+}
+
+.btn-secondary {
+  background: #d1d5db;
+  color: #111827;
+}
+
+.btn-secondary:hover {
+  background: #9ca3af;
+}
+.view-outline-btn {
+  background: #ffffff;
+  color: #5a67ff;              /* blue text */
+  border: 2px solid #5a67ff;   /* blue border */
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* hover effect */
+.view-outline-btn:hover {
+  background: #5a67ff;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* click effect */
+.view-outline-btn:active {
+  transform: scale(0.96);
+}
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* SUCCESS (Approve) */
+.snackbar-success {
+  background-color: #28a745 !important;   /* Green */
+  color: #ffffff !important;
+  font-weight: 500;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ERROR (Reject) */
+.snackbar-error {
+  background-color: #dc3545 !important;   /* Red */
+  color: #ffffff !important;
+  font-weight: 500;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+.pdf-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+
+/* --- MODERN FILE UPLOAD BOX --- */
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.file-upload-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px dashed #5b62f4; /* Match your blue theme */
+  background-color: #f8fafc;
+  border-radius: 6px;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.file-upload-box:hover {
+  background-color: #eff2fe;
+  border-color: #4338ca;
+}
+
+.file-icon {
+  font-size: 18px;
+  color: #5b62f4;
+}
+
+.file-text {
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Hide the ugly default file input button, stretch it invisibly over the box */
+.file-input-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Style the file name that appears below after selection */
+.selected-file-name {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #10b981; /* Green success color */
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-file-name i {
+  margin-right: 4px;
+}
+
+.custom-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* FORCES 3 COLUMNS IN A SINGLE LINE */
+  gap: 20px;
+}
+
+/* This is the class that makes textareas take up the full row */
+.full-span {
+  grid-column: span 3;
+}
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+
+  #printGrid, #printGrid * {
+    visibility: visible;
+  }
+
+  #printGrid {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  tr {
+    page-break-inside: avoid;   /* ✅ Prevent row split */
+  }
+
+  td, th {
+    border: 1px solid #000;
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  thead {
+    display: table-header-group; /* ✅ Repeat header on each page */
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+}
+
+/* Container to align buttons nicely */
+.action-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Modern Button Base */
+.btn-action-modern {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* Circular */
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+    padding: 0;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* Hover Effects */
+.btn-action-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    filter: brightness(0.95);
+}
+
+/* Click Animation */
+.btn-action-modern:active {
+    transform: translateY(0) scale(0.9);
+}
+
+/* Specific Print Button Styling */
+.btn-print-modern {
+    background-color: #f8f9fa;
+    color: #495057;
+    border-color: #dee2e6;
+}
+
+.btn-print-modern:hover {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+/* Label styling if label exists */
+.btn-label {
+    margin-left: 5px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Ensure the print column is centered */
+.text-center {
+    text-align: left;
+}
+
+/* Base style for all status badges */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    text-transform: uppercase;
+    display: inline-block;
+    font-weight: 400; /* Default weight (Normal) */
+}
+
+/* Specific style for APPROVED */
+.status-badge.approved {
+    font-weight: 800 !important; /* Extra Bold */
+    background-color: #dcfce7;   /* Light Green background */
+    color: #166534;              /* Dark Green text */
+}
+
+/* Specific style for PENDING */
+.status-badge.pending {
+    font-weight: 400 !important; /* Normal Weight */
+    background-color: #fef9c3;   /* Light Yellow background */
+    color: #854d0e;              /* Dark Yellow text */
+}
+
+.bold-approved {
+    font-weight: 800 !important;
+    color: #166534 !important; /* Optional: Makes it a darker green for better visibility */
+}
+
+/* Specific style for REJECTED */
+.status-badge.rejected, .status-badge.no {
+    font-weight: 400 !important;
+    background-color: #fee2e2;   /* Light Red background */
+    color: #991b1b;              /* Dark Red text */
+}
+
+
+/* Container to keep them centered */
+.btn-cell-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Base Modern Style for View/Print */
+.btn-view-modern, .btn-print-modern {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 🔵 VIEW BUTTON: Soft Blue Glassmorphism */
+.btn-view-modern i {
+    color: #007bff !important; /* Force the bright blue color on the icon */
+    font-size: 16px;
+    display: inline-block;
+}
+
+.btn-label {
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.btn-view-modern:hover {
+    background-color: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* 🌑 PRINT BUTTON: Soft Dark Glassmorphism */
+.btn-print-modern {
+    background-color: rgba(52, 58, 64, 0.1);
+    color: #e68231;
+    border: 1px solid rgba(52, 58, 64, 0.1);
+}
+
+.btn-print-modern:hover {
+    background-color: #fff;
+    color: #e68231;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 58, 64, 0.3);
+}
+
+
+/* 🔵 PILL-STYLE VIEW BUTTON */
+.btn-view-pill {
+    background-color: #79AFDE; /* Bright blue from your image */
+    color: #ffffff !important;
+    border: none;
+    border-radius: 50px; /* This creates the pill shape */
+    padding: 6px 20px; /* Width and height padding */
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 157, 255, 0.2);
+    min-width: 80px; /* Ensures it looks like a wide button */
+}
+
+.btn-view-pill:hover {
+    background-color: #007ccb; /* Slightly darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 157, 255, 0.3);
+}
+
+.btn-view-pill i {
+    color: white !important; /* Force white icon */
+    font-size: 14px;
+}
+
+.btn-view-pill span {
+    color: white !important;
+}
+
+/* The Square/Boxy look for Admin Module */
+.btn-action-square {
+    width: 34px;
+    height: 34px;
+    background-color: #e7dfdf;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-action-square:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #e6ecf1;
+}
+
+/* Keep your existing Pill CSS for other modules */
+.btn-view-pill {
+    background-color: #79AFDE;
+    color: white;
+    border-radius: 50px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Chip Container styling */
+.chip-container {
+    width: 100% !important;
+    max-width: 100%;
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Hide anything that overflows */
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0 35px 0 10px !important;
+    position: relative;
+    box-sizing: border-box;
+}
+.chip-wrapper {
+    display: flex;
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow: hidden; /* No scrollbars, just clean truncation */
+    align-items: center;
+    width: 100%;
+}
+.more-indicator {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+.chip-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+.filter-chip {
+    flex-shrink: 0; /* Prevents chips from getting squashed */
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Remove 'x' inside chip */
+.chip-remove {
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.chip-remove:hover {
+    opacity: 1;
+    color: #ef4444; /* Turns red on hover */
+}
+
+/* Dropdown list styling */
+.multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 4px;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8fafc;
+}
+
+.placeholder-text {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Forces Chips to stay horizontal and wrap only when necessary */
+.chip-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* ⬅️ Prevent stacking */
+    overflow-x: auto;  /* ⬅️ Enable horizontal scrolling */
+    gap: 6px;
+    width: 100%;
+    scrollbar-width: none; /* Firefox: hide scrollbar */
+    -ms-overflow-style: none; /* IE/Edge: hide scrollbar */
+    padding-right: 20px; /* Space for the chevron icon */
+    align-items: center;
+}
+.chip-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari: hide scrollbar */
+}
+
+.filter-chip {
+    display: inline-flex; /* Ensures it doesn't take 100% width */
+    align-items: center;
+    background-color: #ebf4ff;
+    color: #2b6cb0;
+    padding: 2px 10px;
+    border-radius: 14px;
+    font-size: 12px;
+    gap: 6px;
+    border: 1px solid #bee3f8;
+    margin: 2px 0; /* Tiny vertical margin for multi-line wrapping */
+}
+
+/* Cleaner Dropdown Option (No Checkbox) */
+.dropdown-item {
+    display: flex;
+    justify-content: space-between; /* Icon on right, Text on left */
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.dropdown-item:hover {
+    background-color: #f8fafc;
+}
+
+/* Highlight selected row */
+.dropdown-item.selected {
+    background-color: #f0f7ff;
+    color: #2b6cb0;
+    font-weight: 600;
+}
+
+.dropdown-item.selected i {
+    font-size: 12px;
+}
+
+/* Ensure dropdown is always on top of other form fields */
+.multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background: white;
+    z-index: 1050; /* High z-index is critical */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+
+/* Container for the popup */
+.year-grid-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 250px;
+  background-color: #052620; /* Dark teal background */
+  border: 1px solid #103a32;
+  z-index: 9999;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  margin-top: 5px;
+}
+
+/* Header with arrows and range */
+.year-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #3b8e7e;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.year-grid-header i { cursor: pointer; padding: 5px; }
+
+/* The 4x3 Grid */
+.year-grid-body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+  gap: 5px;
+  text-align: center;
+}
+
+.year-grid-body div {
+  padding: 8px 0;
+  color: #888;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.year-grid-body div:hover {
+  background-color: #0a4036;
+  color: #fff;
+}
+
+/* Blue selection from your image */
+.selected-year {
+  background-color: #337ab7 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.rejection-history-wrapper {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.rejection-item {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.rejection-item:hover {
+    transform: translateX(5px);
+}
+
+.rejection-timeline {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+
+.rejection-timeline {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #ffffff;
+}
+
+.rejection-timeline::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rejection-timeline::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.rejection-timeline::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
+
+
+

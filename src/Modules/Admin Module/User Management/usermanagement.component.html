@@ -1,0 +1,222 @@
+<!--  MAIN USER GRID -->
+<div class="main-container">
+  <app-custom-grid 
+      title="Add New User" 
+      [columns]="columns" 
+      [data]="data" 
+      [dialogFields]="dialogFields" 
+      [showAdd]="true"
+      [showprintbuttons]="true" 
+      [autoAddJurisdiction]="false" 
+      [usePillView]="false"  
+      (onSaveData)="handleSaveRecord($event)" 
+      (actionClicked)="onGridAction($event)"
+      [editableFields]="['user_name', 'designation_name','contact_number','emailid','display_name','password']"
+      [Modulewiserejectbox]="false" 
+      [viewvisiblity]="false"
+      *ngIf="!showViewModal && !showEditModal && !showJurisdictionModal && !showConfirmModal"
+      (fieldChange)="dropdownchange($event)">
+  </app-custom-grid>
+</div>
+
+<!--  1. VIEW USER MODAL  -->
+<div class="custom-modal-overlay" *ngIf="showViewModal">
+  <div class="custom-modal-content old-green-theme view-modal">
+    <div class="modal-header">
+      <h3>User Info</h3>
+      <button class="close-btn" (click)="showViewModal = false">×</button>
+    </div>
+    <div class="modal-body">
+      <table class="view-table">
+        <tr class="section-title"><td colspan="2">User Details</td></tr>
+        <tr><td class="lbl">Full Name:</td><td class="val">{{viewUserData?.fname}} {{viewUserData?.lname}}</td></tr>
+        <tr><td class="lbl">User Name:</td><td class="val">{{viewUserData?.user_name}}</td></tr>
+        <tr><td class="lbl">Email:</td><td class="val">{{viewUserData?.emailid}}</td></tr>
+        <tr><td class="lbl">Phone:</td><td class="val">{{viewUserData?.contact_number}}</td></tr>
+        <tr><td class="lbl">Designation:</td><td class="val">{{viewUserData?.display_name}}</td></tr>
+        <tr><td class="lbl">Status:</td><td class="val">{{viewUserData?.status}}</td></tr>
+        
+        <tr class="section-title"><td colspan="2">Jurisdiction</td></tr>
+        <tr><td class="lbl">District:</td><td class="val">{{viewUserData?.details?.Jurisdiction?.district?.join(', ') || '--'}}</td></tr>
+        <tr><td class="lbl">Sub-District:</td><td class="val">{{viewUserData?.details?.Jurisdiction?.sub_division?.join(', ') || '--'}}</td></tr>
+        <tr><td class="lbl">Range:</td><td class="val">{{viewUserData?.details?.Jurisdiction?.range?.join(', ') || '--'}}</td></tr>
+        <tr><td class="lbl">Beat:</td><td class="val">{{viewUserData?.details?.Jurisdiction?.beat?.join(', ') || '--'}}</td></tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="showViewModal = false">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!--  2. EDIT USER MODAL  -->
+<div class="custom-modal-overlay" *ngIf="showEditModal">
+  <div class="custom-modal-content old-green-theme edit-modal">
+    <div class="modal-header">
+      <h3>Edit User Details</h3>
+      <button class="close-btn" (click)="showEditModal = false">×</button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form" class="green-form-grid">
+        <div class="form-group">
+          <label>First Name:</label>
+          <input type="text" formControlName="fname" placeholder="Enter first name">
+        </div>
+        <div class="form-group">
+          <label>Last Name:</label>
+          <input type="text" formControlName="lname" placeholder="Enter last name">
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="text" formControlName="email" placeholder="example@gmail.com">
+          <small class="error-msg" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+            Invalid email format
+          </small>
+        </div>
+         <div class="form-group">
+          <label>Mobile:</label>
+          <input type="text" maxlength="10" formControlName="mobile" placeholder="10 digit number">
+          <small class="error-msg" *ngIf="form.get('mobile')?.touched && form.get('mobile')?.invalid">
+            Enter exactly 10 digits
+          </small>
+        </div>
+       <div class="form-group">
+  <label>User Name:</label>
+  <input type="text" formControlName="username" placeholder="Enter user name">
+  <small class="error-msg" *ngIf="form.get('username')?.touched && form.get('username')?.hasError('duplicateUsername')">
+    This username already exists. Please make some changes to your ID.
+  </small>
+</div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="text" formControlName="password" placeholder="Enter password">
+        </div>
+
+         <div class="form-group">
+          <label>Gender:</label>
+          <select formControlName="gender">
+            <option value=""> Select Gender </option>
+            <option *ngFor="let g of genderOptions" [value]="g.value">
+              {{g.name}}
+            </option>
+          </select>
+        </div>
+
+       <div class="form-group full-width">
+  <label>Designation:</label>
+  <select formControlName="designation_id" 
+          #editDesignation
+          (mousedown)="designationOptions.length > 5 ? editDesignation.size = 6 : null" 
+          (change)="editDesignation.size = 1" 
+          (blur)="editDesignation.size = 1"
+          style="position: relative; z-index: 10;">
+    <option value="">-- Select Designation --</option>
+    <option *ngFor="let opt of designationOptions" [value]="opt.value">
+      {{opt.name}}
+    </option>
+  </select>
+</div>
+        
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="showEditModal = false">Cancel</button>
+  <button class="btn-submit" [disabled]="form.invalid" (click)="handleEditSubmit()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!--  JURISDICTION MODAL -->
+<div class="custom-modal-overlay" *ngIf="showJurisdictionModal">
+  <div class="custom-modal-content old-green-theme juri-modal">
+    <div class="modal-header">
+      <h3>Assign Jurisdiction</h3>
+      <button class="close-btn" (click)="showJurisdictionModal = false">×</button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="form" class="green-form-grid">
+        <div class="form-group" *ngFor="let field of jurisdictionFields" style="position: relative; margin-bottom: 20px;">
+          <label>{{field.label}}:</label>
+          
+          <div class="chip-input-container" (click)="toggleDropdown(field.name); $event.stopPropagation()">
+            <div class="chip-wrapper">
+              <div class="filter-chip" *ngFor="let id of (form.get(field.name)?.value || [])">       
+                <span class="chip-text">{{ getOptionName(field, id) }}</span>
+                <i class="fa fa-times-circle chip-remove" (click)="removeChip(field.name, id, $event)"></i>
+              </div>
+              
+              <span class="placeholder-text" *ngIf="!form.get(field.name)?.value?.length">
+                Select {{field.label}}
+              </span>
+            </div>
+            <i class="fa fa-chevron-down arrow-icon"></i>
+          </div>
+
+          <div class="custom-multiselect-list" *ngIf="isDropdownOpen[field.name]" (click)="$event.stopPropagation()">
+            
+            <div class="dropdown-utility-toolbar">
+              <button type="button" class="btn-toggle-select-all" (click)="toggleSelectAllField(field, $event)">
+                <i class="fa" [ngClass]="isAllFieldSelected(field) ? 'fa-check-square-out' : 'fa-check-square'"></i>
+                {{ isAllFieldSelected(field) ? 'Deselect All' : 'Select All' }}
+              </button>
+              <span class="selection-counter-badge">
+                {{ (form.get(field.name)?.value || []).length }} / {{ field.options?.length || 0 }} Selected
+              </span>
+            </div>
+
+            <div class="dropdown-scroll-container">
+              <div *ngFor="let opt of field.options"
+                   class="list-item"
+                   [class.selected]="isSelected(field.name, opt.value)"
+                   (click)="toggleSelection(field.name, opt.value, $event)">
+                <i class="fa check-indicator" [ngClass]="isSelected(field.name, opt.value) ? 'fa-check-box' : 'fa-square-o'"></i>
+                <span class="item-text-span">{{ opt.name }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="showJurisdictionModal = false">Cancel</button>
+      <button class="btn-submit" (click)="handleJurisdictionSubmit()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<!--  4. CONFIRMATION MODALS  -->
+<div class="custom-modal-overlay" *ngIf="showConfirmModal">
+  <!-- We add [ngClass] here to switch the header color automatically -->
+  <div class="custom-modal-content old-green-theme confirm-modal" 
+       [ngClass]="{
+         'block-theme': confirmBtnText === 'Block',
+         'reset-theme': confirmBtnText === 'Reset',
+         'delete-theme': confirmBtnText === 'Delete'
+       }">
+    <div class="modal-header">
+      <h3>{{confirmTitle}}</h3>
+      <button class="close-btn" (click)="showConfirmModal = false">×</button>
+    </div>
+    
+    <div class="modal-body text-center" style="padding: 40px 20px;">
+      <div class="icon-wrapper" style="font-size: 60px; margin-bottom: 20px;">
+        <i class="fa fa-ban" style="color: #a855f7;" *ngIf="confirmBtnText === 'Block'"></i>
+        <i class="fa fa-key" style="color: #f59e0b;" *ngIf="confirmBtnText === 'Reset'"></i>
+        <i class="fa fa-trash" style="color: #ef4444;" *ngIf="confirmBtnText === 'Delete'"></i>
+      </div>
+      <p class="main-msg" style="font-size: 1.2rem; font-weight: 600; color: #1e293b;">{{confirmMsg}}</p>
+      
+      <div style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; display: inline-block; min-width: 250px; margin-top: 15px;">
+         <p class="sub-info" style="margin:0; color: #64748b;"><strong>User:</strong> {{selectedRow?.user_name}}</p>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="showConfirmModal = false">Cancel</button>
+      <button [class]="'btn-action-confirm ' + confirmBtnText.toLowerCase()" (click)="handleConfirmSubmit()">
+        {{confirmBtnText}}
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+  <div class="">
+    <div class="dashboard-content" id="dashboard-container">
+      <div class="dashboard-content" id="dashboard-container">
+        <p class="title"><b>Capacity Development Dashboard</b></p>
+        
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+          <div class="flex-drop">
+            <span>District</span>
+            <app-custom-dropdown placeholder="Select District"
+                                 [options]="districttype"
+                                 displayKey="districttype"
+                                 valueKey="districttype"
+                                 [(ngModel)]="selectedDistrict"
+                                 (selectionChange)="onDistrictChange($event)">
+            </app-custom-dropdown>
+          </div>
+
+          <div class="flex-drop">
+            <span>Sub Division</span>
+            <app-custom-dropdown placeholder="Select Sub Division"
+                                 [options]="division"
+                                 displayKey="subdivision_name"
+                                 valueKey="subdivision_name"
+                                 [(ngModel)]="divisionchange"
+                                 (selectionChange)="subdivisionchange($event)">
+            </app-custom-dropdown>
+          </div>
+
+          <div class="flex-drop">
+            <span>Range</span>
+            <app-custom-dropdown placeholder="Select Range"
+                                 [options]="range"
+                                 displayKey="rangename"
+                                 valueKey="rangename"
+                                 [(ngModel)]="rangechanged"
+                                 (selectionChange)="rangechange($event)">
+            </app-custom-dropdown>
+          </div>
+
+          <div class="flex-drop">
+            <span>Scheme Type</span>
+            <app-custom-dropdown placeholder="Select Type"
+                                 [options]="schematype"
+                                 displayKey="schematype"
+                                 valueKey="schematype"
+                                 (selectionChange)="selectedschematype($event)">
+            </app-custom-dropdown>
+          </div>
+
+          <!--<div class="date-drop">
+            <span>From Date</span>
+            <input type="datetime-local" class="date-input" />
+          </div>
+
+          <div class="date-drop">
+            <span>To Date</span>
+            <input type="datetime-local" class="date-input" />
+          </div>-->
+          <!-- Actions -->
+          <!-- <button class="btn-apply" (click)="getdashboardfilter()">
+            Apply Filters
+          </button> -->
+
+          <button class="btn-download" (click)="downloadDashboard()" title="Download Report">
+            ⬇
+          </button>
+        </div>
+
+        <!-- KPI STATS -->
+        <div class="kpi-grid">
+          <div class="kpi-card" *ngFor="let stat of stats">
+            <div class="kpi-icon-box">
+              {{ stat.icon }}
+            </div>
+            <div class="kpi-details">
+              <span class="kpi-title">{{ stat.title }}</span>
+              <span class="kpi-value">{{ stat.value | number }}</span>
+            </div>
+          </div>
+        </div>
+
+       <div class="middle-grid">
+
+  <!-- LEFT SIDE: Charts (Aligns with first 2 KPIs) -->
+  <div class="left-charts-area">
+    
+    <div class="card compact-card">
+      <div class="card-header-sm">Training Activities</div>
+      <div class="canvas-wrapper-sm"><canvas #trainingbyactivity></canvas></div>
+    </div>
+
+    <div class="card compact-card">
+      <div class="card-header-sm">Participants Overview</div>
+      <div class="canvas-wrapper-sm"><canvas #particiantstype></canvas></div>
+    </div>
+
+    <div class="card compact-card">
+      <div class="card-header-sm">Officer Participation</div>
+      <div class="canvas-wrapper-sm"><canvas #participanttypeofficers></canvas></div>
+    </div>
+
+    <div class="card compact-card">
+      <div class="card-header-sm">Training Breakdown</div>
+      <div class="canvas-wrapper-sm"><canvas #trainingbytype></canvas></div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE: Map (Aligns with last 2 KPIs) -->
+ <div class="right-map-area">
+  <!-- Added relative positioning here -->
+  <div class="card map-card-full" style="position: relative;">
+    <div #map id="map" class="map-container-full"></div>
+
+    <!-- NEW LAYER CONTROL CODE -->
+    <div class="custom-layer-picker">
+      <div class="picker-btn" (click)="toggleBasemapMenu()">
+        <img src="https://img.icons8.com/material-outlined/24/000000/layers.png" alt="layers" />
+      </div>
+
+      <div class="picker-menu" *ngIf="showBasemapMenu">
+        <label class="picker-opt">
+          <input type="radio" name="base" [checked]="activeBaseLayerName === 'streets'" (change)="changeBaseMap('streets')">
+          <span>Google Streets</span>
+        </label>
+        <label class="picker-opt">
+          <input type="radio" name="base" [checked]="activeBaseLayerName === 'osm'" (change)="changeBaseMap('osm')">
+          <span>OpenStreetMap</span>
+        </label>
+        <label class="picker-opt">
+          <input type="radio" name="base" [checked]="activeBaseLayerName === 'satellite'" (change)="changeBaseMap('satellite')">
+          <span>Google Satellite</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+</div>
+
+
+      </div>
+    </div>
+
+  </div>

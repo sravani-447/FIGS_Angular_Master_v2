@@ -1,0 +1,137 @@
+<div class="page-body">
+  <!-- Header Section: Title Centered, Breadcrumbs Left -->
+  <div class="header-container">
+    <h2 class="page-title">Community</h2>
+    <div class="breadcrumb-section">
+      <div class="orange-line"></div>
+      <nav class="breadcrumbs">
+        <span>Capacity Development</span> / <span>Training</span> / <span class="active">COMMUNITY</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Filter Card: Blue Top Border -->
+  <div class="ui-card card-blue-top">
+    <div class="filter-row">
+      
+      <!-- 1. Activity Type Custom Dropdown -->
+      <div class="dropdown-wrapper">
+    <label>ACTIVITY TYPE</label>
+    <div class="dropdown" (click)="toggleDropdown('activity')">
+      <span class="text">{{ getSelectedName(activityTypes, selectedActivityId) || 'Select Type' }}</span>
+      <i class="fa fa-caret-down arrow"></i>
+    </div>
+    <div class="dropdown-menu" *ngIf="openDropdown === 'activity'">
+      <p class="default-option" (click)="selectItem('activity', {id: null, name: 'Select Type'})">Select Type</p>
+      <p *ngFor="let item of activityTypes" (click)="selectItem('activity', item)">{{item.name}}</p>
+    </div>
+  </div>
+
+    <!-- PARTICIPANTS TYPE -->
+  <div class="dropdown-wrapper">
+    <label>PARTICIPANTS TYPE</label>
+    <div class="dropdown" (click)="toggleDropdown('level')">
+      <span class="text">{{ getSelectedName(levelsOfParticipants, selectedLevelId) || 'Select Participants' }}</span>
+      <i class="fa fa-caret-down arrow"></i>
+    </div>
+    <div class="dropdown-menu" *ngIf="openDropdown === 'level'">
+      <p class="default-option" (click)="selectItem('level', {id: null, name: 'Select Participants'})">Select Participants</p>
+      <p *ngFor="let item of levelsOfParticipants" (click)="selectItem('level', item)">{{item.name}}</p>
+    </div>
+  </div>
+
+     <!-- CATEGORY -->
+  <div class="dropdown-wrapper">
+    <label>CATEGORY OF ACTIVITY</label>
+    <div class="dropdown" (click)="toggleDropdown('category')">
+      <span class="text">{{ getSelectedName(categoriesOfActivity, selectedCategoryId) || 'Select Category' }}</span>
+      <i class="fa fa-caret-down arrow"></i>
+    </div>
+    <div class="dropdown-menu" *ngIf="openDropdown === 'category'">
+      <p class="default-option" (click)="selectItem('category', {id: null, name: 'Select Category'})">Select Category</p>
+      <p *ngFor="let item of categoriesOfActivity" (click)="selectItem('category', item)">{{item.description || item.name}}</p>
+    </div>
+  </div>
+
+
+       <!-- TRAININGS -->
+  <div class="dropdown-wrapper">
+    <label>TRAININGS</label>
+    <div class="dropdown" (click)="toggleDropdown('training')">
+      <span class="text">{{ getSelectedTrainingName(trainingsList, selectedTrainingId) || 'Select Training' }}</span>
+      <i class="fa fa-caret-down arrow"></i>
+    </div>
+    <div class="dropdown-menu" *ngIf="openDropdown === 'training'">
+      <p class="default-option"  (click)="selectItem('training', {id: null, topic: 'Select Training'})">Select Training</p>
+      <p *ngFor="let item of trainingsList" (click)="selectItem('training', item)">{{item.topic}}</p>
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <!-- List Card: Orange Top Border -->
+  <div class="ui-card card-orange-top">
+    <div class="list-header">
+      <h4 class="list-title">PARTICIPANTS LIST</h4>
+      <div class="search-wrapper">
+        <i class="fa fa-search search-icon"></i>
+        <input type="text" placeholder="Search records..." class="search-field" [(ngModel)]="searchQuery">
+      </div>
+    </div>
+
+    <!-- Table with Thin Horizontal Scroll -->
+    <div class="table-container custom-scrollbar">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>NAME <i class="fa fa-sort"></i></th>
+            <th>AGE <i class="fa fa-sort"></i></th>
+            <th>GENDER <i class="fa fa-sort"></i></th>
+            <th>AADHAR <i class="fa fa-sort"></i></th>
+            <th>MOBILE <i class="fa fa-sort"></i></th>
+            <th>SOCIAL CATEGORY <i class="fa fa-sort"></i></th>
+            <th>BPL</th>
+            <th>DISTRICT</th>
+            <th>SUB DIVISION</th>
+            <th>RANGE</th>
+            <th>BEAT</th>
+            <th>JFMC/EDC</th>
+            <th>SHG/JLG</th>
+            <th>COMMENTS</th>
+            <th>IMAGE 1</th>
+            <th>IMAGE 2</th>
+            <th>COMMUNITY TYPE</th>
+            <th>PRESENT <i class="fa fa-sort"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of participantsData">
+            <td>{{p.name}}</td>
+            <td>{{p.age}}</td>
+            <td>{{p.gender}}</td>
+            <td>{{p.aadhar}}</td>
+            <td>{{p.mobile}}</td>
+            <td>{{p.social_category}}</td>
+            <td>{{p.bpl}}</td>
+            <td>{{p.district}}</td>
+            <td>{{p.sub_division}}</td>
+            <td>{{p.range}}</td>
+            <td>{{p.beat}}</td>
+            <td>{{p.jfmc}}</td>
+            <td>{{p.shg}}</td>
+            <td>{{p.comments}}</td>
+            <td class="text-center"><i class="fa fa-image" style="color: #3498db;"></i></td>
+            <td class="text-center"><i class="fa fa-image" style="color: #3498db;"></i></td>
+            <td>{{p.community_type}}</td>
+            <td class="text-center">
+                <input type="checkbox" [checked]="p.present">
+            </td>
+          </tr>
+          <tr *ngIf="participantsData.length === 0">
+            <td colspan="18" class="no-data">No records found. Please select filters.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

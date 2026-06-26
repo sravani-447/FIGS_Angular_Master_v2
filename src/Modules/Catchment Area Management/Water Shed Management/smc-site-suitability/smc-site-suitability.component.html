@@ -1,0 +1,43 @@
+<app-custom-grid
+  title="Smc Site Suitability"
+ [columns]="columns" [hiddenFields]="hiddenFields"
+   [data]="data"
+  [showAdd]="false"
+  (onUpdateView)="handleStatusUpdate($event)"
+  (actionClicked)="onGridAction($event)" 
+  [editableFields]="['comments']"
+  [Modulewiserejectbox]= "true"
+   *ngIf="!mappopup">
+</app-custom-grid>
+
+<!-- IMAGE POPUP -->
+<div class="image-popup-overlay" *ngIf="showImagePopup">
+  <div class="image-popup-box">
+
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+
+    <img [src]="popupImageUrl" class="popup-img" />
+
+  </div>
+</div>
+
+
+<div class="map-popup-overlay" *ngIf="mappopup">
+  <div class="map-popup-container">
+
+    <div class="map-header">
+      <span>📍Map View</span>
+      <button class="close-btn" (click)="closeMapPopup()">✖</button>
+    </div>
+
+    <div id="map" class="map-body"></div>
+
+  </div>
+</div>
+
+<div *ngIf="showImagePopup" class="img-popup">
+  <div class="img-box">
+    <span class="close-btn" (click)="closeImagePopup()">✖</span>
+    <img [src]="popupImageUrl" />
+  </div>
+</div>

@@ -1,0 +1,616 @@
+/* ================= VARIABLES ================= */
+:host {
+  /* THEME COLORS - Seamless Gradient */
+  --brand-gradient: linear-gradient(135deg,#4FACFE 0%, #f2994a 100%);
+  --sidebar-width: 300px;
+  --sidebar-collapsed-width: 70px;
+  --header-height: 64px;
+  /* Colors (Light Mode Default) */
+  --bg-color: #f3f4f6;
+   --sidebar-bg: linear-gradient(135deg,#4FACFE 0%, #f2994a 100%);
+  --text-color: #333;
+  /* Popover/Floating Menu Colors */
+  --popover-bg: #ffffff;
+  --popover-text: #4b5563;
+  --popover-shadow: 0 5px 25px rgba(0,0,0,0.15);
+  --active-item-bg: rgba(255, 255, 255, 0.15);
+  --hover-item-bg: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Dark Theme Overrides --- */
+:host-context(.dark-theme) {
+  --brand-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --bg-color: #0b1120;
+   --sidebar-bg: #0f172a; 
+  --text-color: #e2e8f0;
+  --popover-bg: #1e293b;
+  --popover-text: #e2e8f0;
+  --popover-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  --active-item-bg: rgba(255, 255, 255, 0.1);
+  --hover-item-bg: rgba(255, 255, 255, 0.05);
+}
+
+/* GLOBAL RESET */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* HIDE SCROLLBARS */
+:host ::ng-deep ::-webkit-scrollbar {
+  display: none;
+}
+
+:host ::ng-deep html, :host ::ng-deep body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================= LAYOUT CONTAINER ================= */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Forces it to fit exact screen height */
+  width: 100vw;  /* Forces it to fit exact screen width */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+    background-color: var(--bg-color);
+  color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ================= HEADER ================= */
+.top-navbar {
+  height: var(--header-height);
+  background: var(--brand-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+  .hamburger:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+.brand {
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.figs-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* ================= TOGGLE SWITCH ================= */
+.switch-container {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.switch-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 34px;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.switch-circle {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.switch-input:checked + .switch-track .switch-circle {
+  transform: translateX(28px);
+}
+
+.icon-sun {
+  color: #fbd38d;
+  font-size: 14px;
+}
+
+.icon-moon {
+  color: #f4f6f0;
+  font-size: 12px;
+}
+
+/* ================= PROFILE PILL ================= */
+.profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.1);
+  padding: 4px 6px 4px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+  .profile-pill:hover {
+    background: rgba(255,255,255,0.25);
+  }
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: white;
+  color: #0f4c81;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+/* ================= MAIN WRAPPER ================= */
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg); /* Use Global Variable */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  flex-shrink: 0;
+  transition: width 0.3s ease; /* Smooth Collapse Animation */
+  z-index: 100;
+}
+
+ .sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item-container {
+  position: relative;
+  margin-bottom: 2px;
+}
+
+/* LINK STYLE */
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+   justify-content: flex-start;
+    text-align: left;
+  cursor: pointer;
+  color: rgba(255,255,255,0.85);
+  transition: all 0.2s ease;
+  height: 50px;
+  white-space: nowrap;
+}
+
+  .menu-link:hover, .menu-item-container:hover .menu-link {
+    background-color: var(--hover-item-bg);
+    color: white;
+    border-left: 4px solid white;
+    padding-left: 16px;
+  }
+
+/* When Locked (Active in Collapsed Mode) */
+.menu-item-container:has(.force-show) .menu-link {
+  background-color: var(--active-item-bg);
+  border-left: 4px solid white;
+  padding-left: 16px;
+  color: white;
+}
+
+.menu-icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: stroke 0.2s;
+}
+
+.menu-text {
+   flex: 1;
+  margin-left: 15px;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* COLLAPSED STATE */
+.sidebar.collapsed .menu-text {
+  opacity: 0;
+  width: 0;
+  display: none;
+}
+
+.sidebar.collapsed .menu-link {
+  justify-content: flex-start;
+  padding-left: 16px; 
+}
+
+  .sidebar.collapsed .menu-link:hover,
+  .sidebar.collapsed .menu-item-container:has(.force-show) .menu-link {
+    border-left: none;
+    background: var(--active-item-bg);
+    border-radius: 8px;
+    margin: 0 10px;
+    width: calc(100% - 20px);
+  }
+
+/* ================= FLOATING POPOVER ================= */
+.floating-popover {
+  display: none; /* Hidden Default */
+  position: absolute;
+  left: calc(100% + 12px); /* Spacing from sidebar */
+  top: 0;
+  background: var(--popover-bg);
+  color: var(--popover-text);
+  min-width: 220px;
+  border-radius: 8px;
+  box-shadow: var(--popover-shadow);
+  z-index: 1000;
+  padding: 8px 0;
+  animation: fadeIn 0.2s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+  /* Triangle Arrow */
+  .floating-popover::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: -6px;
+    width: 12px;
+    height: 12px;
+    background: var(--popover-bg);
+    transform: rotate(45deg);
+    z-index: -1;
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* SHOW LOGIC: Hover OR Locked (.force-show) */
+  .sidebar.collapsed .menu-item-container:hover .floating-popover,
+  .floating-popover.force-show {
+    display: block;
+  }
+
+.popover-header {
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  margin-bottom: 5px;
+  color: var(--popover-text);
+  opacity: 0.9;
+}
+
+/* POPOVER LIST ALIGNMENT FIXED */
+.popover-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popover-item {
+  justify-content: flex-start; /* ✅ ensure left */
+  text-align: left;
+  display: flex; /* Flexbox for alignment */
+  align-items: center; /* Vertical Center */
+  padding: 10px 18px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: var(--popover-text);
+  gap: 12px; /* Consistent gap between bullet and text */
+}
+
+  .popover-item:hover {
+    background: rgba(0,0,0,0.04);
+    color: #1e88e5;
+    padding-left: 24px; /* Slight slide animation */
+  }
+
+/* Bullet Point Styling */
+.popover-bullet {
+  height: 6px;
+  width: 6px;
+  background-color: #9ca3af;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.popover-item:hover .popover-bullet {
+  background-color: #1e88e5;
+}
+
+/* STANDARD SUBMENU (Expanded Sidebar) */
+.standard-submenu {
+  background: rgba(0,0,0,0.2);
+  list-style: none;
+  padding: 5px 0;
+  overflow: hidden;
+}
+
+.standard-submenu-item {
+  padding: 10px 10px 10px 54px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  cursor: pointer;
+   text-align: left; 
+}
+
+  .standard-submenu-item:hover {
+    color: white;
+    background: rgba(255,255,255,0.1);
+  }
+
+/* ================= CONTENT AREA ================= */
+.content-area {
+  flex-grow: 1; /* This forces it to fill remaining screen space */
+  background-color: var(--bg-app); /* Use Global Variable */
+  color: var(--text-main); /* Use Global Variable */
+  overflow-y: auto;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ================= PROFILE DROPDOWN STYLES ================= */
+
+/* Wrapper to hold pill and dropdown together */
+.profile-wrapper {
+  position: relative;
+}
+
+/* The Dropdown Box */
+.profile-dropdown {
+  position: absolute;
+  top: 120%; /* Pushes it slightly below the pill */
+  right: 0;
+  width: 200px;
+  background: var(--popover-bg); /* Uses your theme variable */
+  color: var(--popover-text);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  padding: 8px 0;
+  z-index: 2000;
+  border: 1px solid rgba(0,0,0,0.08);
+  animation: slideDown 0.2s ease-out;
+}
+
+/* Items inside dropdown */
+.dropdown-item {
+  padding: 12px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+  .dropdown-item:hover {
+    background: rgba(0,0,0,0.05);
+    color: #1e88e5;
+    padding-left: 24px; /* Slight slide effect */
+  }
+
+  /* Logout specific style */
+  .dropdown-item.logout {
+    color: #ef4444; /* Red color */
+  }
+
+    .dropdown-item.logout:hover {
+      background: #fef2f2;
+    }
+
+/* Divider line */
+.dropdown-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 4px 0;
+}
+.notification-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+
+.mark-read {
+  color: #2e7d32;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Section */
+.section-title {
+  padding: 8px 15px;
+  font-size: 13px;
+  color: #777;
+  background: #f5f5f5;
+}
+
+/* Card */
+.notification-card {
+  display: flex;
+  padding: 12px;
+  border-bottom: 1px solid #f1f1f1;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.notification-card:hover {
+  background: #f9f9f9;
+}
+
+.notification-card.unread {
+  background: #e8f5e9;
+}
+
+/* Icon */
+.icon {
+  font-size: 18px;
+}
+
+/* Content */
+.content {
+  flex: 1;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  color:black;
+}
+
+.time {
+  font-size: 12px;
+  color: #888;
+}
+
+.message {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Footer */
+.view-all {
+  text-align: center;
+  padding: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.view-all:hover {
+  background: #f5f5f5;
+}
+
+/* Empty */
+.empty {
+  padding: 15px;
+  text-align: center;
+  color: #999;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

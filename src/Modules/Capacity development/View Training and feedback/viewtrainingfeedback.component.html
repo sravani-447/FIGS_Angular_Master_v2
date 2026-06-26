@@ -1,0 +1,72 @@
+<div class="main-layout">
+
+  <!-- CONTENT -->
+  <div class="dashboard-content" id="dashboard-container">
+    
+    <div class="header-container">
+      <h1 class="page-main-title">View Training Feedback</h1>
+      <div class="breadcrumb-container">
+        <span class="breadcrumb-path">Capacity Development / </span>
+        <span class="breadcrumb-active">View Training Feedback</span>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="flex-drop">
+        <span>ACTIVITY TYPE</span>
+        <app-custom-dropdown placeholder="Select Type"
+                             [options]="activityType"
+                             displayKey="activityType"
+                             valueKey="activityType"
+                             (selectionChange)="selectedActivityType($event)">
+        </app-custom-dropdown>
+
+      </div>
+      <div class="flex-drop">
+        <span>PARTICIPANTS TYPE</span>
+        <app-custom-dropdown placeholder="Select Participants"
+                             [options]="partispantstype"
+                             displayKey="partispantstype"
+                             valueKey="partispantstype"
+                             (selectionChange)="selectedpartispantType($event)">
+        </app-custom-dropdown>
+      </div>
+      <div class="flex-drop">
+        <span>CATEGORY OF ACTIVITY</span>
+        <app-custom-dropdown placeholder="Select Category"
+                             [options]="categoryofactivity"
+                             displayKey="categoryofactivity"
+                             valueKey="categoryofactivity"
+                             (selectionChange)="selectedcatgeoryType($event)">
+        </app-custom-dropdown>
+      </div>
+      <div class="flex-drop">
+        <span>TRAININGS</span>
+        <app-custom-dropdown placeholder="Select Training"
+                             [options]="listofTrainings"
+                             displayKey="listofTrainings"
+                             valueKey="listofTrainings"
+                             (selectionChange)="selectedtrainingType($event)">
+        </app-custom-dropdown>
+      </div>
+    </div>
+
+    <div class="grid-card-container">
+     
+    
+      <div class="grid-body">
+        <app-custom-grid title="View FeedBack training"
+                         [columns]="columns"
+                         [data]="data"
+                         [showAdd]="false"
+                         [showprintbuttons]="false">
+        </app-custom-grid>
+        
+        <div class="empty-state" *ngIf="data.length === 0">
+          No records found. Please select filters.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

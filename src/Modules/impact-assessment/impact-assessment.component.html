@@ -1,0 +1,408 @@
+
+<div class="page-container">
+  <div class="map-wrapper" style="position: relative; height: 100%;">
+    <!-- MAP -->
+    <div id="map" style="height:100%; width:110%;"></div>
+
+    <!-- TOP RIGHT CONTROLS -->
+<div class="top-right-controls-container">
+  
+  <!-- 1. Basemap Button (NOW ON TOP) -->
+  <div (click)="toggleBasemapMenu()" class="map-control-btn basemap-trigger">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+      <path d="M12 3L2 9l10 6 10-6-10-6z" stroke="currentColor" stroke-width="2" />
+      <path d="M2 15l10 6 10-6" stroke="currentColor" stroke-width="2" />
+    </svg>
+  </div>
+
+  <!-- 2. Graph Button (NOW BELOW) -->
+  <div (click)="chartbutton()" class="map-control-btn graph-btn">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"></line>
+      <line x1="12" y1="20" x2="12" y2="4"></line>
+      <line x1="6" y1="20" x2="6" y2="14"></line>
+    </svg>
+    <span>Graph</span>
+  </div>
+
+  <!-- Basemap Menu Dropdown -->
+  <div *ngIf="showBasemapMenu" (click)="$event.stopPropagation()" class="basemap-menu-dropdown">
+    <label><input type="radio" name="base" (change)="changeBaseMap('streets')" checked><span>Google Streets</span></label>
+    <label><input type="radio" name="base" (change)="changeBaseMap('osm')"><span>OpenStreetMap</span></label>
+    <label><input type="radio" name="base" (change)="changeBaseMap('satellite')"><span>Google Satellite</span></label>
+  </div>
+
+</div>
+
+
+    <div class="fcd-legend" *ngIf="rasterdataonly">
+      <div class="legend-title">FCD (%)</div>
+
+      <div class="legend-item">
+        <span class="color-box dark-green"></span>
+        <span>90 - 100</span>
+      </div>
+
+      <div class="legend-item">
+        <span class="color-box green"></span>
+        <span>80 - 90</span>
+      </div>
+
+      <div class="legend-item">
+        <span class="color-box light-green"></span>
+        <span>70 - 80</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box orange"></span>
+        <span>50 - 60</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box red"></span>
+        <span>0 - 50</span>
+      </div>
+    </div>
+    <!-- LEFT PANEL - LAYERS CONTROL -->
+    <div class="overlay overlay-top-left">
+      <!-- <button class="btn-map main-btn" (click)="toggleLayerPanel()">
+          <svg viewBox="0 0 24 24">
+            <rect x="4" y="4" width="16" height="4"/>
+            <rect x="4" y="10" width="16" height="4"/>
+            <rect x="4" y="16" width="16" height="4"/>
+          </svg>
+          Layers
+  </button> -->
+
+      <div class="layers-panel" id="layerpa" *ngIf="showLayers">
+        <div class="panel-header">Layer Management</div>
+        <div class="panel-content">
+          <div class="section-title"
+            style="padding: 10px; font-weight: bold; background: #1a0303; margin-top: 10px; color: white;">
+            Data Layers
+          </div>
+          <ul class="layer-tree">
+            <li *ngFor="let group of managerTeam" class="tree-item">
+              <div class="tree-node" [class.has-children]="group.children && group.children.length > 0">
+                <button *ngIf="group.children && group.children.length > 0" class="expand-btn"
+                  (click)="toggleTreeNode(group.id)" [class.expanded]="expandedNodes[group.id]">
+                  <span class="arrow">▶</span>
+                </button>
+                <!-- FOLDER CHECKBOX (SELECT ALL) -->
+                <label class="layer-checkbox">
+                  <input type="checkbox" [checked]="checkedStates[group.id]" (change)="onNodeToggle($event, group)">
+                  <span class="folder-icon">📁</span>
+                  <span class="node-label">{{ group.text }}</span>
+                </label>
+              </div>
+              <ul class="tree-children" *ngIf="group.children && group.children.length > 0 && expandedNodes[group.id]">
+                <ng-container
+                  *ngTemplateOutlet="layerTreeNode; context:{ $implicit: group.children, level: 1 }"></ng-container>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RECURSIVE TREE TEMPLATE -->
+      <ng-template #layerTreeNode let-nodes let-level="level">
+        <li *ngFor="let node of nodes" class="tree-item">
+          <div class="tree-node" [class.has-children]="node.children && node.children.length > 0">
+            <button *ngIf="node.children && node.children.length > 0" class="expand-btn"
+              (click)="toggleTreeNode(node.id)" [class.expanded]="expandedNodes[node.id]">
+              <span class="arrow">▶</span>
+            </button>
+
+            <!-- Spacing for leaf nodes -->
+            <ng-container *ngIf="!node.children || node.children.length === 0">
+              <span class="spacer" style="display:inline-block; width:20px;"></span>
+            </ng-container>
+
+            <!-- CHECKBOX (Works for both folder and leaf) -->
+            <label class="layer-checkbox">
+              <input type="checkbox" [checked]="checkedStates[node.id]" (change)="onNodeToggle($event, node)">
+              <span *ngIf="node.layername" class="folder-icon">📄</span>
+              <span *ngIf="!node.layername" class="folder-icon">📁</span>
+              <span class="label-text">{{ node.text }}</span>
+            </label>
+          </div>
+
+          <ul class="tree-children" *ngIf="node.children && node.children.length > 0 && expandedNodes[node.id]"
+            style="margin-left: 15px; border-left: 1px dashed #555;">
+            <ng-container
+              *ngTemplateOutlet="layerTreeNode; context:{ $implicit: node.children, level: level + 1 }"></ng-container>
+          </ul>
+        </li>
+      </ng-template>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="map-command-bar">
+
+      <!-- Group 1: Navigation -->
+      <div class="tool-group">
+        <button class="btn-tool btn-zoom" data-tooltip="Zoom to Extend" (click)="zoomToExtent()">
+          <svg viewBox="0 0 24 24">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Info" (click)="toggleInfo()">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <circle cx="12" cy="8" r="1" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Group 2: Measurement -->
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Distance" (click)="setTool('line')">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 5l8 8-4 4-8-8 4-4zM9 9l-4.5 4.5M14 4l3 3" />
+          </svg>
+        </button>
+        <button class="btn-tool" data-tooltip="Area" (click)="setTool('polygon')">
+          <svg viewBox="0 0 24 24">
+            <path d="m3 3 18 2-5 16-7-7L3 3z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Group 3: Analysis -->
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Layer Slider" (click)="toggleSlider()">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="3" x2="12" y2="21" />
+            <path d="M3 7h6M15 17h6" />
+          </svg>
+
+        </button>
+      </div>
+
+      <!-- Group 4: System -->
+      <div class="tool-group">
+        <button class="btn-tool" data-tooltip="Deactivate Slider" (click)="deactivateSlider()">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m4.93 4.93 14.14 14.14" />
+          </svg>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- THE LAYER PANEL (BOTTOM LEFT) -->
+  <div class="impact-panel" *ngIf="showImpactPanel">
+
+    <div class="impact-header">
+      <span class="panel-title">Layer Panel</span>
+      <div class="header-actions">
+        <span class="action-icon blue" (click)="toggleImpactPanel()">
+          {{ isImpactMinimized ? '▲' : '▼' }}
+        </span> <!-- Using text for demo, replace with svg if needed -->
+        <span class="action-icon close" (click)="closeImpactPanel()">✖</span>
+      </div>
+    </div>
+
+    <div class="impact-body" *ngIf="!isImpactMinimized">
+
+      <!-- Year Selectors -->
+      <div class="global-year-range">
+        <select class="green-select" [(ngModel)]="selectedFromYear">
+          <option value="" disabled selected>From Year</option>
+          <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+        </select>
+
+        <select class="green-select" [(ngModel)]="selectedToYear">
+          <option value="" disabled selected>To Year</option>
+          <option *ngFor="let y of years" [value]="y">{{ y }}</option>
+        </select>
+      </div>
+
+      <!-- Layer List -->
+      <div class="layer-list">
+        <div *ngFor="let layer of impactLayerList" class="impact-item">
+          <div class="item-left">
+            <label class="switch">
+              <input type="checkbox" [checked]="layer.visible" (change)="toggleImpactLayer(layer)">
+              <span class="slider round"></span>
+            </label>
+            <span class="layer-name">{{ layer.name }}</span>
+          </div>
+          <!-- Right Color Box -->
+          <div class="color-indicator" [style.background-color]="layer.color || '#a3cf0d'"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="legend-container">
+
+  <!-- FCD -->
+  <div *ngIf="fcd" class="map-legend"
+       style="width:220px; max-height:250px; overflow-y:auto;">
+    <div class="legend-title">Forest Canopy Density</div>
+
+    <div class="legend-item">
+      <span class="box red"></span> Scrub Land (&lt;10%)
+    </div>
+    <div class="legend-item">
+      <span class="box yellow"></span> Open Forest (10%-40%)
+    </div>
+    <div class="legend-item">
+      <span class="box green"></span> Moderate Dense Forest (40%-70%)
+    </div>
+    <div class="legend-item">
+      <span class="box darkgreen"></span> Very Dense Forest (&gt;70%)
+    </div>
+  </div>
+
+  <!-- LULC -->
+  <div *ngIf="showLulcLegend" class="map-legend"
+       style="width:220px; max-height:250px; overflow-y:auto;">
+    <div class="legend-title">LULC</div>
+
+    <div class="legend-item"><span class="box" style="background:#388E3C"></span> Tropical Evergreen</div>
+    <div class="legend-item"><span class="box" style="background:#00FF00"></span> Semi Evergreen</div>
+    <div class="legend-item"><span class="box" style="background:#ADC479"></span> Moist Mixed Deciduous</div>
+    <div class="legend-item"><span class="box" style="background:#CCFF66"></span> Mixed Deciduous</div>
+    <div class="legend-item"><span class="box" style="background:#D3D3D3"></span> Open Land</div>
+    <div class="legend-item"><span class="box" style="background:#447E7C"></span> Bamboo</div>
+    <div class="legend-item"><span class="box" style="background:#9B3083"></span> Sal</div>
+    <div class="legend-item"><span class="box" style="background:#FFA500"></span> Rubber</div>
+    <div class="legend-item"><span class="box" style="background:#A0522D"></span> Teak</div>
+    <div class="legend-item"><span class="box" style="background:#BEF7DA"></span> Plantation</div>
+    <div class="legend-item"><span class="box" style="background:#FFFF00"></span> Agriculture</div>
+    <div class="legend-item"><span class="box" style="background:#FF0000"></span> Builtup</div>
+    <div class="legend-item"><span class="box" style="background:#0070FF"></span> Waterbody</div>
+  </div>
+
+  <!-- Change Detection -->
+  <div *ngIf="showChangeDetectionLegend" class="map-legend"
+       style="width:220px; max-height:250px; overflow-y:auto;">
+    <div class="legend-title">Forest Change Detection</div>
+
+    <div class="legend-item"><span class="box" style="background:#1B430C"></span> No Change</div>
+    <div class="legend-item"><span class="box" style="background:#93D07D"></span> Open Forest - Scrub Land</div>
+    <div class="legend-item"><span class="box" style="background:#6A66E3"></span> Moderate Dense Forest - Scrub Land</div>
+    <div class="legend-item"><span class="box" style="background:#54E862"></span> Very Dense Forest - Scrub Land</div>
+    <div class="legend-item"><span class="box" style="background:#9F79EE"></span> Scrub Land - Open Forest</div>
+    <div class="legend-item"><span class="box" style="background:#D1B381"></span> Moderate Dense Forest - Open Forest</div>
+    <div class="legend-item"><span class="box" style="background:#A3D447"></span> Very Dense Forest - Open Forest</div>
+    <div class="legend-item"><span class="box" style="background:#BC18D1"></span> Scrub Land - Moderate Dense Forest</div>
+    <div class="legend-item"><span class="box" style="background:#D14512"></span> Open Forest - Moderate Dense Forest</div>
+    <div class="legend-item"><span class="box" style="background:#72C0E0"></span> Very Dense Forest - Moderate Dense Forest</div>
+    <div class="legend-item"><span class="box" style="background:#D161BC"></span> Scrub Land - Very Dense Forest</div>
+    <div class="legend-item"><span class="box" style="background:#27C286"></span> Open Forest - Very Dense Forest</div>
+    <div class="legend-item"><span class="box" style="background:#E17575"></span> Moderate Dense Forest - Very Dense Forest</div>
+  </div>
+
+</div>
+<!-- RIGHT SIDE DATA VISUALIZATION PANELS -->
+<!-- DASHBOARD OVERLAY (RIGHT SIDE) -->
+<!-- DASHBOARD OVERLAY -->
+<div class="dashboard-overlay" *ngIf="showCharts" (click)="showCharts = false">
+  <div class="popup-container" (click)="$event.stopPropagation()">
+    
+    <!-- Header -->
+    <div class="popup-header">
+      <h2>Forest Cover Analysis</h2>
+      <span class="close-icon" (click)="closecharts()">✖</span>
+    </div>
+
+    <div class="popup-content-wrapper">
+      
+      <!-- LEFT: TABLE (ONLY FOR CHANGE DETECTION) -->
+      <div class="grid-card" *ngIf="selectedLayer === 'change'">
+        <table class="static-grid">
+          <thead>
+            <tr>
+              <th>NO. OF NEW CLASSES</th>
+              <th>REFERENCE CLASS NAME</th>
+              <th>NEW CLASS NAME</th>
+              <th>CHANGE CLASSES</th>
+              <th>AREA IN (HECTARE)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of staticTableData">
+              <td style="text-align:center;">{{row.slNo}}</td>
+              <td>{{row.reference}}</td>
+              <td>{{row.new}}</td>
+              <td [class.no-change]="row.change === 'No Change'">{{row.change}}</td>
+              <td style="text-align:right;">{{row.area | number:'1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- RIGHT: CHART -->
+      <div class="chart-card">
+        <div class="chart-title">Area Change Comparison</div>
+
+        <!-- LEGEND -->
+        <div class="chart-legend">
+          <div class="legend-item" *ngIf="selectedLayer !== '2025'">
+            <span class="box blue"></span> 2023 Area
+          </div>
+          <div class="legend-item" *ngIf="selectedLayer !== '2023'">
+            <span class="box green"></span> 2025 Area
+          </div>
+        </div>
+
+        <div class="chart-container">
+
+          <!-- Y Axis -->
+          <div class="y-axis">
+            <span>160k</span>
+            <span>120k</span>
+            <span>80k</span>
+            <span>40k</span>
+            <span>0</span>
+          </div>
+
+          <!-- Plot Area -->
+          <div class="plot-area">
+
+            <div class="grid-lines">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+
+            <!-- BARS -->
+            <div class="bars-wrapper">
+
+              <div class="bar-col" *ngFor="let item of getChartData()">
+
+                <div class="bars">
+
+                  <!-- 2023 BAR -->
+                <div class="bar blue" *ngIf="item.area23 > 0" [style.height.%]="getHeight(item.area23)" style="position:relative;">
+  <span class="value">2023 Area: {{ item.area23 }}</span>
+</div>
+
+<!-- 2025 BAR -->
+<div class="bar green" *ngIf="item.area25 > 0" [style.height.%]="getHeight(item.area25)" style="position:relative;">
+  <span class="value">2025 Area: {{ item.area25 }}</span>
+</div>
+
+                </div>
+
+                <span class="label">{{ item.label }}</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

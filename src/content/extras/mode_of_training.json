@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "name": "Online",
+      "desc": "Online",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 2,
+      "name": "Offline",
+      "desc": "Offline",
+      "isactive": "TRUE"
+    }
+  ]

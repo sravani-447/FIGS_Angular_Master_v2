@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "name": "Institutional Capacity Development",
+      "desc": "Institutional Capacity Development",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 2,
+      "name": "Livelihood Improvement",
+      "desc": "Livelihood Improvement",
+      "isactive": "TRUE"
+    },
+    {
+      "id": 3,
+      "name": "SFM OR SMC",
+      "desc": "SFM OR SMC",
+      "isactive": "TRUE"
+    }
+  ]

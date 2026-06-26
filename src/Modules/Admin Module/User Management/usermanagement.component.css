@@ -1,0 +1,626 @@
+/* --- Modal Overlay & Container --- */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.custom-modal-content {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 600px;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Header & Footer --- */
+.modal-header {
+  background: #2c3e50; /* Dark professional blue/gray */
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 { margin: 0; font-size: 1.2rem; font-weight: 500; }
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-body { padding: 25px; max-height: 70vh; overflow-y: auto; }
+
+.modal-footer {
+  padding: 15px 25px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* --- Buttons --- */
+.btn-cancel {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-submit {
+  background: #10b981; /* Green */
+  color: white;
+  border: none;
+  padding: 8px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.view-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.view-table tr.section-title td {
+  padding: 15px 0 10px 0;
+  font-weight: 700;
+  color: #334155;
+  border-bottom: 2px solid #10b981;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.view-table td { padding: 10px 5px; border-bottom: 1px solid #f1f5f9; }
+
+.view-table .lbl {
+  width: 35%;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.view-table .val {
+  color: #1e293b;
+  word-break: break-word;
+}
+
+.green-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 20px;
+}
+
+.form-group { display: flex; flex-direction: column; }
+.form-group.full-width { grid-column: span 2; }
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.form-group input, .form-group select {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-group input:focus { border-color: #10b981; box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1); }
+
+/* Grid Action Column Styles */
+.action-btn-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.action-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+  background: #f1f5f9; /* Light grey base like Image 1 */
+}
+
+.action-icon-btn:hover { transform: scale(1.1); }
+
+/* Specific Icon Colors from Image 1 */
+.action-icon-btn.view i   { color: #10b981; } /* Green Eye */
+.action-icon-btn.edit i   { color: #3b82f6; } /* Blue Pencil */
+.action-icon-btn.juri i   { color: #14b8a6; } /* Teal Globe */
+.action-icon-btn.block i  { color: #a855f7; } /* Purple Block */
+.action-icon-btn.reset i  { color: #f59e0b; } /* Orange Key */
+.action-icon-btn.delete i { color: #ef4444; } /* Red Trash */
+
+.confirm-modal { max-width: 400px; text-align: center; }
+
+.icon-wrapper { font-size: 50px; margin-bottom: 20px; }
+.icon-wrapper i.orange { color: #f59e0b; }
+.icon-wrapper i.green  { color: #10b981; }
+.icon-wrapper i.red    { color: #ef4444; }
+
+.main-msg { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #1e293b; }
+.sub-info { font-size: 0.9rem; color: #64748b; }
+
+.btn-action-confirm {
+  padding: 8px 25px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-action-confirm.block  { background: #f59e0b; }
+.btn-action-confirm.reset  { background: #3b82f6; }
+.btn-action-confirm.delete { background: #ef4444; }
+.btn-action-confirm.unblock { background: #10b981; }
+
+.chip-container {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 5px 10px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  cursor: pointer;
+}
+
+.chip-wrapper { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.filter-chip {
+  background: #10b981;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chip-remove { cursor: pointer; opacity: 0.8; }
+.chip-remove:hover { opacity: 1; }
+
+.multiselect-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1001;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover { background: #f1f5f9; }
+.dropdown-item.selected { background: #ecfdf5; color: #059669; font-weight: 600; }
+
+
+/* --- Global Modal Fixes --- */
+.custom-modal-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white; /* Text stays white for contrast */
+}
+
+/* --- THEME COLORS (Matching Action Icons) --- */
+
+/* VIEW Modal - Green Eye Theme */
+.view-modal .modal-header { background-color: #10b981 !important; }
+.view-modal .section-title td { border-bottom: 2px solid #10b981; color: #10b981; }
+
+/* EDIT Modal - Blue Pencil Theme */
+.edit-modal .modal-header { background-color: #3b82f6 !important; }
+.edit-modal .form-group input:focus { border-color: #3b82f6; }
+
+/* JURISDICTION Modal - Teal Globe Theme */
+.juri-modal .modal-header { background-color: #14b8a6 !important; }
+.juri-modal .filter-chip { background: #14b8a6; }
+
+/* BLOCK Modal - Purple Block Theme */
+.confirm-modal.block-theme .modal-header { background-color: #a855f7 !important; }
+
+/* RESET Modal - Orange Key Theme */
+.confirm-modal.reset-theme .modal-header { background-color: #f59e0b !important; }
+
+/* DELETE Modal - Red Trash Theme */
+.confirm-modal.delete-theme .modal-header { background-color: #ef4444 !important; }
+
+/* --- Refined Internal Table Styling (Matching Image 5) --- */
+.view-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.section-title {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  padding: 20px 0 10px 0 !important;
+  text-transform: uppercase;
+}
+
+.view-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+}
+
+.lbl {
+  color: #64748b;
+  font-weight: 600;
+  text-align: right;
+  width: 40%;
+}
+
+.val {
+  color: #334155;
+  padding-left: 20px !important;
+}
+
+/* Button Refinement */
+.modal-footer .btn-cancel {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.error-msg {
+  color: #ef4444; /* Red color */
+  font-size: 0.75rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+input.ng-invalid.ng-touched, 
+select.ng-invalid.ng-touched {
+  border: 1px solid #ef4444 !important;
+  background-color: #fef2f2;
+}
+
+.btn-submit:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* If using a custom dropdown list or to fix UI layout */
+select.form-control, .form-group select {
+    max-height: 200px; 
+    overflow-y: auto;
+}
+
+/* If you are using a custom <ul> list for the dropdown */
+.custom-dropdown-list {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: white;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* 1. Target the dropdowns in both Edit and Add modals */
+.form-group select, 
+.green-form-grid select,
+select[formControlName="designation_id"] {
+    max-height: 200px !important; /* Limits container height */
+    overflow-y: auto !important;
+}
+
+/* 2. Styling the options inside to ensure they are readable */
+select option {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* 3. If your 'Add New' component creates a custom list, this ensures scrolling */
+.dropdown-menu, .select-items {
+    max-height: 250px !important;
+    overflow-y: auto !important;
+    border: 1px solid #ccc;
+}
+
+
+/* Target only the designation dropdown in the dynamic modal */
+::ng-deep .custom-grid-dialog-body select[ng-reflect-name="designation_id"],
+::ng-deep .modal-body select[name="designation_id"],
+::ng-deep .custom-grid select {
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+/* If the dropdown covers the save button, force a smaller height */
+::ng-deep .custom-grid-dialog select:focus {
+    max-height: 200px;
+}
+
+/* Container that looks like an input */
+.chip-input-box {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    min-height: 40px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+}
+
+.chips-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-width: 90%;
+}
+
+/* Individual Chip Styling */
+.filter-chip {
+    background-color: #1a1a1a; /* Black/Dark gray background like your 1st pic */
+    color: white;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.chip-remove {
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.chip-remove:hover {
+    opacity: 1;
+    color: #ff4d4d;
+}
+
+.chip-placeholder {
+    color: #adb5bd;
+    font-size: 14px;
+}
+
+.select-arrow {
+    color: #495057;
+    font-size: 12px;
+}
+
+/* Dropdown styling */
+.multiselect-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 4px 4px;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-item:hover { background-color: #f8f9fa; }
+.dropdown-item.selected { background-color: #e9ecef; font-weight: 600; }
+
+
+/* The container that looks like an input field */
+.chip-input-container {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background: white;
+  min-height: 42px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.chip-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 90%;
+}
+
+/* 🔵 THE CHIPS (Matching Image 2) */
+.filter-chip {
+  background-color: #e3f2fd; /* Light blue background */
+  color: #151515;            /* Dark blue text */
+  border: 1px solid #bbdefb;
+  padding: 2px 10px;
+  border-radius: 18px;       /* Pill shape */
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.chip-remove {
+  cursor: pointer;
+  color: #1976d2;
+  font-size: 14px;
+}
+
+.chip-remove:hover {
+  color: #d32f2f; /* Turns red on hover */
+}
+
+.placeholder-text {
+  color: #adb5bd;
+  font-size: 14px;
+}
+
+/* Dropdown Popup styling */
+.custom-multiselect-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 6px 6px;
+}
+
+.list-item {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+/* ==========================================================================
+   CUSTOM DROPDOWN UTILITY TOOLBAR STYLING
+   ========================================================================== */
+.dropdown-utility-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.btn-toggle-select-all {
+  background: none;
+  border: none;
+  color: #15803d; /* Old theme matching variant dark green tint */
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background-color 0.15s;
+}
+
+.btn-toggle-select-all:hover {
+  background-color: #f0fdf4;
+  color: #166534;
+}
+
+.selection-counter-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  background-color: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+/* Scrollable container partitioning wrapper */
+.dropdown-scroll-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Item check checkbox icon alignment additions */
+.list-item {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.list-item .check-indicator {
+  font-size: 13px;
+  width: 14px;
+  color: #94a3b8;
+}
+
+.list-item.selected .check-indicator {
+  color: #16a34a; /* Turns bright green when item row validation passes */
+}
+
+.item-text-span {
+  font-size: 12px;
+  color: #334155;
+}
+
+.list-item:hover { background: #f8f9fa; }

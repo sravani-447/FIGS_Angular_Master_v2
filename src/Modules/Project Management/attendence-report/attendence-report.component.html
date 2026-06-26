@@ -1,0 +1,58 @@
+<div class="main-report-wrapper">
+  
+  <div class="page-header">
+    <div class="title">Attendance Report</div>
+    <div class="breadcrumb">
+      Attendance Management / <span class="active">VIEW ATTENDANCE REPORT</span>
+    </div>
+  </div>
+
+  <!-- Filter Section using app-custom-dropdown -->
+  <div class="filter-card">
+    <div class="filter-row">
+      
+      <div class="filter-item">
+        <label>EMP. NAME</label>
+        <app-custom-dropdown
+          [options]="employeeList"
+          [displayKey]="'label'"
+          [valueKey]="'value'"
+          placeholder="Select Employee"
+          [(ngModel)]="selectedEmp">
+        </app-custom-dropdown>
+      </div>
+
+      <div class="filter-item">
+        <label>FROM DATE</label>
+        <input type="date" class="date-ctrl" [(ngModel)]="fromDate">
+      </div>
+
+      <div class="filter-item">
+        <label>TO DATE</label>
+        <input type="date" class="date-ctrl" [(ngModel)]="toDate">
+      </div>
+
+       <div class="filter-field button-action-group">
+      <button class="btn-small-view" (click)="onFilterView()">VIEW REPORT</button>
+      <button class="btn-square-x" (click)="clearFilters()" title="Clear Filters">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    </div>
+  </div>
+
+  <!-- Table Section using app-custom-grid -->
+    <div class="card-inner-title"></div>
+    
+    <app-custom-grid
+      [title]="'View Attendance Details'"
+      [columns]="columns" 
+      [data]="data"
+      [showAdd]="false" 
+      [showprintbuttons]="true"
+      [displayExcel]="true"
+      [displayPdf]="true"
+      [Modulewiserejectbox]="false">
+    </app-custom-grid>
+  </div>
+
