@@ -7,17 +7,17 @@ import { TrainingMaster } from '../models/training-master.model';
   providedIn: 'root'   // ✅ correct placement
 })
 export class ServerRequests {
-  rejectBasicDetails(id: any, rejectComment: string) {
-    throw new Error('Method not implemented.');
-  }
-  updateCatchmentMaster(payload: any) {
-    throw new Error('Method not implemented.');
-  }
+  // rejectBasicDetails(id: any, rejectComment: string) {
+  //   throw new Error('Method not implemented.');
+  // }
+  // updateCatchmentMaster(payload: any) {
+  //   throw new Error('Method not implemented.');
+  // }
 
   constructor(private http: HttpClient) { }
 
 
-  public BASE_URL = 'https://figs.neogeoinfo.in:9093/api/figs';
+  public BASE_URL = 'http://localhost:60669/api/figs';
   public WebApiUrl = 'https://figs.neogeoinfo.in:9094/';
   public Geoserver_URl = 'http://183.82.114.29:9901';
 
@@ -674,7 +674,7 @@ export class ServerRequests {
     return this.http.get<any>(`${this.WebApiUrl}/SMC/GetEcoSmcTechnicalDetails?userid=${userId}`);
   }
   getsmcimplementationdetailsdatalist(userId: string): Observable<any> {
-    return this.http.get<any>(`${this.WebApiUrl}/SMC/GetEcoCatchmentImplementation?userid=${userId}`);
+    return this.http.get<any>(`${this.BASE_URL}/GetEcoCatchmentImplementation?userid=${userId}`);
   }
   getsmcMontoringdetailsdatalist(userId: string): Observable<any> {
     return this.http.get<any>(`${this.WebApiUrl}/SMC/GetEcoCatchmentMonitoring?userid=${userId}`);
@@ -1186,7 +1186,7 @@ export class ServerRequests {
 
 
   getAllCatchmentTechnicalDetails(userId: string): Observable<any> {
-    return this.http.get(`${this.WebApiUrl}/CAM/GetAllCatchmentTechnicalDetails?userid=${userId}`);
+    return this.http.get(`${this.BASE_URL}/GetAllCatchmentTechnicalDetails?userid=${userId}`);
   }
 
   updateTechnicalDetails(data: any): Observable<any> {
@@ -1220,7 +1220,7 @@ export class ServerRequests {
   }
 
   getAllCatchmentImplementation(userid: string) {
-    return this.http.get(`${this.WebApiUrl}/CAM/GetAllCatchmentImplementation?userid=${userid}`);
+    return this.http.get(`${this.BASE_URL}/GetAllCatchmentImplementation?userid=${userid}`);
   }
 
   getNurseryImage(id: number, imageName: string, tableName: string) {

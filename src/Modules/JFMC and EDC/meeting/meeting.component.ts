@@ -48,6 +48,7 @@ export class MeetingComponent implements OnInit {
     'actions',
     'is_loan_sanctioned',
     'loan_id',
+    'jfmc_id',
     'createdat',
     'fo_status_display',
     'bo_status_display',
@@ -71,6 +72,8 @@ export class MeetingComponent implements OnInit {
         }
       ]
     },
+     { field: 'jfmc_id', header: 'jfmc_id' },
+    { field: 'id', header: 'id' },
     { field: 'fo_status_display', header: 'Status (FO)' },
     { field: 'bo_status_display', header: 'Status (BO)' },
     { field: 'ro_status_display', header: 'Status (RO)' },

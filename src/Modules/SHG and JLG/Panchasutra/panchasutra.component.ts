@@ -531,8 +531,8 @@ downloadRegulationPdf() {
       // 1. Note: Your C# backend maps data to 'gradation_pdf' even for Resolution files!
       // If your backend SQL select query aliases it as 'regulation_pdf', keep that. 
       // Otherwise, change this to parsedRes[0].gradation_pdf
-      const pdfData = parsedRes[0].gradation_pdf || parsedRes[0].regulation_pdf;
-      const fileName = parsedRes[0].gradation_pdf_name || parsedRes[0].regulation_pdf_name || 'resolution.pdf';
+      const pdfData =  parsedRes[0].regulation_pdf;
+      const fileName =  parsedRes[0].regulation_pdf_name || 'resolution.pdf';
 
       if (!pdfData || pdfData.trim() === "") {
         alert("No Record Found!");

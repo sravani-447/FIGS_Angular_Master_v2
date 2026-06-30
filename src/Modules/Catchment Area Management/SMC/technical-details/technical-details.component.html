@@ -1,37 +1,62 @@
 <app-custom-grid
   title="Technical Details"
- [columns]="columns" [hiddenFields]="hiddenFields"
-   [data]="data"
+  [columns]="columns" 
+  [hiddenFields]="hiddenFields"
+  [data]="data"
   [showAdd]="false"
   (onUpdateView)="handleStatusUpdate($event)"
   (actionClicked)="onGridAction($event)" 
   [editableFields]="['dim_top_length', 'dim_top_width','dim_bot_length','dim_bot_width','dim_slant_height','spli_length','spli_top_width','spli_bot_width','spli_bot_height','estimated_cost','comments']"
   [Modulewiserejectbox]= "true"
-   *ngIf="!mappopup">
+  *ngIf="!mappopup">
 </app-custom-grid>
 
-<!-- IMAGE POPUP -->
 <div class="image-popup-overlay" *ngIf="showImagePopup">
   <div class="image-popup-box">
-
     <span class="close-btn" (click)="closeImagePopup()">✖</span>
-
     <img [src]="popupImageUrl" class="popup-img" />
-
   </div>
 </div>
 
+<div class="pdf-popup-overlay" *ngIf="showPdfPopup">
+  <div class="pdf-popup-box">
+    <div class="pdf-popup-header">
+      <span>📄 Estimate PDF</span>
+      <button class="close-btn" (click)="closePdfPopup()">✖</button>
+    </div>
+
+    <div class="pdf-popup-body">
+      <ng-container *ngIf="!isPdfUploaded()">
+        <p>No PDF uploaded yet. Choose a file and upload.</p>
+        <input type="file" accept="application/pdf" (change)="onPdfFileSelected($event)" />
+        <div class="pdf-popup-actions">
+          <button class="btn-upload" (click)="uploadPdf()" [disabled]="!selectedPdfFile">
+            <i class="fa fa-upload"></i> Upload
+          </button>
+          <button class="btn-cancel" (click)="closePdfPopup()">Cancel</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="isPdfUploaded()">
+        <p>PDF is ready. Click below to download.</p>
+        <div class="pdf-popup-actions">
+          <button class="btn-download" (click)="downloadCurrentPdf()">
+            <i class="fa fa-download"></i> Download
+          </button>
+          <button class="btn-cancel" (click)="closePdfPopup()">Close</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
 
 <div class="map-popup-overlay" *ngIf="mappopup">
   <div class="map-popup-container">
-
     <div class="map-header">
       <span>📍Map View</span>
       <button class="close-btn" (click)="closeMapPopup()">✖</button>
     </div>
-
     <div id="map" class="map-body"></div>
-
   </div>
 </div>
 
