@@ -48,6 +48,8 @@ export class CustomGridComponent implements OnInit, OnChanges {
   // 1. Correct Output Declaration
   @Output() onSaveData = new EventEmitter<any>();
   @Output() fieldChange = new EventEmitter<any>();
+  showLogModal: boolean = false;
+  currentUsername: string = 'User';
 
   searchText = '';
   showForm = false;
@@ -79,12 +81,17 @@ export class CustomGridComponent implements OnInit, OnChanges {
   JuridictionAccess: boolean = false;
 
 
-  constructor(private fb: FormBuilder, private snackbar: MatSnackBar, private coreservice: ServerRequests) {
+ constructor(private fb: FormBuilder, private snackbar: MatSnackBar, private coreservice: ServerRequests) {
     this.form = this.fb.group({});
     const session = sessionStorage.getItem("Session");
     if (session) {
       const sessionDetails = JSON.parse(session);
       this.userDesignation = sessionDetails.Data[0].designation_name;
+      
+      // Extract actual logged-in username or fallback gracefully
+      const userObj = sessionDetails.Data[0];
+      this.currentUsername = userObj.user_name || userObj.username || userObj.first_name || userObj.name || 'User';
+
       this.sfoapproval = sessionStorage.getItem("SFOApproval");
       this.dfoapproval = sessionStorage.getItem("DFOApproval");
     }
@@ -1050,52 +1057,98 @@ getmonitoringdata(payload: any) {
     this.isMinimized = false;
   }
 
-  getRejectionHistory() {
+ getRejectionHistory() {
     const history: any[] = [];
     const row = this.selectedRow;
     if (!row) return history;
 
-    // 1. PARSE MANUAL UPDATES Safely
-    if (row.update_log_history) {
-      const logs = row.update_log_history.split('###');
-      logs.forEach((log: string) => {
-        if (log.trim()) {
-          history.push({
-            type: 'UPDATE',
-            by: log.split(' by ')[1]?.split(' on ')[0] || 'User',
-            action: 'Field Updated',
-            details: log.split(': ')[1] || log,
-            date: log.split(' on ')[1]?.split(': ')[0] + ':' + log.split(' on ')[1]?.split(': ')[1] || '',
-            color: '#3b82f6'
-          });
-        }
-      });
-    }
-
-    // 2. AUDIT LOG PROCESSING
     const officerRoles = [
       { prefix: 'fo', label: 'Field Officer' },
       { prefix: 'bo', label: 'Beat Officer' },
       { prefix: 'ro', label: 'Range Officer' }
     ];
 
+    // Parser to decode cumulative, squashed, or carriage-return comments securely
+    const parseCumulativeComments = (sourceStr: string, roleLabel: string, fallbackDate: string) => {
+      const list: any[] = [];
+      if (!sourceStr || sourceStr === 'null' || sourceStr === '-') return list;
+
+      const sanitized = sourceStr.replace(/\r/g, '');
+      const parts = sanitized.split('[');
+
+      parts.forEach((part, index) => {
+        const trimmed = part.trim();
+        if (!trimmed) return;
+
+        if (index === 0 && !sanitized.startsWith('[')) {
+          // Unformatted legacy or original comment
+          list.push({
+            by: roleLabel,
+            date: fallbackDate || 'Older Log',
+            details: trimmed
+          });
+        } else {
+          // Structured comment: "Date by Username]: Comment"
+          if (trimmed.includes(']: ')) {
+            const meta = trimmed.substring(0, trimmed.indexOf(']:'));
+            const comment = trimmed.substring(trimmed.indexOf(']: ') + 3);
+
+            const dateStr = meta.split(' by ')[0] || '';
+            const userName = meta.split(' by ')[1] || roleLabel;
+
+            list.push({
+              by: userName,
+              date: dateStr,
+              details: comment
+            });
+          } else {
+            // Safety fallback
+            list.push({
+              by: roleLabel,
+              date: 'Older Log',
+              details: trimmed
+            });
+          }
+        }
+      });
+
+      return list;
+    };
+
     officerRoles.forEach(role => {
-      const rejComment = row[`${role.prefix}_rej_comments`];
-      if (rejComment && rejComment !== 'null' && rejComment !== '-') {
+      const rawComments = row[`${role.prefix}_rej_comments`] || (role.prefix === 'ro' ? row.rejectreason : null);
+      const fallbackDate = row[`${role.prefix}_rej_date`] || 'N/A';
+
+      const parsedList = parseCumulativeComments(rawComments, role.label, fallbackDate);
+
+      if (parsedList.length > 0) {
+        // The last element is the newest/active comment
+        const newest = parsedList[parsedList.length - 1];
+        // All preceding elements represent older historical commits
+        const olderHistory = parsedList.slice(0, parsedList.length - 1);
+
         history.push({
           type: 'REJECT',
-          by: role.label,
+          by: newest.by,
           action: 'Rejected',
-          details: rejComment,
-          date: row[`${role.prefix}_rej_date`] || 'N/A',
-          color: '#ef4444'
+          details: newest.details,
+          date: newest.date,
+          color: '#ef4444',
+          history: olderHistory // Stores previous logs for the side-by-side partition
         });
       }
 
+      // Parse Approvals
       if (row[`${role.prefix}_status`] === 'Approved' || row[`${role.prefix}_status`] === 'YES') {
+        const approverName = row[`${role.prefix}_username`] || 
+                             row[`${role.prefix}_approved_by`] || 
+                             row[`${role.prefix}_user`] || 
+                             (role.prefix === 'fo' ? (row.createdby || row.user_name) : null) || 
+                             role.label;
+
         history.push({
           type: 'APPROVE',
-          by: role.label,
+          by: approverName,
           action: 'Approved',
           details: 'Record verified and approved.',
           date: '',
@@ -1104,8 +1157,6 @@ getmonitoringdata(payload: any) {
       }
     });
 
-    // 👇 FIX: Use the spread operator [...] to create a fresh array reference 
-    // This prevents Angular from getting stuck in an infinite change detection loop
     return [...history].reverse();
   }
 
@@ -1166,8 +1217,7 @@ getmonitoringdata(payload: any) {
     }
   }
 
-  submitStatus() {
-
+ submitStatus() {
     let changeSummary: string[] = [];
 
     // 1. Check for changes in editable fields (A -> B)
@@ -1185,39 +1235,74 @@ getmonitoringdata(payload: any) {
     // 2. If changes exist, create a log entry
     if (changeSummary.length > 0) {
       const timestamp = new Date().toLocaleString('en-IN');
-      const newLog = `Update by ${this.userDesignation} on ${timestamp}: ${changeSummary.join(' | ')}`;
-
-      // Append to a hidden field that gets saved to DB
-      // We use a separator like '###' to split multiple updates later
+      const newLog = `Update by ${this.currentUsername} (${this.userDesignation}) on ${timestamp}: ${changeSummary.join(' | ')}`;
       this.selectedRow.update_log_history = (this.selectedRow.update_log_history || '') + '###' + newLog;
     }
-    // If the action is a Rejection, stamp the current date
+
+    // 3. Handle Approvals (Stamp username and status)
+    if (this.selectedRow.status === 'YES') {
+      const today = new Date().toISOString();
+      if (this.userDesignation === 'FIELD_OFFICER') {
+        this.selectedRow.fo_status = 'Approved';
+        this.selectedRow.fo_username = this.currentUsername;
+      } else if (this.userDesignation === 'BEAT_OFFICER') {
+        this.selectedRow.bo_status = 'Approved';
+        this.selectedRow.bo_username = this.currentUsername;
+      } else if (this.userDesignation === 'RANGE_OFFICER') {
+        this.selectedRow.ro_status = 'Approved';
+        this.selectedRow.ro_username = this.currentUsername;
+      }
+    }
+
+    // 4. Handle Rejections (Stamp and append comments chronologically)
     if (this.selectedRow.status === 'NO') {
-      const today = new Date().toISOString(); // Gets current timestamp
+      const today = new Date().toISOString();
+      const timestamp = new Date().toLocaleString('en-IN');
+      
+      // Structure the rejection commit to lock in the username and date
+      const newCommentFormatted = `[${timestamp} by ${this.currentUsername}]: ${this.selectedRow.rejectreason}`;
+
+      const appendComment = (oldVal: string, newVal: string) => {
+        if (!oldVal || oldVal === '-' || oldVal === 'null') {
+          return newVal;
+        }
+        if (oldVal.includes(newVal)) return oldVal;
+        return `${oldVal}\n${newVal}`;
+      };
 
       if (this.userDesignation === 'FIELD_OFFICER') {
         this.selectedRow.fo_rej_date = today;
-        this.selectedRow.fo_rej_comments = this.selectedRow.rejectreason;
+        this.selectedRow.fo_rej_comments = appendComment(this.originalRowSnapshot?.fo_rej_comments, newCommentFormatted);
       } else if (this.userDesignation === 'BEAT_OFFICER') {
         this.selectedRow.bo_rej_date = today;
-        this.selectedRow.bo_rej_comments = this.selectedRow.rejectreason;
+        this.selectedRow.bo_rej_comments = appendComment(this.originalRowSnapshot?.bo_rej_comments, newCommentFormatted);
       } else if (this.userDesignation === 'RANGE_OFFICER') {
         this.selectedRow.ro_rej_date = today;
-        this.selectedRow.ro_rej_comments = this.selectedRow.rejectreason;
+        this.selectedRow.ro_rej_comments = appendComment(this.originalRowSnapshot?.ro_rej_comments, newCommentFormatted);
       }
+
+      // Append to the generic rejectreason field in case the database/API maps to it
+      this.selectedRow.rejectreason = appendComment(
+        this.originalRowSnapshot?.rejectreason || 
+        this.originalRowSnapshot?.fo_rej_comments || 
+        this.originalRowSnapshot?.bo_rej_comments || 
+        this.originalRowSnapshot?.ro_rej_comments, 
+        newCommentFormatted
+      );
     }
 
     const payloadToEmit = {
       ...this.selectedRow,
-      action: this.statusChanged ? 'statusChange' : 'update' // <-- Assign action type
+      action: this.statusChanged ? 'statusChange' : 'update'
     };
 
-    // Emit the data to parent (Meeting or Panchasutra component)
+    // Emit the data to parent
     this.onUpdateView.emit(this.selectedRow);
 
     this.viewPopupVisible = false;
     this.isMinimized = false;
   }
+
   openViewPopupFromOutside(row: any) {
     this.selectedRow = { ...row };
     this.viewPopupVisible = true;
