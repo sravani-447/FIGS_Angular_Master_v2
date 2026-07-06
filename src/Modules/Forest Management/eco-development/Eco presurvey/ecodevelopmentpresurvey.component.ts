@@ -332,34 +332,103 @@ export class ecodevelopmentpresurveyComponent implements OnInit {
     }
   }
 
-    downloadKmlByRow(row: any) {
-    const lat = Number(row.lat);
-    const lng = Number(row.lng);
+  downloadKmlByRow(row: any) {
+    const pointsString = row.points_string;
 
-    if (!lat || !lng) {
-      this.snackBar.open('Location not available to generate KML', 'Close', { duration: 3000 });
+    if (!pointsString) {
+      this.snackBar.open('Boundary coordinates not available (points_string is empty)', 'Close', { duration: 3000 });
       return;
     }
 
+    let parsedGeometry: any = null;
+    const surveyType = row.survey_type || row.type_of_survey;
+
+    try {
+      // 1. Remove white spaces from coordinates string
+      const pntArray = pointsString.replace(/\s+/g, '');
+
+      if (surveyType === "Linear") {
+        // 2. Parse as LineString geometry
+        const coordString = pntArray.replace(/^\[|\]$/g, '');
+        const pairs = coordString.split('],[');
+        const resultObject: number[][] = [];
+
+        pairs.forEach((pair: string) => {
+          const coords = pair.replace(/[\[\]]/g, '').split(',').map(Number);
+          if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+            resultObject.push([coords[0], coords[1]]);
+          }
+        });
+
+        parsedGeometry = {
+          type: "LineString",
+          coordinates: resultObject
+        };
+
+      } else {
+        // 3. Parse as Polygon geometry
+        const coordString = pntArray.replace(/^\[|\]$/g, '');
+        const coordStringClean = coordString.startsWith('[') && coordString.endsWith(']') 
+          ? coordString.substring(1, coordString.length - 1) 
+          : coordString;
+        const pairs = coordStringClean.split('],[');
+        const resultObject: number[][] = [];
+
+        pairs.forEach((pair: string) => {
+          const coords = pair.replace(/[\[\]]/g, '').split(',').map(Number);
+          if (coords.length === 2 && !isNaN(coords[0]) && !isNaN(coords[1])) {
+            resultObject.push([coords[0], coords[1]]);
+          }
+        });
+
+        // Ensure the Polygon ring is closed (the first and last coordinate must match)
+        if (resultObject.length > 0) {
+          const first = resultObject[0];
+          const last = resultObject[resultObject.length - 1];
+          if (first[0] !== last[0] || first[1] !== last[1]) {
+            resultObject.push([first[0], first[1]]);
+          }
+        }
+
+        parsedGeometry = {
+          type: "Polygon",
+          coordinates: [resultObject]
+        };
+      }
+    } catch (error) {
+      console.error("Error parsing points_string:", error);
+      this.snackBar.open('Failed to parse boundary coordinate format.', 'Close', { duration: 3000 });
+      return;
+    }
+
+    // 4. Construct the standard GeoJSON Feature Collection
     const singleFeature = {
       type: "FeatureCollection",
       features: [{
         type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [lng, lat] 
-        },
-        properties: row 
+        geometry: parsedGeometry, 
+        properties: {
+          plantation_id: row.plantation_id,
+          survey_type: surveyType,
+          beat_name: row.beat_name,
+          area_hect: row.area_hect,
+          length_km: row.length_km,
+          locality: row.locatity_name,
+          comments: row.comments,
+          createdby: row.createdby,
+          createdat: row.createdat
+        }
       }]
     };
 
+    // 5. Generate KML and trigger file download
     try {
       const kml = tokml(singleFeature);
       const blob = new Blob([kml], { type: 'application/vnd.google-earth.kml+xml' });
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement('a');
-      a.download = `plantation_${row.plantation_id || 'survey'}.kml`;
+      a.download = `eco_plantation_presurvey_${row.plantation_id || 'survey'}.kml`;
       a.href = url;
       
       document.body.appendChild(a);
@@ -370,10 +439,11 @@ export class ecodevelopmentpresurveyComponent implements OnInit {
 
     } catch (error) {
       console.error("KML Generation Error:", error);
-      this.snackBar.open('Error generating KML', 'Close', { duration: 3000 });
+      this.snackBar.open('Error generating KML file', 'Close', { duration: 3000 });
     }
-}
+  }
 
+  
      handleStatusUpdate(payload: any) {
 
     console.log(payload);
